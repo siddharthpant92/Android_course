@@ -13,6 +13,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:alpha="1"
         android:onClick="changeImageTapped"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"

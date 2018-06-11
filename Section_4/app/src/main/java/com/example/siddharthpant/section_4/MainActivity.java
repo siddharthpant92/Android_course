@@ -27,17 +27,17 @@ public class MainActivity extends AppCompatActivity {
     {
         if(goku1Displayed)
         {
-            gokuImage1.animate().alpha(0f).setDuration(1000);
+            gokuImage1.animate().alpha(0f).translationXBy(-1000f).scaleX(0.1f).scaleY(0.1f).setDuration(3000);
             goku1Displayed = false;
 
-            gokuImage2.animate().alpha(1f).setDuration(1000);
+            gokuImage2.animate().alpha(1f).translationX(0f).scaleX(1f).scaleY(1f).setDuration(3000);
         }
         else
         {
-            gokuImage2.animate().alpha(0f).setDuration(1000);
+            gokuImage2.animate().alpha(0f).translationXBy(1000f).scaleX(0.1f).scaleY(0.1f).setDuration(3000);
 
             goku1Displayed = true;
-            gokuImage1.animate().alpha(1f).setDuration(1000);
+            gokuImage1.animate().alpha(1f).translationX(0f).scaleX(1f).scaleY(1f).setDuration(3000);
         }
     }
 }
