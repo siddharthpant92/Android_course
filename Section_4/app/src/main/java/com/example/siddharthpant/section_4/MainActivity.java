@@ -9,37 +9,35 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity {
 
     String TAG = "MainActivity";
-    ImageView gokuImage;
+    ImageView gokuImage1, gokuImage2;
+
+    Boolean goku1Displayed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        gokuImage = (ImageView) findViewById(R.id.gokuImage);
-        gokuImage.setImageResource(R.drawable.goku_1);
-        gokuImage.setTag(1);
+        gokuImage1 = (ImageView) findViewById(R.id.gokuImage1);
+        goku1Displayed = true;
+        gokuImage2 = (ImageView) findViewById(R.id.gokuImage2);
     }
 
     public void changeImageTapped(View view)
     {
-        if((Integer) gokuImage.getTag() == 1)
+        if(goku1Displayed)
         {
-            gokuImage.animate().alpha(0.3f).setDuration(2000);
+            gokuImage1.animate().alpha(0f).setDuration(1000);
+            goku1Displayed = false;
 
-            gokuImage.setImageResource(R.drawable.goku_2);
-            gokuImage.setAlpha(0.3f);//To start animation
-            gokuImage.animate().alpha(1f).setDuration(2000);
-            gokuImage.setTag(2);
+            gokuImage2.animate().alpha(1f).setDuration(1000);
         }
         else
         {
-            gokuImage.animate().alpha(0.3f).setDuration(2000);
+            gokuImage2.animate().alpha(0f).setDuration(1000);
 
-            gokuImage.setImageResource(R.drawable.goku_1);
-            gokuImage.setAlpha(0.3f);//To start animation
-            gokuImage.animate().alpha(1f).setDuration(2000);
-            gokuImage.setTag(1);
+            goku1Displayed = true;
+            gokuImage1.animate().alpha(1f).setDuration(1000);
         }
     }
 }
