@@ -7,22 +7,21 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.GridLayout
+        android:id="@+id/grid"
         android:layout_width="268dp"
         android:layout_height="264dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="36dp"
         android:background="@drawable/grid"
         app:columnCount="3"
         app:columnOrderPreserved="false"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.497"
         app:rowCount="3">
 
         <ImageView
@@ -133,4 +132,19 @@
             app:layout_row="0"
             app:srcCompat="@drawable/unknown" />
     </android.support.v7.widget.GridLayout>
+
+    <Button
+        android:id="@+id/newGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:onClick="newGameTapped"
+        android:text="New Game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grid" />
 </android.support.constraint.ConstraintLayout>
