@@ -1,16 +1,22 @@
 package com.example.siddharthpant.user_location_map;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +24,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -65,6 +75,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 userLocation = new LatLng(latitude, longitude);
                 mMap.addMarker(new MarkerOptions().position(userLocation).title("Your location"));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 5));
+
+                Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+                try
+                {
+                    List<Address> addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                    if(addressList != null && addressList.size() > 0)
+                    {
+                        //Called because locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener); minTime and minDistance are 0
+                        Log.d(TAG, String.valueOf(addressList.get(0)));
+                        AlertDialog.Builder builder = new AlertDialog.Builder(MapsActivity.this);
+                        builder.setMessage(addressList.get(0).getFeatureName()+"\n"+addressList.get(0).getThoroughfare()+"\n"+addressList.get(0).getLocality()+"  "+addressList.get(0).getPostalCode()+"\n"+addressList.get(0).getCountryName())
+                                .setTitle("Your address")
+                        .setPositiveButton("Ok", null);
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+                    }
+                }
+                catch (IOException e)
+                {
+                    Toast.makeText(MapsActivity.this, "Could not find address", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+
             }
 
             @Override
