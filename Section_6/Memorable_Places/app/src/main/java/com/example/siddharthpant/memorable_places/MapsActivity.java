@@ -2,7 +2,9 @@ package com.example.siddharthpant.memorable_places;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -30,6 +32,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     LocationManager locationManager;
+    SharedPreferences sharedPreferences;
 
     String tag = "MapsActivty", newLoc;
     List<Address> addresses; //The address based on the latitude and longitude
@@ -49,6 +52,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        sharedPreferences = this.getSharedPreferences("com.example.siddharthpant.memorable_places", Context.MODE_PRIVATE);
     }
 
 
@@ -111,6 +116,27 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             MainActivity.places.add(newLoc);
                             MainActivity.latitudes.add(latitude);
                             MainActivity.longitudes.add(longitude);
+
+                            try
+                            {
+                                sharedPreferences.edit().putString("places", ObjectSerializer.serialize(MainActivity.places)).apply();
+                                sharedPreferences.edit().putString("latitudes", ObjectSerializer.serialize(MainActivity.latitudes)).apply();
+                                sharedPreferences.edit().putString("longitudes", ObjectSerializer.serialize(MainActivity.longitudes)).apply();
+                            }
+                            catch (IOException e)
+                            {
+                                e.printStackTrace();
+                            }
+
+                            try
+                            {
+                                places = (ArrayList<String>) ObjectSerializer.deserialize(sharedPreferences.getString("places", ObjectSerializer.serialize(new ArrayList<String>())));
+                            }
+                            catch (IOException e)
+                            {
+                                e.printStackTrace();
+                            }
+
                             MainActivity.adapter.notifyDataSetChanged();
 
                             //Adding the new location to the map
