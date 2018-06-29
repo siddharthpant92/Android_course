@@ -1,8 +1,10 @@
 package com.example.siddharthpant.notes;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +55,27 @@ public class MainActivity extends AppCompatActivity {
 
 
         noteTitle.setAdapter(adapter);
+
+        noteTitle.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("Delete this item?")
+                                .setMessage("Are you sure?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        deleteNote(position);
+                                    }
+                                })
+                                .setNegativeButton("No", null)
+                                .show();
+
+                return true; //Prevents setOnItemClickListener from being triggered
+            }
+        });
+
         noteTitle.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -61,7 +84,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void goToDetailActivity(int position) {
+    private void deleteNote(int position)
+    {
+        titles.remove(position);
+        details.remove(position);
+
+        try
+        {
+            sharedPreferences.edit().putString("notesTitles", ObjectSerializer.serialize(titles)).apply();
+            sharedPreferences.edit().putString("notesDetails", ObjectSerializer.serialize(details)).apply();
+        }
+        catch (Exception e)
+        {
+            Log.d(tag, String.valueOf(e));
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    private void goToDetailActivity(int position)
+    {
         Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
         Bundle bundle = new Bundle();
         bundle.putInt("position", position);
