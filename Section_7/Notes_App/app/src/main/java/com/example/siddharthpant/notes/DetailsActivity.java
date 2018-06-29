@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -49,30 +50,38 @@ public class DetailsActivity extends AppCompatActivity {
 
     public  void saveNotesTapped(View view)
     {
-        if(position != -99)
+        if((selectedTitle.getText().length() > 0) && (selectedDetail.getText().length() > 0))
         {
-            //Changing the values of selected note
-            MainActivity.titles.set(position, String.valueOf(selectedTitle.getText()));
-            MainActivity.details.set(position, String.valueOf(selectedDetail.getText()));
+            if (position != -99)
+            {
+                //Changing the values of selected note
+                MainActivity.titles.set(position, String.valueOf(selectedTitle.getText()));
+                MainActivity.details.set(position, String.valueOf(selectedDetail.getText()));
+            }
+            else
+            {
+                //Adding the new note
+                MainActivity.titles.add(String.valueOf(selectedTitle.getText()));
+                MainActivity.details.add(String.valueOf(selectedDetail.getText()));
+            }
+
+            try
+            {
+                sharedPreferences.edit().putString("notesTitles", ObjectSerializer.serialize(MainActivity.titles)).apply();
+                sharedPreferences.edit().putString("notesDetails", ObjectSerializer.serialize(MainActivity.details)).apply();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
+            MainActivity.adapter.notifyDataSetChanged();
+            Toast.makeText(DetailsActivity.this, "Saved", Toast.LENGTH_SHORT).show();
+            finish();
         }
         else
         {
-            //Adding the new note
-            MainActivity.titles.add(String.valueOf(selectedTitle.getText()));
-            MainActivity.details.add(String.valueOf(selectedDetail.getText()));
-        }
-        Log.d(tag, "titles: "+MainActivity.titles);
-        Log.d(tag, "details: "+MainActivity.details);
-        MainActivity.adapter.notifyDataSetChanged();
-
-        try
-        {
-            sharedPreferences.edit().putString("notesTitles", ObjectSerializer.serialize(MainActivity.titles)).apply();
-            sharedPreferences.edit().putString("notesDetails", ObjectSerializer.serialize(MainActivity.details)).apply();
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
+            Toast.makeText(DetailsActivity.this, "Title and Details cannot be left blank", Toast.LENGTH_SHORT).show();
         }
     }
 }
