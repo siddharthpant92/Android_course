@@ -6,8 +6,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class MainActivity extends AppCompatActivity {
+
+    WebView webView;
 
     String tag = "MainActivity";
 
@@ -15,6 +19,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        webView = (WebView) findViewById(R.id.webView);
+        webView.getSettings().setJavaScriptEnabled(true);
+        // In some devices, if this isn't mentioned, content is displayed using devices default web browser
+        webView.setWebViewClient(new WebViewClient());
+        webView.loadUrl("https://www.google.com");
+
 
         try
         {
@@ -49,5 +60,6 @@ public class MainActivity extends AppCompatActivity {
         {
             Log.d(tag, "Exception: "+e);
         }
+
     }
 }
