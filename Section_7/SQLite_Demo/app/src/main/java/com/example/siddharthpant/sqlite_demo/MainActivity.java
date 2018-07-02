@@ -1,5 +1,6 @@
 package com.example.siddharthpant.sqlite_demo;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
@@ -17,26 +18,36 @@ public class MainActivity extends AppCompatActivity {
 
         try
         {
-            SQLiteDatabase database = this.openOrCreateDatabase("Test", MODE_PRIVATE, null);
-            database.execSQL("create table if not exists test(title varchar, detail varchar)");
-            database.execSQL("insert into test(title, detail) values ('title 1', 'detail 1')");
-            database.execSQL("insert into test(title, detail) values ('title 2', 'detail 2')");
+            SQLiteDatabase database = this.openOrCreateDatabase("users", Context.MODE_PRIVATE, null);
+            database.execSQL("drop table if exists userTable");
+            database.execSQL("create table if not exists userTable(id integer primary key, name varchar, age integer)");
+            database.execSQL("insert into userTable(name, age) values ('sid', 25)");
+            database.execSQL("insert into userTable(name, age) values ('saish', 26)");
 
-            Cursor cursor = database.rawQuery("select * from test", null);
-            int titleIndex = cursor.getColumnIndex("title");
-            int detailIndex = cursor.getColumnIndex("detail");
-
+            Cursor cursor = database.rawQuery("select * from userTable", null);
+            int nameIndex = cursor.getColumnIndex("name");
+            int ageIndex = cursor.getColumnIndex("age");
+            int idIndex = cursor.getColumnIndex("id");
             cursor.moveToFirst();
-            while(cursor != null)
+            while(!cursor.isAfterLast())
             {
-                Log.d(tag, "title: "+cursor.getString(titleIndex)+"\n detail: "+cursor.getString(detailIndex));
+                Log.d(tag, "id: "+cursor.getInt(idIndex)+", name: "+cursor.getString(nameIndex)+", age: "+cursor.getInt(ageIndex));
                 cursor.moveToNext();
             }
 
+            // Deleting user
+            database.execSQL("delete from userTable where name='saish'");
+            cursor = database.rawQuery("select * from userTable", null);
+            cursor.moveToFirst();
+            while(!cursor.isAfterLast())
+            {
+                Log.d(tag, "After deleting | id: "+cursor.getInt(idIndex)+", name: "+cursor.getString(nameIndex)+", age: "+cursor.getInt(ageIndex));
+                cursor.moveToNext();
+            }
         }
         catch(Exception e)
         {
-
+            Log.d(tag, "Exception: "+e);
         }
     }
 }
