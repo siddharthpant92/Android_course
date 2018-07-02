@@ -24,8 +24,17 @@ public class MainActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         // In some devices, if this isn't mentioned, content is displayed using devices default web browser
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://www.google.com");
-
+//        webView.loadUrl("https://www.google.com");
+        webView.loadData("<html>" +
+                                    "<body>"+
+                                        "<h1>"+
+                                            "Hi there!"+
+                                        "</h1>"+
+                                        "<p>"+
+                                            "Typed out some HTML in android!!"+
+                                        "</p>"+
+                                    "</body>"+
+                                "</html>", "text/html", "UTF-8");
 
         try
         {
