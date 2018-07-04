@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Log.d(tag, object.getString("username"));
                     Log.d(tag, String.valueOf(object.getInt("score")));
+
+                    //Updating score
+                    object.put("score", 91);
+                    object.saveInBackground();
+                    Log.d(tag, "Updated score: "+object.getInt("score"));
                 }
                 else
                 {
