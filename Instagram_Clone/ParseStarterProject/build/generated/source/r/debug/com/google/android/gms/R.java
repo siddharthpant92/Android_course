@@ -442,14 +442,14 @@ public final class R {
         public static final int text1 = 0x7f0800c7;
         public static final int text2 = 0x7f0800c8;
         public static final int textTitle = 0x7f0800ca;
-        public static final int text_empty_message = 0x7f0800cb;
-        public static final int text_list_view = 0x7f0800cc;
-        public static final int thing_proto = 0x7f0800cd;
-        public static final int title_view = 0x7f0800d2;
-        public static final int toolbar = 0x7f0800d3;
-        public static final int url = 0x7f0800d6;
-        public static final int wide = 0x7f0800d8;
-        public static final int wrap_content = 0x7f0800da;
+        public static final int text_empty_message = 0x7f0800cc;
+        public static final int text_list_view = 0x7f0800cd;
+        public static final int thing_proto = 0x7f0800ce;
+        public static final int title_view = 0x7f0800d3;
+        public static final int toolbar = 0x7f0800d4;
+        public static final int url = 0x7f0800d7;
+        public static final int wide = 0x7f0800d9;
+        public static final int wrap_content = 0x7f0800db;
     }
     public static final class integer {
         public static final int cast_libraries_material_featurehighlight_pulse_base_alpha = 0x7f090004;
