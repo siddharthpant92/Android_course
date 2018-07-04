@@ -30,15 +30,15 @@ public class StarterApplication extends Application {
 
     // Add your initialization code here
     Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
-            .applicationId("")
-            .clientKey("")
-            .server("")
+            .applicationId("02e0b32f34659f7f73f24ebad0d92351cb741656")
+            .clientKey("81bdb28f07476781a268628bb0e6901c668242b1")
+            .server("http://54.153.48.88:80/parse/")
             .build()
     );
 
     ParseObject object = new ParseObject("ExampleObject");
     object.put("myNumber", "123");
-    object.put("myString", "rob");
+    object.put("myString", "sid");
 
     object.saveInBackground(new SaveCallback () {
       @Override
