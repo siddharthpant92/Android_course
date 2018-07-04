@@ -9,20 +9,43 @@
 package com.parse.starter;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.parse.ParseAnalytics;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.SaveCallback;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    String tag = "MainActivity";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+        //Parse dasboard: http://54.153.48.88/apps/
 
-    
-    ParseAnalytics.trackAppOpenedInBackground(getIntent());
-  }
+        //Storing object in parse server
+        ParseObject score = new ParseObject("Score"); //Class name
+        score.put("username", "Sid");
+        score.put("score", 85);
+        score.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null)
+                {
+                    Log.d(tag, "Saved");
+                }
+                else
+                {
+                    Log.d(tag, "Error: "+e);
+                }
+            }
+        });
+
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+    }
 
 }
