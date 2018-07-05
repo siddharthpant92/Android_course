@@ -47,27 +47,61 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        //Getting data from parse server
-        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Score");
-        parseQuery.getInBackground("XAfhxSikka", new GetCallback<ParseObject>() {
+         //Getting data from parse server
+//        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Score");
+//        parseQuery.getInBackground("XAfhxSikka", new GetCallback<ParseObject>() {
+//            @Override
+//            public void done(ParseObject object, ParseException e) {
+//                if(e == null && object != null)
+//                {
+//                    Log.d(tag, object.getString("username"));
+//                    Log.d(tag, String.valueOf(object.getInt("score")));
+//
+//                    //Updating score
+//                    object.put("score", 91);
+//                    object.saveInBackground();
+//                    Log.d(tag, "Updated score: "+object.getInt("score"));
+//                }
+//                else
+//                {
+//                    Log.d(tag, "Exception: "+e);
+//                }
+//            }
+//        });
+
+        ParseObject parseObject = new ParseObject("Tweet");
+        parseObject.put("username", "Sid");
+        parseObject.put("tweet", "this is a tweet too");
+        parseObject.saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null)
+                {
+                    Log.d(tag, "Tweet saved!");
+                }
+                else
+                {
+                    Log.d(tag, "error:"+e);
+                }
+            }
+        });
+
+        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Tweet");
+        parseQuery.getInBackground("fT0sDhSXz5", new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
                 if(e == null && object != null)
                 {
                     Log.d(tag, object.getString("username"));
-                    Log.d(tag, String.valueOf(object.getInt("score")));
+                    Log.d(tag, object.getString("tweet"));
 
-                    //Updating score
-                    object.put("score", 91);
+                    object.put("tweet", "tweet has been changed");
                     object.saveInBackground();
-                    Log.d(tag, "Updated score: "+object.getInt("score"));
-                }
-                else
-                {
-                    Log.d(tag, "Exception: "+e);
+                    Log.d(tag, "updated tweet: "+object.get("tweet"));
                 }
             }
         });
+
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
