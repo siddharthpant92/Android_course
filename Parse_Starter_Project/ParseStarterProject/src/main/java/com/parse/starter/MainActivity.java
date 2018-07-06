@@ -111,6 +111,17 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
+
+        //Checking if a user is already logged in
+        if(ParseUser.getCurrentUser() != null)
+        {
+            Log.d(tag, "already logged in:  "+ParseUser.getCurrentUser().getUsername());
+        }
+        else
+        {
+            Log.d(tag, "not logged in yet");
+        }
+
         //Creating a user and signing them up
 //        ParseUser user = new ParseUser();
 //        user.setUsername("sid");
@@ -130,19 +141,30 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
         //Logging a user in
-        ParseUser.logInInBackground("sid", "myPass", new LogInCallback() {
-            @Override
-            public void done(ParseUser user, ParseException e) {
-                if(e == null && user != null)
-                {
-                    Log.d(tag, "Logged in");
-                }
-                else
-                {
-                    Log.d(tag, "Failed: "+e);
-                }
-            }
-        });
+//
+//        ParseUser.logInInBackground("sid", "myPass", new LogInCallback() {
+//            @Override
+//            public void done(ParseUser user, ParseException e) {
+//                if(e == null && user != null)
+//                {
+//                    Log.d(tag, "Logged in");
+//                }
+//                else
+//                {
+//                    Log.d(tag, "Failed: "+e);
+//                }
+//            }
+//        });
+
+        ParseUser.logOut(); //Logging out a user
+        if(ParseUser.getCurrentUser() != null)
+        {
+            Log.d(tag, "already logged in:  "+ParseUser.getCurrentUser().getUsername());
+        }
+        else
+        {
+            Log.d(tag, "not logged in yet");
+        }
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }

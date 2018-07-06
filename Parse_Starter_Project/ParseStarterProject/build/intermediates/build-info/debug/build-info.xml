@@ -2,30 +2,30 @@
 <instant-run
     abi="x86"
     api-level="25"
-    build-mode="HOT_WARM"
+    build-mode="COLD"
     density="420dpi"
     format="10"
     plugin-version="3.1.3"
-    timestamp="1530838187147"
+    timestamp="1530838504186"
     token="4593471598645340129"
-    verifier="COMPATIBLE" >
+    verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="421" />
+        duration="0" />
     <task
         name="instant-run-dex"
-        duration="470" />
+        duration="0" />
     <task
         name="instant-run-transform"
-        duration="85" />
+        duration="0" />
     <task
         name="verifier"
-        duration="7" />
+        duration="0" />
 
     <artifact
-        location="C:\Users\siddh\Desktop\Android\Android_course\Parse_Starter_Project\ParseStarterProject\build\intermediates\reload-dex\debug\classes.dex"
-        type="RELOAD_DEX" />
+        location="C:\Users\siddh\Desktop\Android\Android_course\Parse_Starter_Project\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
 
     <build
         build-mode="FULL"
@@ -70,27 +70,11 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1530838118838"
-        verifier="IMPLEMENTED_INTERFACES_CHANGE" >
+        timestamp="1530838504186"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Parse_Starter_Project\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
             type="SPLIT" />
-    </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1530838167157"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\siddh\Desktop\Android\Android_course\Parse_Starter_Project\ParseStarterProject\build\intermediates\builds\debug\1530838167157\classes.dex"
-            type="RELOAD_DEX" />
-    </build>
-    <build
-        build-mode="HOT_WARM"
-        timestamp="1530838187147"
-        verifier="COMPATIBLE" >
-        <artifact
-            location="C:\Users\siddh\Desktop\Android\Android_course\Parse_Starter_Project\ParseStarterProject\build\intermediates\reload-dex\debug\classes.dex"
-            type="RELOAD_DEX" />
     </build>
 
 </instant-run>
