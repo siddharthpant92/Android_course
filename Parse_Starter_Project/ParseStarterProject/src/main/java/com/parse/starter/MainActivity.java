@@ -13,11 +13,14 @@ import android.util.Log;
 
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 import java.util.List;
 
@@ -90,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
 //        });
 
 //        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Tweet");
-//        parseQuery.whereEqualTo("username", "Sid 1");
+//        parseQuery.whereEqualTo("username", "Sid 2");
 //        parseQuery.findInBackground(new FindCallback<ParseObject>() {
 //            @Override
 //            public void done(List<ParseObject> objects, ParseException e) {
@@ -100,17 +103,48 @@ public class MainActivity extends AppCompatActivity {
 //                    {
 //                        for(ParseObject ob: objects)
 //                        {
-//                            ob.put("tweet", "changed the tweet for a specific user");
+//                            ob.put("tweet", "changed another tweet");
 //                            ob.saveInBackground();
 //                        }
 //                    }
 //                }
 //            }
 //        });
-//
-//
-//
-//        ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
+        //Creating a user and signing them up
+//        ParseUser user = new ParseUser();
+//        user.setUsername("sid");
+//        user.setPassword("myPass");
+//        user.signUpInBackground(new SignUpCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null)
+//                {
+//                    Log.d(tag, "User Signed up!!");
+//                }
+//                else
+//                {
+//                    Log.d(tag, "Failed: "+e);
+//                }
+//            }
+//        });
+
+        //Logging a user in
+        ParseUser.logInInBackground("sid", "myPass", new LogInCallback() {
+            @Override
+            public void done(ParseUser user, ParseException e) {
+                if(e == null && user != null)
+                {
+                    Log.d(tag, "Logged in");
+                }
+                else
+                {
+                    Log.d(tag, "Failed: "+e);
+                }
+            }
+        });
+
+        ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
 
 }
