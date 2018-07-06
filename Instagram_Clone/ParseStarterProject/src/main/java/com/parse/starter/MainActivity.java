@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -69,38 +72,42 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //        });
 
-        ParseObject parseObject = new ParseObject("Tweet");
-        parseObject.put("username", "Sid");
-        parseObject.put("tweet", "this is a tweet too");
-        parseObject.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if(e == null)
-                {
-                    Log.d(tag, "Tweet saved!");
-                }
-                else
-                {
-                    Log.d(tag, "error:"+e);
-                }
-            }
-        });
+//        ParseObject parseObject = new ParseObject("Tweet");
+//        parseObject.put("username", "Sid");
+//        parseObject.put("tweet", "this is a tweet too");
+//        parseObject.saveInBackground(new SaveCallback() {
+//            @Override
+//            public void done(ParseException e) {
+//                if(e == null)
+//                {
+//                    Log.d(tag, "Tweet saved!");
+//                }
+//                else
+//                {
+//                    Log.d(tag, "error:"+e);
+//                }
+//            }
+//        });
 
         ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("Tweet");
-        parseQuery.getInBackground("fT0sDhSXz5", new GetCallback<ParseObject>() {
+        parseQuery.whereEqualTo("username", "Sid 1");
+        parseQuery.findInBackground(new FindCallback<ParseObject>() {
             @Override
-            public void done(ParseObject object, ParseException e) {
-                if(e == null && object != null)
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e == null )
                 {
-                    Log.d(tag, object.getString("username"));
-                    Log.d(tag, object.getString("tweet"));
-
-                    object.put("tweet", "tweet has been changed");
-                    object.saveInBackground();
-                    Log.d(tag, "updated tweet: "+object.get("tweet"));
+                    if(objects.size() > 0)
+                    {
+                        for(ParseObject ob: objects)
+                        {
+                            ob.put("tweet", "changed the tweet for a specific user");
+                            ob.saveInBackground();
+                        }
+                    }
                 }
             }
         });
+
 
 
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
