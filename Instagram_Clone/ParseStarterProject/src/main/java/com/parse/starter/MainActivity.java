@@ -17,14 +17,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.LogInCallback;
 import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
       password = (TextView) findViewById(R.id.password);
 
       ParseAnalytics.trackAppOpenedInBackground(getIntent());
+
+      if(ParseUser.getCurrentUser() != null)
+      {
+          getAllUsers();
+      }
   }
 
 
@@ -59,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
               public void done(ParseException e) {
                   if(e == null)
                   {
-                      Log.d(tag, "signed up");
+                     getAllUsers();
                   }
                   else
                   {
@@ -82,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
               public void done(ParseUser user, ParseException e) {
                   if(user != null && e == null)
                   {
-                      Log.d(tag, "logged in");
+                      getAllUsers();
                   }
                   else
                   {
@@ -107,5 +117,36 @@ public class MainActivity extends AppCompatActivity {
       }
       return true;
   }
+
+  public void getAllUsers()
+  {
+      ParseQuery<ParseUser> query = ParseUser.getQuery();
+      query.whereNotEqualTo("username", "");
+      query.addAscendingOrder("username");
+      query.findInBackground(new FindCallback<ParseUser>() {
+          @Override
+          public void done(List<ParseUser> objects, ParseException e) {
+              if(objects.size() > 0 && e == null)
+              {
+                  ArrayList<String> usernames = new ArrayList<>();
+                  for(ParseUser user: objects)
+                  {
+                      usernames.add(user.getUsername());
+                  }
+                  gotoUserListActivity(usernames);
+              }
+          }
+      });
+  }
+
+  private void gotoUserListActivity(ArrayList<String> usernames)
+  {
+      Intent intent = new Intent(MainActivity.this, UserListActivity.class);
+      Bundle bundle = new Bundle();
+      bundle.putStringArrayList("usernames", usernames);
+      intent.putExtras(bundle);
+      startActivity(intent);
+  }
+
 
 }
