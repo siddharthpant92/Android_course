@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
       ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
-      if(ParseUser.getCurrentUser() != null)
+      if(ParseUser.getCurrentUser().getUsername() != null)
       {
           getAllUsers();
       }

@@ -1,27 +1,27 @@
 [
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_instagram.jpg.flat",
-        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\src\\main\\res\\drawable\\instagram.jpg"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_menu_hardkey_panel_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_instagram.jpg.flat",
+        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\src\\main\\res\\drawable\\instagram.jpg"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_full_open_on_phone.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-xhdpi-v4\\common_full_open_on_phone.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_bottom.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\anim\\abc_slide_out_bottom.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\anim_abc_slide_out_bottom.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\anim\\abc_slide_out_bottom.xml"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_volume_mute_grey600_36.png.flat",
@@ -56,28 +56,28 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_cast_white_36.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_cast_white_36.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi-v4_common_ic_googleplayservices.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-ldpi-v4\\common_ic_googleplayservices.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_pause_grey600_48.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-mdpi-v4\\quantum_ic_pause_grey600_48.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_cast_white_36.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_cast_white_36.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_textfield_activated_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\notification_template_big_media.xml"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_pause_grey600_48.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-mdpi-v4\\quantum_ic_pause_grey600_48.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_abc_action_bar_up_container.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\abc_action_bar_up_container.xml"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_big_media.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\notification_template_big_media.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_cast_disabled_light.png.flat",
@@ -120,12 +120,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_out.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\anim\\abc_fade_out.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_mini_controller_gradient_light.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_mini_controller_gradient_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\anim_abc_fade_out.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\anim\\abc_fade_out.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_ab_back_mtrl_am_alpha.png.flat",
@@ -156,12 +156,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_media_route_disabled_mono_dark.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_media_route_on_1_mono_dark.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_media_route_on_1_mono_dark.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_google_signin_btn_text_dark_pressed.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-tvdpi-v4\\common_google_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_media_route_on_1_mono_dark.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_media_route_on_1_mono_dark.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_ic_plusone_tall_off_client.png.flat",
@@ -216,24 +216,24 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_play_dark.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_rating_star_off_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_mr_ic_media_route_connecting_mono_dark.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable\\mr_ic_media_route_connecting_mono_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_btn_rating_star_off_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_go_search_api_mtrl_alpha.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_plus_signin_btn_text_dark_focused.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-mdpi-v4\\common_plus_signin_btn_text_dark_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_tab_indicator_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxxhdpi-v4\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_keyboard_arrow_down_white_36.png.flat",
@@ -248,12 +248,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_scrubber_primary_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_plus_signin_btn_icon_dark_normal.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-tvdpi-v4\\common_plus_signin_btn_icon_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_list_divider_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_menu_share_mtrl_alpha.png.flat",
@@ -264,16 +264,16 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_play_circle_filled_white_36.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xhdpi-v4\\quantum_ic_play_circle_filled_white_36.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_google_signin_btn_icon_dark_disabled.9.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-tvdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_media_play.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-mdpi\\ic_media_play.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_google_signin_btn_icon_dark_disabled.9.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-tvdpi-v4\\common_google_signin_btn_icon_dark_disabled.9.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_play_circle_filled_white_36.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xhdpi-v4\\quantum_ic_play_circle_filled_white_36.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_skip_next_white_24.png.flat",
@@ -332,12 +332,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-9.4.0.aar\\98c49f9280527623cb699cf007d5716a\\res\\drawable\\cast_ic_notification_connecting.xml"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_abc_cab_background_internal_bg.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable\\abc_cab_background_internal_bg.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_cast_disabled_light.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xxhdpi\\ic_cast_disabled_light.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_abc_cab_background_internal_bg.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_setting_light.png.flat",
@@ -436,12 +436,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_play_arrow_grey600_48.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\abc_popup_menu_item_layout.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_abc_popup_menu_item_layout.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_ic_ab_back_mtrl_am_alpha.png.flat",
@@ -464,12 +464,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxhdpi-v4\\quantum_ic_cast_white_36.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_cast_dark.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-mdpi\\ic_cast_dark.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_setting_light.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_setting_light.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_cast_dark.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-mdpi\\ic_cast_dark.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_pause_circle_filled_grey600_36.png.flat",
@@ -604,12 +604,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-hdpi\\ic_media_route_off_mono_dark.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_media_route_on_2_mono_dark.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_media_route_on_2_mono_dark.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_abc_dialog_material_background_light.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable\\abc_dialog_material_background_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_media_route_on_2_mono_dark.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_media_route_on_2_mono_dark.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_btn_switch_to_on_mtrl_00012.9.png.flat",
@@ -620,16 +620,16 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_powered_by_google_light.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\drawable-mdpi-v4\\powered_by_google_light.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_go_search_api_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_ic_star_half_black_36dp.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_36dp.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_go_search_api_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_go_search_api_mtrl_alpha.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_powered_by_google_light.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\drawable-mdpi-v4\\powered_by_google_light.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_stop_white_24.png.flat",
@@ -704,10 +704,6 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-mdpi-v4\\abc_ic_search_api_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_place_autocomplete_fragment.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\layout\\place_autocomplete_fragment.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_ic_googleplayservices.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-xxhdpi-v4\\common_ic_googleplayservices.png"
     },
@@ -780,12 +776,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-mdpi\\ic_play_dark.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_powered_by_google_dark.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\drawable-hdpi-v4\\powered_by_google_dark.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_scrubber_control_off_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_scrubber_control_off_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_ic_googleplayservices.png.flat",
@@ -920,12 +916,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_volume_mute_white_36.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_pause_circle_filled_white_36.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_pause_circle_filled_white_36.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_skip_next_grey600_36.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxhdpi-v4\\quantum_ic_skip_next_grey600_36.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_pause_circle_filled_white_36.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_pause_circle_filled_white_36.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_keyboard_arrow_down_white_36.png.flat",
@@ -968,20 +964,20 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-tvdpi-v4\\common_google_signin_btn_text_dark_disabled.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_cast_connected_white_24.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_search_api_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_search_api_mtrl_alpha.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_play_circle_filled_grey600_36.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxxhdpi-v4\\quantum_ic_play_circle_filled_grey600_36.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_ic_search_api_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_ic_search_api_mtrl_alpha.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_abc_textfield_search_activated_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxhdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_cast_connected_white_24.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_cast_connected_white_24.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_popup_background_mtrl_mult.9.png.flat",
@@ -1000,52 +996,52 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_stop_live_stream.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_forward30.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_expanded_controller_forward30.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_stop_white_24.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxhdpi-v4\\quantum_ic_stop_white_24.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_forward30.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_expanded_controller_forward30.xml"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_stop_live_stream.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_notification_stop_live_stream.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_cast_ic_notification_on.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-9.4.0.aar\\98c49f9280527623cb699cf007d5716a\\res\\drawable-hdpi-v4\\cast_ic_notification_on.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_volume_off_white_36.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-mdpi-v4\\quantum_ic_volume_off_white_36.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_common_google_signin_btn_text_dark_normal.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-xxhdpi-v4\\common_google_signin_btn_text_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_volume_off_white_36.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-mdpi-v4\\quantum_ic_volume_off_white_36.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi-v17_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-ldrtl-xxhdpi-v17\\abc_spinner_mtrl_am_alpha.9.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_multichoice_material.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\select_dialog_multichoice_material.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_btn_rating_star_off_mtrl_alpha.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_btn_rating_star_off_mtrl_alpha.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_select_dialog_multichoice_material.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_abc_alert_dialog_button_bar_material.xml.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_quantum_ic_volume_mute_grey600_36.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxxhdpi-v4\\quantum_ic_volume_mute_grey600_36.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_abc_alert_dialog_button_bar_material.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\layout\\abc_alert_dialog_button_bar_material.xml"
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_ab_share_pack_mtrl_alpha.9.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xhdpi-v4\\abc_ab_share_pack_mtrl_alpha.9.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
@@ -1056,12 +1052,12 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_closed_caption_grey600_36.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_pause_white_24.png.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xhdpi-v4\\quantum_ic_pause_white_24.png"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_skip_previous_white_24.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xhdpi-v4\\quantum_ic_skip_previous_white_24.png"
+    },
+    {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_quantum_ic_pause_white_24.png.flat",
+        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xhdpi-v4\\quantum_ic_pause_white_24.png"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\color_wallet_secondary_text_holo_dark.xml.flat",
@@ -1380,6 +1376,10 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\drawable-xhdpi-v4\\powered_by_google_light.png"
     },
     {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\menu_share_menu.xml.flat",
+        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\src\\main\\res\\menu\\share_menu.xml"
+    },
+    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_expanded_controller_rewind30.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_expanded_controller_rewind30.xml"
     },
@@ -1692,6 +1692,10 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-hdpi-v4\\abc_btn_radio_to_on_mtrl_015.png"
     },
     {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_list.xml.flat",
+        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\src\\main\\res\\layout\\activity_user_list.xml"
+    },
+    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_cast_on_light.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_cast_on_light.png"
     },
@@ -1710,10 +1714,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-xxxhdpi-v4\\abc_ic_menu_copy_mtrl_am_alpha.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_abc_btn_colored_material.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable\\abc_btn_colored_material.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_quantum_ic_cast_white_36.png.flat",
@@ -2086,10 +2086,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_play_circle_filled_white_36.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-hdpi-v4\\quantum_ic_play_circle_filled_white_36.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_light.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_common_plus_signin_btn_text_light_focused.9.png.flat",
@@ -2628,10 +2624,6 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_abc_edit_text_material.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable\\abc_edit_text_material.xml"
-    },
-    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-v23_abc_control_background_material.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\drawable-v23\\abc_control_background_material.xml"
     },
@@ -2778,10 +2770,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_common_plus_signin_btn_text_light_normal.9.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-9.4.0.aar\\3ded5b4118e6d364a3d869ea7572e5ab\\res\\drawable-hdpi-v4\\common_plus_signin_btn_text_light_normal.9.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_mr_media_route_list_item.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\layout\\mr_media_route_list_item.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_ic_menu_moreoverflow_mtrl_alpha.png.flat",
@@ -3626,10 +3614,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi-v4_quantum_ic_volume_mute_white_36.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable-xxhdpi-v4\\quantum_ic_volume_mute_white_36.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_dark.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_quantum_ic_replay_10_white_24.png.flat",
