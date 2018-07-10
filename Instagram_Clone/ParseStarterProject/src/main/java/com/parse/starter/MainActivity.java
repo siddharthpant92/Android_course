@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
       if(ParseUser.getCurrentUser().getUsername() != null)
       {
+          Toast.makeText(this, "Logged in as "+ParseUser.getCurrentUser().getUsername(), Toast.LENGTH_SHORT).show();
           getAllUsers();
       }
   }
@@ -121,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
   public void getAllUsers()
   {
       ParseQuery<ParseUser> query = ParseUser.getQuery();
-      query.whereNotEqualTo("username", "");
+      query.whereNotEqualTo("username", ParseUser.getCurrentUser().getUsername());
       query.addAscendingOrder("username");
       query.findInBackground(new FindCallback<ParseUser>() {
           @Override

@@ -4,5 +4,10 @@
 
     <item
         android:id="@+id/share"
-        android:title="Share" />
+        android:title="Share"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/logout"
+        android:title="Logout"
+        app:showAsAction="never" />
 </menu>

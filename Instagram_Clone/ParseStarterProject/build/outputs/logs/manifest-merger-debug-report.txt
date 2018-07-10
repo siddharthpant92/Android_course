@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
 MERGED from [com.google.android.gms:play-services:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-9.4.0.aar\2b93f62d46c51046b992d7968b651ef7\AndroidManifest.xml:2:1-6:12
 MERGED from [com.google.android.gms:play-services-cast-framework:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-cast-framework-9.4.0.aar\94ff004ffdbf02855e83d13c448e70c0\AndroidManifest.xml:2:1-10:12
 MERGED from [com.google.android.gms:play-services-cast:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-cast-9.4.0.aar\98c49f9280527623cb699cf007d5716a\AndroidManifest.xml:16:1-20:12
@@ -60,20 +60,20 @@ MERGED from [com.google.android.gms:play-services-tasks:9.4.0] C:\Users\siddh\.g
 MERGED from [com.google.android.gms:play-services-basement:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-9.4.0.aar\4d0f110d9e364785fd65319f27e13bd2\AndroidManifest.xml:16:1-26:12
 MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\a290eb6c32ac206f7e013f8f4598c1b3\AndroidManifest.xml:2:1-9:12
 MERGED from [com.android.support:support-v4:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-23.4.0.aar\758ed78d0076cb0b10e2c160a4665dc2\AndroidManifest.xml:17:1-24:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
 	package
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:10:5-32
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
-		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
-		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-36:12
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:1-37:12
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:9:11-69
@@ -136,7 +136,7 @@ ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseSt
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:15:22-76
 application
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:18:5-34:19
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:18:5-35:19
 MERGED from [com.google.android.gms:play-services:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-9.4.0.aar\2b93f62d46c51046b992d7968b651ef7\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-9.4.0.aar\2b93f62d46c51046b992d7968b651ef7\AndroidManifest.xml:5:5-20
 MERGED from [com.google.android.gms:play-services-cast-framework:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-cast-framework-9.4.0.aar\94ff004ffdbf02855e83d13c448e70c0\AndroidManifest.xml:5:5-9:19
@@ -256,9 +256,13 @@ ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseSt
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:30:27-74
 activity#com.parse.starter.UserListActivity
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:33:9-63
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:33:9-54
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:33:19-51
+activity#com.parse.starter.UserFeedActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:34:9-63
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml:34:19-51
 uses-sdk
 INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Instagram_Clone\ParseStarterProject\src\main\AndroidManifest.xml

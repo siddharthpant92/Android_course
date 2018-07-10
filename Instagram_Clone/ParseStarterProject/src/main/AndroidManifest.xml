@@ -30,7 +30,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserListActivity"></activity>
+        <activity android:name=".UserListActivity" />
+        <activity android:name=".UserFeedActivity"></activity>
     </application>
 
 </manifest>

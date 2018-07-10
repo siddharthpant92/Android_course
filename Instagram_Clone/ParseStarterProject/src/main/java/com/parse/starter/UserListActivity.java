@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -44,7 +46,16 @@ public class UserListActivity extends AppCompatActivity {
 
         ArrayAdapter adapter = new ArrayAdapter(UserListActivity.this, android.R.layout.simple_list_item_1, usernames);
         usernamesList.setAdapter(adapter);
+        usernamesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(UserListActivity.this, UserFeedActivity.class);
+                intent.putExtra("username", usernames.get(i));
+                startActivity(intent);
+            }
+        });
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
@@ -61,6 +72,11 @@ public class UserListActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.share)
         {
             checkImagePermission();
+        }
+        if(item.getItemId() == R.id.logout)
+        {
+            ParseUser.logOut();
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }

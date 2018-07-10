@@ -560,6 +560,10 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-places-9.4.0.aar\\e00105b007b7ac4d485eac98bab24742\\res\\drawable-mdpi-v4\\powered_by_google_dark.png"
     },
     {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\layout_activity_user_feed.xml.flat",
+        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\src\\main\\res\\layout\\activity_user_feed.xml"
+    },
+    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Instagram_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_play_light.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-xhdpi\\ic_play_light.png"
     },
