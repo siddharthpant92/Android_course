@@ -2424,6 +2424,10 @@
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-mdpi\\ic_media_route_off_mono_dark.png"
     },
     {
+        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_uber.png.flat",
+        "source": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\src\\main\\res\\drawable\\uber.png"
+    },
+    {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_ic_plusone_small_off_client.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-plus-9.4.0.aar\\c09774d5680104bb5e95b943eef10d53\\res\\drawable-xhdpi-v4\\ic_plusone_small_off_client.png"
     },
@@ -2454,10 +2458,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable_cast_ic_notification_skip_prev.xml.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-cast-framework-9.4.0.aar\\94ff004ffdbf02855e83d13c448e70c0\\res\\drawable\\cast_ic_notification_skip_prev.xml"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_light.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\color\\abc_background_cache_hint_selector_material_light.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_google_signin_btn_text_dark_disabled.9.png.flat",
@@ -3578,10 +3578,6 @@
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_cast_on_light.png.flat",
         "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\mediarouter-v7-23.0.0.aar\\ee5f3251fc15947e62c263e705d42615\\res\\drawable-hdpi\\ic_cast_on_light.png"
-    },
-    {
-        "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\color_abc_background_cache_hint_selector_material_dark.xml.flat",
-        "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.4.0.aar\\bb51df33a13b4e7137b66d856935742a\\res\\color\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
         "merged": "C:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi-v4_common_plus_signin_btn_text_light_disabled.9.png.flat",

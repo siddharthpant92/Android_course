@@ -37,7 +37,7 @@ public class StarterApplication extends Application {
               .server("http://52.53.152.254:80/parse/")
               .build()
       );
-    
+
 //    ParseUser.enableAutomaticUser();
 
     ParseACL defaultACL = new ParseACL();

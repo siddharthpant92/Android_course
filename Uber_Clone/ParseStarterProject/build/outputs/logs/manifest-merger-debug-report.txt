@@ -10,6 +10,7 @@ MERGED from [com.google.android.gms:play-services-cast:9.4.0] C:\Users\siddh\.gr
 MERGED from [com.android.support:mediarouter-v7:23.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-23.0.0.aar\ee5f3251fc15947e62c263e705d42615\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\b54e11a193d214a87fd912fdc1cbb578\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\0292e3ec189a525b7008e5337c96dc33\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\de6cb25e29a12fa657cfbfaad1915e35\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-ads:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-ads-9.4.0.aar\85c985fc38d1003d20bbd2637dca6e2a\AndroidManifest.xml:16:1-20:12
 MERGED from [com.google.android.gms:play-services-ads-lite:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-9.4.0.aar\892654c2cbf3a0c29381691b79877452\AndroidManifest.xml:16:1-33:12
@@ -146,6 +147,8 @@ MERGED from [com.android.support:mediarouter-v7:23.0.0] C:\Users\siddh\.gradle\c
 MERGED from [com.android.support:mediarouter-v7:23.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\mediarouter-v7-23.0.0.aar\ee5f3251fc15947e62c263e705d42615\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\0292e3ec189a525b7008e5337c96dc33\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\0292e3ec189a525b7008e5337c96dc33\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\de6cb25e29a12fa657cfbfaad1915e35\AndroidManifest.xml:7:5-20
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\de6cb25e29a12fa657cfbfaad1915e35\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-ads-lite:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-ads-lite-9.4.0.aar\892654c2cbf3a0c29381691b79877452\AndroidManifest.xml:24:5-32:19
@@ -268,6 +271,8 @@ MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\cac
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:21:5-23:78
 MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\b54e11a193d214a87fd912fdc1cbb578\AndroidManifest.xml:20:5-43
 MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\b54e11a193d214a87fd912fdc1cbb578\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\0292e3ec189a525b7008e5337c96dc33\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\0292e3ec189a525b7008e5337c96dc33\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\de6cb25e29a12fa657cfbfaad1915e35\AndroidManifest.xml:5:5-44
 MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\de6cb25e29a12fa657cfbfaad1915e35\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-ads:9.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-ads-9.4.0.aar\85c985fc38d1003d20bbd2637dca6e2a\AndroidManifest.xml:19:5-42

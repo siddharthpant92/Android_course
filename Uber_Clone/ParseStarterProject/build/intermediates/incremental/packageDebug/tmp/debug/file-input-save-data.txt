@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Jul 11 18:37:10 MDT 2018
+#Wed Jul 11 22:09:03 MDT 2018
 1.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber_Clone\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\12
 2.path=classes.dex
 0.baseType=DIRECTORY

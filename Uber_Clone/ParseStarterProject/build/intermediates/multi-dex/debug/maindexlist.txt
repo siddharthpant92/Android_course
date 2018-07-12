@@ -110,10 +110,5 @@ com/parse/Parse$Configuration$Builder.class
 com/parse/Parse$Configuration.class
 com/parse/Parse.class
 com/parse/ParseACL.class
-com/parse/ParseCallback1.class
 com/parse/ParseClassName.class
-com/parse/ParseObject.class
-com/parse/ParseUser.class
-com/parse/SaveCallback.class
-com/parse/starter/StarterApplication$1.class
 com/parse/starter/StarterApplication.class
