@@ -21,8 +21,6 @@ import com.parse.SaveCallback;
 
 public class StarterApplication extends Application {
 
-    String tag = "StarterApplication";
-
   @Override
   public void onCreate() {
     super.onCreate();
@@ -31,12 +29,12 @@ public class StarterApplication extends Application {
     Parse.enableLocalDatastore(this);
 
     // Add your initialization code here
-      Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
-              .applicationId("09ea6a8725f0cc2e89c883bc75cc82250cc4bae7")
-              .clientKey("3d18e4aad5cc7e56379317421985904e42e9a9b3")
-              .server("http://52.53.152.254:80/parse/")
-              .build()
-      );
+    Parse.initialize(new Parse.Configuration.Builder(getApplicationContext())
+            .applicationId("09ea6a8725f0cc2e89c883bc75cc82250cc4bae7")
+            .clientKey("3d18e4aad5cc7e56379317421985904e42e9a9b3")
+            .server("http://52.53.152.254:80/parse/")
+            .build()
+    );
 
 //    ParseUser.enableAutomaticUser();
 

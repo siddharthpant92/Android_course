@@ -7,71 +7,78 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 package com.parse.starter;
-import android.app.ActionBar;
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseAnalytics;
 import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
-  String tag = "MainActivity", userType;
+    String tag = "MainActivity", userType, username;
 
-  Switch userTypeSwitch;
+    Switch userTypeSwitch;
 
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      setContentView(R.layout.activity_main);
 
-      userTypeSwitch = (Switch) findViewById(R.id.userTypeSwitch);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
-      if(ParseUser.getCurrentUser() == null)
-      {
-          ParseAnonymousUtils.logIn(new LogInCallback() {
-              @Override
-              public void done(ParseUser user, ParseException e) {
-                  if(e == null)
-                  {
-                      Log.d(tag, "Success");
-                  }
-                  else
-                  {
-                      Log.d(tag, "failed");
-                  }
-              }
-          });
-      }
-      else
-      {
-          if(ParseUser.getCurrentUser().get("User Type") != null)
-          {
-              Log.d(tag, String.valueOf(ParseUser.getCurrentUser().get("User Type")));
-          }
-      }
+    userTypeSwitch = (Switch) findViewById(R.id.userTypeSwitch);
 
-      ParseAnalytics.trackAppOpenedInBackground(getIntent());
+    if(ParseUser.getCurrentUser() == null)
+    {
+        ParseAnonymousUtils.logIn(new LogInCallback() {
+        @Override
+            public void done(ParseUser user, ParseException e)
+            {
+                if(e == null)
+                {
+                    username = ParseUser.getCurrentUser().getUsername();
+                }
+                else
+                {
+                    e.printStackTrace();
+                    Toast.makeText(MainActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+    else
+    {
+        username = ParseUser.getCurrentUser().getUsername();
+        if(ParseUser.getCurrentUser().get("User Type") != null)
+        {
+            Log.d(tag, String.valueOf(ParseUser.getCurrentUser().get("User Type")));
+        }
     }
 
-  public void getStartedTapped(View view)
-  {
-      userType = "rider";
-      if(userTypeSwitch.isChecked())
-      {
-          userType = "driver";
-      }
+    ParseAnalytics.trackAppOpenedInBackground(getIntent());
+    }
 
-      ParseUser.getCurrentUser().put("User Role", userType);
+    public void getStartedTapped(View view)
+    {
+        userType = "rider";
+        if(userTypeSwitch.isChecked())
+        {
+            userType = "driver";
+        }
 
-      Log.d(tag, userType);
-  }
+        ParseUser.getCurrentUser().put("User Role", userType);
+
+        Log.d(tag, userType);
+    }
 
 }
