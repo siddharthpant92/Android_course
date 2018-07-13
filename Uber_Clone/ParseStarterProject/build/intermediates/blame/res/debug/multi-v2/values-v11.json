@@ -13,23 +13,6 @@
                         "endColumns": "12,12,12,12,12,12,88,100,12,12,12,12,70,82,12,12,90",
                         "endOffsets": "469,894,1322,1748,2175,2600,2689,2790,3198,3618,3725,3854,3925,4008,7716,11564,11655"
                     }
-                },
-                {
-                    "source": "C:\\Users\\siddh\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-appinvite-9.4.0.aar\\7bd1141ec2dbf7b8f09b215f628dcd32\\res\\values-v11\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "4",
-                        "startOffsets": "219",
-                        "endColumns": "117",
-                        "endOffsets": "332"
-                    },
-                    "to": {
-                        "startLines": "160",
-                        "startColumns": "4",
-                        "startOffsets": "11660",
-                        "endColumns": "117",
-                        "endOffsets": "11773"
-                    }
                 }
             ]
         }

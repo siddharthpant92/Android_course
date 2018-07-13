@@ -1,3 +1,0 @@
-# Referenced at C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\manifest\androidTest\debug\AndroidManifest.xml:9
--keep class com.android.test.runner.MultiDexTestRunner { <init>(...); }
-

@@ -7,9 +7,10 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 package com.parse.starter;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.Switch;
@@ -24,9 +25,9 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
-    String tag = "MainActivity", userType, username;
+    String tag = "MainActivity", userType, username, role;
 
     Switch userTypeSwitch;
 
@@ -62,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         if(ParseUser.getCurrentUser().get("User Type") != null)
         {
             Log.d(tag, String.valueOf(ParseUser.getCurrentUser().get("User Type")));
+            redirectUser();
         }
     }
 
@@ -78,7 +80,16 @@ public class MainActivity extends AppCompatActivity {
 
         ParseUser.getCurrentUser().put("User Role", userType);
 
-        Log.d(tag, userType);
+        redirectUser();
+
     }
 
+    public void redirectUser()
+    {
+        if(userType == "rider")
+        {
+            Intent intent = new Intent(MainActivity.this, RiderActivity.class);
+            startActivity(intent);
+        }
+    }
 }
