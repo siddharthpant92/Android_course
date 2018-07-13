@@ -6,22 +6,22 @@
     density="420dpi"
     format="10"
     plugin-version="3.1.3"
-    timestamp="1531446368087"
+    timestamp="1531455319983"
     token="8118399222558086295"
     verifier="COMPATIBLE" >
 
     <task
         name="javac"
-        duration="132" />
+        duration="228" />
     <task
         name="instant-run-dex"
-        duration="531" />
+        duration="532" />
     <task
         name="instant-run-transform"
-        duration="52" />
+        duration="51" />
     <task
         name="verifier"
-        duration="5" />
+        duration="10" />
 
     <artifact
         location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\reload-dex\debug\classes.dex"
@@ -71,8 +71,48 @@
     </build>
     <build
         build-mode="COLD"
+        timestamp="1531451061874"
+        verifier="BUILD_NOT_INCREMENTAL" >
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_1.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_5.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_3.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_4.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_6.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_8.apk"
+            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        timestamp="1531452838269"
+        verifier="R_CLASS_CHANGE" >
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_2.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_7.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_0.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\instant-run-apk\debug\ParseStarterProject-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
+    <build
+        build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1531446314070"
+        timestamp="1531455259439"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -80,7 +120,7 @@
     </build>
     <build
         build-mode="HOT_WARM"
-        timestamp="1531446368087"
+        timestamp="1531455319983"
         verifier="COMPATIBLE" >
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber_Clone\ParseStarterProject\build\intermediates\reload-dex\debug\classes.dex"

@@ -27,7 +27,7 @@ import com.parse.SaveCallback;
 
 public class MainActivity extends Activity {
 
-    String tag = "MainActivity", userType, username, role;
+    String tag = "MainActivity", userType="rider", username, role;
 
     Switch userTypeSwitch;
 
@@ -60,9 +60,9 @@ public class MainActivity extends Activity {
     else
     {
         username = ParseUser.getCurrentUser().getUsername();
-        if(ParseUser.getCurrentUser().get("User Type") != null)
+        Toast.makeText(this, "Logged in as "+username, Toast.LENGTH_SHORT).show();
+        if(ParseUser.getCurrentUser().get("User_Role") != null)
         {
-            Log.d(tag, String.valueOf(ParseUser.getCurrentUser().get("User Type")));
             redirectUser();
         }
     }
@@ -72,21 +72,31 @@ public class MainActivity extends Activity {
 
     public void getStartedTapped(View view)
     {
-        userType = "rider";
         if(userTypeSwitch.isChecked())
         {
             userType = "driver";
         }
 
-        ParseUser.getCurrentUser().put("User Role", userType);
-
-        redirectUser();
-
+        ParseUser.getCurrentUser().put("User_Role", userType);
+        ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null)
+                {
+                    redirectUser();
+                }
+                else
+                {
+                    Toast.makeText(MainActivity.this, "Oops. Check logs", Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     public void redirectUser()
     {
-        if(userType == "rider")
+        if(userType.equals("rider"))
         {
             Intent intent = new Intent(MainActivity.this, RiderActivity.class);
             startActivity(intent);
