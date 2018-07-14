@@ -45,7 +45,10 @@
         <activity
             android:name=".RiderActivity"
             android:label="@string/title_activity_rider" />
-        <activity android:name=".ViewRequestsActivity"></activity>
+        <activity android:name=".ViewRequestsActivity" />
+        <activity
+            android:name=".DriverLocationActivity"
+            android:label="@string/title_activity_driver_location"></activity>
     </application>
 
 </manifest>

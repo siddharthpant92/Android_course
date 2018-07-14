@@ -3,6 +3,7 @@ package com.parse.starter;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -11,6 +12,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -29,6 +32,8 @@ public class ViewRequestsActivity extends Activity {
     ListView listView;
 
     ArrayList<String> requests = new ArrayList<String>();
+    ArrayList<Double> requestLatitudes = new ArrayList<Double>();
+    ArrayList<Double> requestLongitudes = new ArrayList<Double>();
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -44,6 +49,8 @@ public class ViewRequestsActivity extends Activity {
         listView = (ListView) findViewById(R.id.listView);
         adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, requests);
         requests.clear();
+        requestLatitudes.clear();
+        requestLongitudes.clear();
         requests.add("Getting nearby requests....");
         listView.setAdapter(adapter);
 
@@ -71,19 +78,38 @@ public class ViewRequestsActivity extends Activity {
             }
         };
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-        }
-        else
-        {
+        } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (lastKnownLocation != null) {
-                updateListView(lastKnownLocation);
-            }
+//            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+//            if (lastKnownLocation != null) {
+//                updateListView(lastKnownLocation);
+//            }
         }
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if (ActivityCompat.checkSelfPermission(ViewRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                {
+                    // The last location that was used when "call uber" was clicked is the drivers location
+                    lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                    Log.d(tag, requestLatitudes.size()+" , "+requestLongitudes.size()+" , "+i+" , "+lastKnownLocation);
+                    if(requestLatitudes.size() >= i+1 && requestLatitudes.size() >= i+1 && lastKnownLocation != null)
+                    {
+                        Intent intent = new Intent(ViewRequestsActivity.this, DriverLocationActivity.class);
+                        intent.putExtra("requestLatitude", requestLatitudes.get(i));
+                        intent.putExtra("requestLongitude", requestLongitudes.get(i));
+                        intent.putExtra("driverLatitude", lastKnownLocation.getLatitude());
+                        intent.putExtra("driverLongitude", lastKnownLocation.getLongitude());
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
     }
 
 
@@ -106,10 +132,11 @@ public class ViewRequestsActivity extends Activity {
 
     public void updateListView(final Location location)
     {
-        Log.d(tag, location.getLatitude()+" : "+location.getLongitude());
         if(location != null)
         {
             requests.clear();
+            requestLatitudes.clear();
+            requestLongitudes.clear();
 
             ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
             final ParseGeoPoint geoPointLocation = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
@@ -124,8 +151,14 @@ public class ViewRequestsActivity extends Activity {
                         {
                             for(ParseObject object: objects)
                             {
-                                Double distanceInMiles = Double.valueOf(Math.round(geoPointLocation.distanceInMilesTo((ParseGeoPoint) object.get("user_location"))*10)/10);
-                                requests.add(distanceInMiles+" miles");
+                                ParseGeoPoint requestLocation = (ParseGeoPoint) object.get("user_location");
+                                if(requestLocation != null)
+                                {
+                                    Double distanceInMiles = Double.valueOf(Math.round(geoPointLocation.distanceInMilesTo((ParseGeoPoint) requestLocation) * 10) / 10);
+                                    requests.add(distanceInMiles + " miles");
+                                    requestLatitudes.add(requestLocation.getLatitude());
+                                    requestLongitudes.add(requestLocation.getLongitude());
+                                }
                             }
                         }
                         else
