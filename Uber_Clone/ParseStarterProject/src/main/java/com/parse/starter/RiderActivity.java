@@ -164,6 +164,20 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         }
     }
 
+    public void logoutButtonTapped(View view)
+    {
+        ParseUser.logOut();
+        if(ParseUser.getCurrentUser() == null)
+        {
+            Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Log.d(tag, ParseUser.getCurrentUser().getUsername());
+        }
+        finish();
+    }
+
     public void bookUber()
     {
         ParseObject request = new ParseObject("Uber_Request");

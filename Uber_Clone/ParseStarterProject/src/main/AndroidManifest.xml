@@ -44,7 +44,8 @@
 
         <activity
             android:name=".RiderActivity"
-            android:label="@string/title_activity_rider"></activity>
+            android:label="@string/title_activity_rider" />
+        <activity android:name=".ViewRequestsActivity"></activity>
     </application>
 
 </manifest>
