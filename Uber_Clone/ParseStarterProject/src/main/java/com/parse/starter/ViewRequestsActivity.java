@@ -154,6 +154,7 @@ public class ViewRequestsActivity extends Activity {
                                 ParseGeoPoint requestLocation = (ParseGeoPoint) object.get("user_location");
                                 if(requestLocation != null)
                                 {
+                                    //Gives the distance between the driver's current location and locations of other requests.
                                     Double distanceInMiles = Double.valueOf(Math.round(geoPointLocation.distanceInMilesTo((ParseGeoPoint) requestLocation) * 10) / 10);
                                     requests.add(distanceInMiles + " miles");
                                     requestLatitudes.add(requestLocation.getLatitude());

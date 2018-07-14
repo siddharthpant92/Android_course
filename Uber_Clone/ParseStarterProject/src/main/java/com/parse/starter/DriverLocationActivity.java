@@ -48,7 +48,7 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
         mMap.clear();
         // Add a marker in Sydney and move the camera
         LatLng driverLocation = new LatLng(intent.getDoubleExtra("driverLatitude", 0), intent.getDoubleExtra("driverLongitude", 0));
-         mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location"));
+         mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(driverLocation));
     }
 }
