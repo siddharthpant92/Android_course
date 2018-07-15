@@ -34,6 +34,7 @@ public class ViewRequestsActivity extends Activity {
     ArrayList<String> requests = new ArrayList<String>();
     ArrayList<Double> requestLatitudes = new ArrayList<Double>();
     ArrayList<Double> requestLongitudes = new ArrayList<Double>();
+    ArrayList<String> usernames = new ArrayList<String>();
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -98,13 +99,14 @@ public class ViewRequestsActivity extends Activity {
                     // The last location that was used when "call uber" was clicked is the drivers location
                     lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     Log.d(tag, requestLatitudes.size()+" , "+requestLongitudes.size()+" , "+i+" , "+lastKnownLocation);
-                    if(requestLatitudes.size() >= i+1 && requestLatitudes.size() >= i+1 && lastKnownLocation != null)
+                    if(requestLatitudes.size() >= i+1 && requestLatitudes.size() >= i+1 && lastKnownLocation != null && usernames.size() > i+1)
                     {
                         Intent intent = new Intent(ViewRequestsActivity.this, DriverLocationActivity.class);
                         intent.putExtra("requestLatitude", requestLatitudes.get(i));
                         intent.putExtra("requestLongitude", requestLongitudes.get(i));
                         intent.putExtra("driverLatitude", lastKnownLocation.getLatitude());
                         intent.putExtra("driverLongitude", lastKnownLocation.getLongitude());
+                        intent.putExtra("username", usernames.get(i));
                         startActivity(intent);
                     }
                 }
@@ -159,6 +161,7 @@ public class ViewRequestsActivity extends Activity {
                                     requests.add(distanceInMiles + " miles");
                                     requestLatitudes.add(requestLocation.getLatitude());
                                     requestLongitudes.add(requestLocation.getLongitude());
+                                    usernames.add(object.getString("username"));
                                 }
                             }
                         }
