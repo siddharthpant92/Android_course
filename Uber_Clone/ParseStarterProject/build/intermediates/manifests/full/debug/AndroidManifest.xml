@@ -61,6 +61,7 @@
         <activity android:name="com.parse.starter.ViewRequestsActivity" />
         <activity
             android:name="com.parse.starter.DriverLocationActivity"
+            android:hardwareAccelerated="true"
             android:label="@string/title_activity_driver_location" />
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"

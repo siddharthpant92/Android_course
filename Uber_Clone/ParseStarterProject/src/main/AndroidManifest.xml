@@ -48,7 +48,8 @@
         <activity android:name=".ViewRequestsActivity" />
         <activity
             android:name=".DriverLocationActivity"
-            android:label="@string/title_activity_driver_location"></activity>
+            android:label="@string/title_activity_driver_location"
+            android:hardwareAccelerated="true"></activity>
     </application>
 
 </manifest>

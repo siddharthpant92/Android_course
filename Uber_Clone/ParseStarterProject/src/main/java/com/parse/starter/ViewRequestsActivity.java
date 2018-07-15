@@ -84,10 +84,10 @@ public class ViewRequestsActivity extends Activity {
         } else {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
-//            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-//            if (lastKnownLocation != null) {
-//                updateListView(lastKnownLocation);
-//            }
+            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastKnownLocation != null) {
+                updateListView(lastKnownLocation);
+            }
         }
 
 
@@ -99,7 +99,7 @@ public class ViewRequestsActivity extends Activity {
                     // The last location that was used when "call uber" was clicked is the drivers location
                     lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     Log.d(tag, requestLatitudes.size()+" , "+requestLongitudes.size()+" , "+i+" , "+lastKnownLocation);
-                    if(requestLatitudes.size() >= i+1 && requestLatitudes.size() >= i+1 && lastKnownLocation != null && usernames.size() > i+1)
+                    if(requestLatitudes.size() >= i+1 && requestLatitudes.size() >= i+1 && lastKnownLocation != null && usernames.size() >= i+1)
                     {
                         Intent intent = new Intent(ViewRequestsActivity.this, DriverLocationActivity.class);
                         intent.putExtra("requestLatitude", requestLatitudes.get(i));

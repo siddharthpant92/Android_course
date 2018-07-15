@@ -2,6 +2,7 @@ package com.parse.starter;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -56,35 +57,29 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
         intent = getIntent();
         username = intent.getStringExtra("username");
 
+        ConstraintLayout mapLayout = (ConstraintLayout) findViewById(R.id.mapLayout);
+        mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
 
-        // NOTE: SOMETIMES THIS CRASHES, OTHER TIMES, GLOBAL LISTENER CRASHES. NOT SURE WHAT THE PROBLEM IS
-//        ConstraintLayout mapLayout = (ConstraintLayout) findViewById(R.id.mapLayout);
-//        mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                // Add a marker in Sydney and move the camera
-//                driverLocation = new LatLng(intent.getDoubleExtra("driverLatitude", 0), intent.getDoubleExtra("driverLongitude", 0));
-//                requestLocation = new LatLng(intent.getDoubleExtra("requestLatitude", 0), intent.getDoubleExtra("requestLongitude", 0));
-////        mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver"));
-////        mMap.moveCamera(CameraUpdateFactory.newLatLng(driverLocation));
-//
-//                // Setting zoom level so that we can see both locations on the map properly
-//                ArrayList<Marker> markers = new ArrayList<>();
-//                markers.add(mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver")));
-//                markers.add(mMap.addMarker(new MarkerOptions().position(requestLocation).title("Customer request Location")));
-//
-//                LatLngBounds.Builder builder = new LatLngBounds.Builder();
-//                for(Marker marker: markers)
-//                {
-//                    builder.include(marker.getPosition());
-//                }
-//                LatLngBounds bounds = builder.build();
-//
-//                int padding = 30;
-//                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-//                mMap.animateCamera(cameraUpdate);
-//            }
-//        });
+                // It might take the map a few seconds to load sometimes. But doing this onMapReady gives an error?
+                if(mMap == null)
+                {
+                    Toast.makeText(DriverLocationActivity.this, "Loading locations", Toast.LENGTH_SHORT).show();
+                    Handler handler =  new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            addMarkersOnMap();
+                        }
+                    }, 2000);
+                }
+                else
+                {
+                    addMarkersOnMap();
+                }
+            }
+        });
     }
 
 
@@ -102,30 +97,12 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
         mMap = googleMap;
         mMap.clear();
 
-        // NOTE: SOMETIMES THIS CRASHES, OTHER TIMES, GLOBAL LISTENER CRASHES. NOT SURE WHAT THE PROBLEM IS
-
-        // Add a marker in Sydney and move the camera
-        driverLocation = new LatLng(intent.getDoubleExtra("driverLatitude", 0), intent.getDoubleExtra("driverLongitude", 0));
-        requestLocation = new LatLng(intent.getDoubleExtra("requestLatitude", 0), intent.getDoubleExtra("requestLongitude", 0));
-//        mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver"));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(driverLocation));
-
-        // Setting zoom level so that we can see both locations on the map properly
-        ArrayList<Marker> markers = new ArrayList<>();
-        markers.add(mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver")));
-        markers.add(mMap.addMarker(new MarkerOptions().position(requestLocation).title("Customer request Location")));
-
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for(Marker marker: markers)
-        {
-            builder.include(marker.getPosition());
-        }
-        LatLngBounds bounds = builder.build();
-
-        int padding = 30;
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        mMap.animateCamera(cameraUpdate);
-
+        /**
+         * If addMarkersOnMap() is implemented here, sometimes i get the error :
+         * "Error using newLatLngBounds(LatLngBounds, int): Map size can't be 0. Most likely, layout has not yet occured for the map view.
+         * Either wait until layout has occurred or use newLatLngBounds(LatLngBounds, int, int, int) which allows you to specify the map's dimensions."
+         * This is why global layout listener is used
+         */
     }
 
 
@@ -150,7 +127,6 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
                                     {
                                         // Getting directions between locations
                                         String mapUri = "http://maps.google.com/maps?saddr="+driverLocation.latitude+","+driverLocation.longitude+"&daddr="+requestLocation.latitude+","+requestLocation.longitude;
-                                        Log.d(tag, mapUri);
                                         Intent directionsIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapUri));
                                         startActivity(directionsIntent);
                                     }
@@ -170,5 +146,32 @@ public class DriverLocationActivity extends FragmentActivity implements OnMapRea
                 }
             }
         });
+    }
+
+
+    public void addMarkersOnMap()
+    {
+        // Add a marker in Sydney and move the camera
+        driverLocation = new LatLng(intent.getDoubleExtra("driverLatitude", 0), intent.getDoubleExtra("driverLongitude", 0));
+        requestLocation = new LatLng(intent.getDoubleExtra("requestLatitude", 0), intent.getDoubleExtra("requestLongitude", 0));
+//        mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver"));
+//        mMap.moveCamera(CameraUpdateFactory.newLatLng(driverLocation));
+
+        // Setting zoom level so that we can see both locations on the map properly
+        ArrayList<Marker> markers = new ArrayList<>();
+
+        markers.add(mMap.addMarker(new MarkerOptions().position(driverLocation).title("Your location as Driver")));
+        markers.add(mMap.addMarker(new MarkerOptions().position(requestLocation).title("Customer request Location")));
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for(Marker marker: markers)
+        {
+            builder.include(marker.getPosition());
+        }
+        LatLngBounds bounds = builder.build();
+
+        int padding = 30;
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        mMap.animateCamera(cameraUpdate);
     }
 }
