@@ -23,6 +23,7 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -114,6 +115,11 @@ public class ViewRequestsActivity extends Activity {
         });
     }
 
+    public  void driverLogoutTapped(View view)
+    {
+        ParseUser.logOut();
+        finish();
+    }
 
 
     @Override

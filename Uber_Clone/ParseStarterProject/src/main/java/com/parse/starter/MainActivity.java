@@ -27,7 +27,7 @@ import com.parse.SaveCallback;
 
 public class MainActivity extends Activity {
 
-    String tag = "MainActivity", userType="rider", username, role;
+    String tag = "MainActivity", username, role;
 
     Switch userTypeSwitch;
 
@@ -39,28 +39,12 @@ public class MainActivity extends Activity {
 
     userTypeSwitch = (Switch) findViewById(R.id.userTypeSwitch);
 
-    if(ParseUser.getCurrentUser() == null)
-    {
-        Log.d(tag, "Not logged in initially");
-        anonymousLogin();
-    }
-    else
-    {
-        Log.d(tag, "Logged in initially");
-        username = ParseUser.getCurrentUser().getUsername();
-        Toast.makeText(this, "Logged in as "+username, Toast.LENGTH_SHORT).show();
-        if(ParseUser.getCurrentUser().get("User_Role") != null)
-        {
-            redirectUser();
-        }
-    }
-
     ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
 
     public void getStartedTapped(View view)
     {
-        Log.d(tag, "get started tapped");
+        String userType;
         if(userTypeSwitch.isChecked())
         {
             userType = "driver";
@@ -69,34 +53,10 @@ public class MainActivity extends Activity {
         {
             userType = "rider";
         }
-
-        if(ParseUser.getCurrentUser() == null)
-        {
-            anonymousLogin();
-        }
-        
-        if(ParseUser.getCurrentUser() != null) 
-        {
-            ParseUser.getCurrentUser().put("User_Role", userType);
-            ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if (e == null) {
-                        redirectUser();
-                    } else {
-                        Toast.makeText(MainActivity.this, "Oops. Check logs", Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            });
-        }
-        else
-        {
-            Toast.makeText(this, "No user to assign role", Toast.LENGTH_SHORT).show();
-        }
+        anonymousLogin(userType);
     }
 
-    public void  anonymousLogin()
+    public void  anonymousLogin(final String userType)
     {
         ParseAnonymousUtils.logIn(new LogInCallback() {
             @Override
@@ -105,7 +65,22 @@ public class MainActivity extends Activity {
                 if(e == null)
                 {
                     //After logging in, role is assigned on tapping get started
-                    username = ParseUser.getCurrentUser().getUsername();
+                    username = user.getUsername();
+                    user.put("User_Role", userType);
+                    user.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e == null)
+                            {
+                                redirectUser(userType);
+                            }
+                            else
+                            {
+                                Toast.makeText(MainActivity.this, "Oops. Check logs", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        }
+                    });
                 }
                 else
                 {
@@ -116,7 +91,7 @@ public class MainActivity extends Activity {
         });
     }
 
-    public void redirectUser()
+    public void redirectUser(String userType)
     {
         if(userType.equals("rider"))
         {
