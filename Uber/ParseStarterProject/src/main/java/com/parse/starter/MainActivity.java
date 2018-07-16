@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity
     
     public void redirectUser()
     {
-//        Intent intent;
         if(user_role.equals("rider"))
         {
             Log.d(tag, "rider");
@@ -132,9 +131,10 @@ public class MainActivity extends AppCompatActivity
         else
         {
             Log.d(tag, "driver");
-//            intent = new Intent(MainActivity.this, ViewRequestsActivity.class);
+            Intent intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
+            startActivity(intent);
         }
-//        startActivity(intent);
+        
     }
 
 }
