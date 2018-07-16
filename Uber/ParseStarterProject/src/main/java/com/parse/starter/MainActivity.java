@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 package com.parse.starter;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +25,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 
-public class MainActivity extends AppCompatActivity
+public class MainActivity extends Activity
 {
     Switch userRoleSwitch;
     Button loginButton;
@@ -54,18 +54,6 @@ public class MainActivity extends AppCompatActivity
         {
             Log.d(tag, "no current user");
         }
-        
-        
-//        if (ParseUser.getCurrentUser().getUsername() != null)
-//        {
-//            Log.d(tag, ParseUser.getCurrentUser().getUsername());
-//            user_role = ParseUser.getCurrentUser().getString("User_Role");
-//            redirectUser();
-//        }
-//        else
-//        {
-//            Log.d(tag, "No user");
-//        }
         
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
@@ -123,18 +111,16 @@ public class MainActivity extends AppCompatActivity
     
     public void redirectUser()
     {
+        Intent intent;
         if(user_role.equals("rider"))
         {
-            Log.d(tag, "rider");
-//            intent = new Intent(MainActivity.this, RiderActivity.class);
+            intent = new Intent(MainActivity.this, RiderActivity.class);
         }
         else
         {
-            Log.d(tag, "driver");
-            Intent intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
-            startActivity(intent);
+            intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
         }
-        
+        startActivity(intent);
     }
 
 }

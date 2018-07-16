@@ -1,13 +1,13 @@
 package com.parse.starter;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.parse.ParseUser;
 
-public class RiderRequestsActivity extends AppCompatActivity
+public class RiderRequestsActivity extends Activity
 {
     
     @Override
