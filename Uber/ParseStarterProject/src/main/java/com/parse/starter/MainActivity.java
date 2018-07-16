@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
@@ -23,14 +24,16 @@ import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 
 public class MainActivity extends Activity
 {
     Switch userRoleSwitch;
-    Button loginButton;
+    Button loginButton, signupButton;
+    TextView usernameTextView, passwordTextView;
     
-    String user_role, tag="MainActivity", username;
+    String user_role, tag="MainActivity", username, password;
     
     
     @Override
@@ -41,12 +44,14 @@ public class MainActivity extends Activity
         
         userRoleSwitch = (Switch) findViewById(R.id.userRoleSwitch);
         loginButton = (Button) findViewById(R.id.loginButton);
+        usernameTextView = (TextView) findViewById(R.id.usernameTextView);
+        passwordTextView = (TextView) findViewById(R.id.passwordTextView);
     
         // Checking if user is already logged in
         try
         {
             username = ParseUser.getCurrentUser().getUsername();
-            Log.d(tag, username);
+            Toast.makeText(this, "Logged in as:  "+username, Toast.LENGTH_SHORT).show();
             user_role = ParseUser.getCurrentUser().getString("User_Role");
             redirectUser();
         }
@@ -60,49 +65,94 @@ public class MainActivity extends Activity
     
     public void loginTapped(View view)
     {
-        if(userRoleSwitch.isChecked())
+        setUserRole();
+    
+        if(getCredentials())
         {
-            user_role = "driver";
+            ParseUser user = new ParseUser();
+            user.logInInBackground(username, password, new LogInCallback() {
+                @Override
+                public void done(final ParseUser user, ParseException e) {
+                    if(user != null && e == null)
+                    {
+                        // Checking role of user trying to login
+                        String check_role = String.valueOf(user.get("User_Role"));
+                        if(check_role.equals(user_role))
+                        {
+                            addUserRole(user);
+                        }
+                        else
+                        {
+                            Toast.makeText(MainActivity.this, "In correct role. Cannot log in", Toast.LENGTH_SHORT).show();
+                            ParseUser.logOut();
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            });
         }
-        else
-        {
-            user_role = "rider";
-        }
-        
-        anonymousLogin();
     }
     
-    public void anonymousLogin()
+    public void signupTapped(View view)
     {
-        ParseAnonymousUtils.logIn(new LogInCallback()
+        setUserRole();
+        
+        if(getCredentials())
+        {
+            final ParseUser user = new ParseUser();
+            user.setUsername(username);
+            user.setPassword(password);
+            
+            user.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null)
+                    {
+                        addUserRole(user);
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+    
+    public boolean getCredentials()
+    {
+        username = String.valueOf(usernameTextView.getText());
+        password = String.valueOf(passwordTextView.getText());
+        
+        if(username.length() == 0 || password.length() == 0)
+        {
+            Toast.makeText(MainActivity.this, "Please enter username and password", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
+    }
+    
+    
+    public void addUserRole(final ParseUser user)
+    {
+        user.put("User_Role", user_role);
+        user.saveInBackground(new SaveCallback()
         {
             @Override
-            public void done(ParseUser user, ParseException e)
+            public void done(ParseException e)
             {
-                if (e == null)
+                if(e == null)
                 {
-                    user.put("User_Role", user_role);
-                    user.saveInBackground(new SaveCallback()
-                    {
-                        @Override
-                        public void done(ParseException e)
-                        {
-                            if(e == null)
-                            {
-                                redirectUser();
-                            }
-                            else
-                            {
-                                Toast.makeText(MainActivity.this, "Check exception 2", Toast.LENGTH_SHORT).show();
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-                    
+                    redirectUser();
                 }
                 else
                 {
-                    Toast.makeText(MainActivity.this, "Check exception 1", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -121,6 +171,18 @@ public class MainActivity extends Activity
             intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
         }
         startActivity(intent);
+    }
+    
+    public void setUserRole()
+    {
+        if(userRoleSwitch.isChecked())
+        {
+            user_role = "driver";
+        }
+        else
+        {
+            user_role = "rider";
+        }
     }
 
 }
