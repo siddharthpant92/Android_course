@@ -19,12 +19,11 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="145" column="35" lean-forward="false" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+            <state relative-caret-position="192">
+              <caret line="126" column="60" lean-forward="true" selection-start-line="126" selection-start-column="60" selection-end-line="126" selection-end-column="60" />
               <folding>
                 <element signature="e#1949#2345#0" expanded="true" />
                 <element signature="e#2344#2345#0" expanded="true" />
-                <element signature="e#3629#4116#0" expanded="true" />
                 <element signature="e#4115#4116#0" expanded="true" />
               </folding>
             </state>
@@ -2170,12 +2169,11 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="145" column="35" lean-forward="false" selection-start-line="145" selection-start-column="35" selection-end-line="145" selection-end-column="35" />
+        <state relative-caret-position="192">
+          <caret line="126" column="60" lean-forward="true" selection-start-line="126" selection-start-column="60" selection-end-line="126" selection-end-column="60" />
           <folding>
             <element signature="e#1949#2345#0" expanded="true" />
             <element signature="e#2344#2345#0" expanded="true" />
-            <element signature="e#3629#4116#0" expanded="true" />
             <element signature="e#4115#4116#0" expanded="true" />
           </folding>
         </state>
