@@ -40,9 +40,6 @@ public class MainActivity extends Activity
     TextView usernameTextView, passwordTextView;
     
     String user_role, tag="MainActivity", username, password;
-    ArrayList<String> nearbyRiders = new ArrayList<>();
-    ArrayList<Double> nearbyRidersLatitudes = new ArrayList<>();
-    ArrayList<String> nearbyRidersLongitudes = new ArrayList<>();
     
     
     @Override
@@ -170,51 +167,16 @@ public class MainActivity extends Activity
     
     public void redirectUser()
     {
+        Intent intent;
         if(user_role.equals("rider"))
         {
-            Intent intent = new Intent(MainActivity.this, RiderActivity.class);
-            startActivity(intent);
+            intent = new Intent(MainActivity.this, RiderActivity.class);
         }
         else
         {
-            // As a driver, they can see all nearby requests of riders
-            
-            ParseQuery<ParseUser> query = ParseUser.getQuery();
-            query.whereEqualTo("User_Role", "rider");
-            query.findInBackground(new FindCallback<ParseUser>()
-            {
-                @Override
-                public void done(List<ParseUser> users, ParseException e)
-                {
-                    if(e == null)
-                    {
-                        if(users.size() > 0)
-                        {
-                            for(ParseUser user: users)
-                            {
-                                nearbyRiders.add(user.getUsername());
-                            }
-                            
-                            Intent intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
-                            Bundle bundle = new Bundle();
-                            bundle.putStringArrayList("nearbyRiders", nearbyRiders);
-                            intent.putExtras(bundle);
-                            startActivity(intent);
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "No nearby riders", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    else
-                    {
-                        Toast.makeText(MainActivity.this, "Check exception 4: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            });
+            intent = new Intent(MainActivity.this, RiderRequestsActivity.class);
         }
-        
+        startActivity(intent);
     }
     
     public void setUserRole()
