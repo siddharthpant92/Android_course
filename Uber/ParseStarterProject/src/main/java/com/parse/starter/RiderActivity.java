@@ -22,20 +22,28 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.DeleteCallback;
+import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+
+import java.util.List;
 
 public class RiderActivity extends FragmentActivity implements OnMapReadyCallback
 {
     
     Button callUberButton;
     
-    String tag = "RiderActivity", username;
+    String tag = "RiderActivity", user_name;
     LocationManager locationManager;
     LocationListener locationListener;
-    Location user_location, lastKnownLocation;
+    Location lastKnownLocation;
+    LatLng user_location;
+    Boolean isUberBooked = false;
     
     private GoogleMap mMap;
     
@@ -49,9 +57,34 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        
-        username = ParseUser.getCurrentUser().getUsername();
+    
+        user_name = ParseUser.getCurrentUser().getUsername();
         callUberButton = (Button) findViewById(R.id.callUberButton);
+        
+        //Checking if the user has already booked an uber
+        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Rider_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if(e == null)
+                {
+                    if(objects.size() > 0)
+                    {
+                        Toast.makeText(RiderActivity.this, "Uber has already been booked", Toast.LENGTH_SHORT).show();
+                        isUberBooked = true;
+                        callUberButton.setText("Cancel Uber");
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
     }
     
     @Override
@@ -106,13 +139,74 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
     public void logoutTapped(View view)
     {
+        //Stopping location updates. It'll restart when the user logs in again
+        locationManager.removeUpdates(locationListener);
         ParseUser.logOut();
         finish();
     }
     
     public  void callUberTapped(View view)
     {
-        Log.d(tag, "call uber tapped");
+        if(!isUberBooked)
+        {
+            // Booking an uber and saving the request
+            ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
+    
+            ParseObject parseObject = new ParseObject("Uber_Request");
+            parseObject.put("Rider_Name", user_name);
+            parseObject.put("Rider_Location", geoPoint);
+            parseObject.saveInBackground(new SaveCallback()
+            {
+                @Override
+                public void done(ParseException e)
+                {
+                    if(e == null)
+                    {
+                        Toast.makeText(RiderActivity.this, "Uber has been booked", Toast.LENGTH_SHORT).show();
+                        callUberButton.setText("Cancel Uber");
+                        isUberBooked = true;
+                    }
+                    else
+                    {
+                        Toast.makeText(RiderActivity.this, "Check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+        else
+        {
+            // Cancelling the uber and deleting the request
+            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
+            query.whereEqualTo("Rider_Name", user_name);
+            query.findInBackground(new FindCallback<ParseObject>()
+            {
+                @Override
+                public void done(List<ParseObject> objects, ParseException e)
+                {
+                    if(e == null && objects.size() > 0)
+                    {
+                        for(ParseObject object: objects)
+                        {
+                            object.deleteInBackground(new DeleteCallback()
+                            {
+                                @Override
+                                public void done(ParseException e)
+                                {
+                                    if(e == null)
+                                    {
+                                        Toast.makeText(RiderActivity.this, "Uber has been cancelled", Toast.LENGTH_SHORT).show();
+                                        callUberButton.setText("Call Uber");
+                                        isUberBooked = false;
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
+        }
+        
     }
     
     @Override
@@ -138,11 +232,11 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     public void updateMap(Location location)
     {
         mMap.clear();
-        LatLng loc = new LatLng(location.getLatitude(), location.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(loc).title("Your location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(loc, 10));
+        user_location = new LatLng(location.getLatitude(), location.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(user_location).title("Your location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user_location, 15));
     
-        ParseGeoPoint geoPoint = new ParseGeoPoint(loc.latitude, loc.longitude);
+        ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
         
         ParseUser.getCurrentUser().put("User_Location",geoPoint);
         ParseUser.getCurrentUser().saveInBackground();
