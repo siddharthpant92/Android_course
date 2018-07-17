@@ -54,6 +54,9 @@ public class RiderRequestsActivity extends Activity
             public void onLocationChanged(Location location)
             {
                 Log.d(tag, "location changed");
+                ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+                ParseUser.getCurrentUser().saveInBackground();
                 findNearbyRiders(location);
             }
         
