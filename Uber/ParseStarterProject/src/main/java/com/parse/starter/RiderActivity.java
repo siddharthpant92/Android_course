@@ -11,7 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
+//import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -79,7 +79,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onLocationChanged(Location location)
             {
-                updateMap(location);
+               updateMap(location);
             }
     
             @Override
@@ -108,81 +108,10 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         else
         {
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            
+            // Getting the user's previously known location
+            checkUserPreviousLocation();
         }
-    
-        //Checking if the user has already booked an uber
-        final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-        query.whereEqualTo("Rider_Name", user_name);
-        query.findInBackground(new FindCallback<ParseObject>()
-        {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e)
-            {
-                if (e == null)
-                {
-                    if (objects.size() > 0)
-                    {
-                        Toast.makeText(RiderActivity.this, "Uber has already been booked", Toast.LENGTH_SHORT).show();
-                        for (ParseObject object : objects)
-                        {
-                            Log.d(tag, "a");
-                            //Getting the location from where the user previously booked an uber
-                            ParseGeoPoint geoPoint = object.getParseGeoPoint("Rider_Location");
-                            if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                            {
-                                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                                lastKnownLocation.setLatitude(geoPoint.getLatitude());
-                                lastKnownLocation.setLongitude(geoPoint.getLongitude());
-                                Log.d(tag, String.valueOf(lastKnownLocation));
-                                updateMap(lastKnownLocation);
-                            }
-                        }
-                        isUberBooked = true;
-                        callUberButton.setText("Cancel Uber");
-                    }
-                    else
-                    {
-                        
-                        //Getting the user's previous location
-                        ParseQuery<ParseObject> parseQuery = ParseQuery.getQuery("User");
-                        parseQuery.whereEqualTo("username", user_name);
-                        parseQuery.findInBackground(new FindCallback<ParseObject>()
-                        {
-                            @Override
-                            public void done(List<ParseObject> objects, ParseException e)
-                            {
-                                if(e == null)
-                                {
-                                    if (objects.size() > 0)
-                                    {
-                                        for (ParseObject object : objects)
-                                        {
-                                            Log.d(tag, "b");
-                                            //Getting the user's previous location
-                                            ParseGeoPoint geoPoint = object.getParseGeoPoint("User_Location");
-                                            if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                                            {
-                                                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                                                lastKnownLocation.setLatitude(geoPoint.getLatitude());
-                                                lastKnownLocation.setLongitude(geoPoint.getLongitude());
-                                                Log.d(tag, String.valueOf(lastKnownLocation));
-                                                updateMap(lastKnownLocation);
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        });
-                    }
-                }
-                else
-                {
-                    Toast.makeText(RiderActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
-        
     }
     
     public void logoutTapped(View view)
@@ -272,7 +201,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                     
                     //Simply setting map to last known location
-//                    updateMap(lastKnownLocation);
+                    updateMap(lastKnownLocation);
                 }
             }
         }
@@ -290,5 +219,62 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         
         ParseUser.getCurrentUser().put("User_Location",geoPoint);
         ParseUser.getCurrentUser().saveInBackground();
+    }
+    
+    
+    public  void checkUserPreviousLocation()
+    {
+        
+         //Checking if the user has already booked an uber
+        final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Rider_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if (e == null)
+                {
+                    if (objects.size() > 0)
+                    {
+                        
+                        Toast.makeText(RiderActivity.this, "Uber has already been booked", Toast.LENGTH_SHORT).show();
+                        for (ParseObject object : objects)
+                        {
+                            
+                            // Getting the location from where the user previously booked an uber
+                            ParseGeoPoint geoPoint = object.getParseGeoPoint("Rider_Location");
+                            if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                            {
+                                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                                lastKnownLocation.setLatitude(geoPoint.getLatitude());
+                                lastKnownLocation.setLongitude(geoPoint.getLongitude());
+                               
+                                updateMap(lastKnownLocation);
+                            }
+                        }
+                        isUberBooked = true;
+                        callUberButton.setText("Cancel Uber");
+                    }
+                    else
+                    {
+                        // Getting the user's previously known location if they haven't called an uber
+                        ParseGeoPoint geoPoint = ParseUser.getCurrentUser().getParseGeoPoint("User_Location");
+                        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                        {
+                            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            lastKnownLocation.setLatitude(geoPoint.getLatitude());
+                            lastKnownLocation.setLongitude(geoPoint.getLongitude());
+                            updateMap(lastKnownLocation);
+                        }
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
