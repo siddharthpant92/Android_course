@@ -18,12 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.model.LatLng;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class RiderRequestsActivity extends Activity
 {
     ListView riderRequestsListView;
     
-    String tag = "RiderRequestsActivity", username;
+    String tag = "RiderRequestsActivity", user_name;
     ArrayList<String> nearbyRiderDistance = new ArrayList<>();
     ArrayList<String> nearbyRiderUsername = new ArrayList<>();
     ArrayList<Double> nearbyRiderLatitude = new ArrayList<>();
@@ -50,7 +52,7 @@ public class RiderRequestsActivity extends Activity
         setContentView(R.layout.activity_rider_requests);
         
         riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
-        username = ParseUser.getCurrentUser().getUsername();
+        user_name = ParseUser.getCurrentUser().getUsername();
     
         nearbyRiderDistance.clear();
         nearbyRiderDistance.add("Getting nearby riders");
@@ -106,19 +108,64 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                Log.d(tag, nearbyRiderUsername.get(i));
-                Log.d(tag, String.valueOf(nearbyRiderLatitude.get(i)));
-                Log.d(tag, String.valueOf(nearbyRiderLongitude.get(i)));
+                final String nearbyRiderName = nearbyRiderUsername.get(i);
+                final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
+                final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
     
-                Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("riderUsername", nearbyRiderUsername.get(i));
-                bundle.putDouble("riderLatitude", nearbyRiderLatitude.get(i));
-                bundle.putDouble("riderLongitude", nearbyRiderLongitude.get(i));
-                bundle.putDouble("driverLatitude", driverLatitude);
-                bundle.putDouble("driverLongitude", driverLongitude);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                // Finding the uber request so that the driver can be added.
+                ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+                query.whereEqualTo("Rider_Name", nearbyRiderName);
+                query.findInBackground(new FindCallback<ParseObject>()
+                {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e)
+                    {
+                        if(e == null)
+                        {
+                            if(objects.size() > 0)
+                            {
+                                for(ParseObject object: objects)
+                                {
+                                    // Adding the driver to that uber requests
+                                    object.put("Driver_Name", user_name);
+                                    object.saveInBackground(new SaveCallback()
+                                    {
+                                        @Override
+                                        public void done(ParseException e)
+                                        {
+                                            if(e == null)
+                                            {
+                                                Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+                                                Bundle bundle = new Bundle();
+                                                bundle.putString("riderUsername", nearbyRiderName);
+                                                bundle.putDouble("riderLatitude", nearbyRiderLat);
+                                                bundle.putDouble("riderLongitude", nearbyRiderLong);
+                                                bundle.putDouble("driverLatitude", driverLatitude);
+                                                bundle.putDouble("driverLongitude", driverLongitude);
+                                                intent.putExtras(bundle);
+                                                startActivity(intent);
+                                            }
+                                            else
+                                            {
+                                                Toast.makeText(RiderRequestsActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                                e.printStackTrace();
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(RiderRequestsActivity.this, "Could not find the selected request. ", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(RiderRequestsActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
         });
     }
