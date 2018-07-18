@@ -1,11 +1,14 @@
 package com.parse.starter;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -17,8 +20,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.parse.FindCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback
 {
@@ -74,6 +84,57 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                 CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
                 mMap.animateCamera(cu);
             
+            }
+        });
+    }
+    
+    public void acceptRequestTapped(View view)
+    {
+        // Finding the uber request so that the driver can be added.
+        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Rider_Name", riderUsername);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if(e == null)
+                {
+                    if(objects.size() > 0)
+                    {
+                        for(ParseObject object: objects)
+                        {
+                            // Adding the driver to that uber requests
+                            object.put("Driver_Name", ParseUser.getCurrentUser().getUsername());
+                            object.saveInBackground(new SaveCallback()
+                            {
+                                @Override
+                                public void done(ParseException e)
+                                {
+                                    if(e == null)
+                                    {
+                                        Toast.makeText(DriverMapActivity.this, "Uber booked", Toast.LENGTH_SHORT).show();
+                                        // Call method on rider side to show that driver has been booked? Or handle that some way?
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(DriverMapActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(DriverMapActivity.this, "Could not find the selected request. ", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(DriverMapActivity.this, "Check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
         });
     }

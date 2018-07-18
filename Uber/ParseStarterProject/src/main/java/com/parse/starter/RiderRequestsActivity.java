@@ -121,61 +121,6 @@ public class RiderRequestsActivity extends Activity
                 bundle.putDouble("driverLongitude", driverLongitude);
                 intent.putExtras(bundle);
                 startActivity(intent);
-    
-//                // Finding an uber request so that the driver can be added.
-//                ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-//                query.whereEqualTo("Rider_Name", nearbyRiderName);
-//                query.findInBackground(new FindCallback<ParseObject>()
-//                {
-//                    @Override
-//                    public void done(List<ParseObject> objects, ParseException e)
-//                    {
-//                        if(e == null)
-//                        {
-//                            if(objects.size() > 0)
-//                            {
-//                                for(ParseObject object: objects)
-//                                {
-//                                    // Adding the driver to that uber requests
-//                                    object.put("Driver_Name", user_name);
-//                                    object.saveInBackground(new SaveCallback()
-//                                    {
-//                                        @Override
-//                                        public void done(ParseException e)
-//                                        {
-//                                            if(e == null)
-//                                            {
-//                                                Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-//                                                Bundle bundle = new Bundle();
-//                                                bundle.putString("riderUsername", nearbyRiderName);
-//                                                bundle.putDouble("riderLatitude", nearbyRiderLat);
-//                                                bundle.putDouble("riderLongitude", nearbyRiderLong);
-//                                                bundle.putDouble("driverLatitude", driverLatitude);
-//                                                bundle.putDouble("driverLongitude", driverLongitude);
-//                                                intent.putExtras(bundle);
-////                                                startActivity(intent);
-//                                            }
-//                                            else
-//                                            {
-//                                                Toast.makeText(RiderRequestsActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                                e.printStackTrace();
-//                                            }
-//                                        }
-//                                    });
-//                                }
-//                            }
-//                            else
-//                            {
-//                                Toast.makeText(RiderRequestsActivity.this, "Could not find the selected request. ", Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//                        else
-//                        {
-//                            Toast.makeText(RiderRequestsActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
             }
         });
     }
