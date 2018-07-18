@@ -2,6 +2,7 @@ package com.parse.starter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -31,12 +33,15 @@ public class RiderRequestsActivity extends Activity
     ListView riderRequestsListView;
     
     String tag = "RiderRequestsActivity", username;
-    ArrayList<String> nearbyRiders = new ArrayList<>();
+    ArrayList<String> nearbyRiderDistance = new ArrayList<>();
+    ArrayList<String> nearbyRiderUsername = new ArrayList<>();
+    ArrayList<Double> nearbyRiderLatitude = new ArrayList<>();
+    ArrayList<Double> nearbyRiderLongitude = new ArrayList<>();
+    Double driverLatitude, driverLongitude;
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
     Location lastKnownLocation;
-    ParseGeoPoint driverGeoPoint;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,18 +51,22 @@ public class RiderRequestsActivity extends Activity
         
         riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
         username = ParseUser.getCurrentUser().getUsername();
-        
+    
+        nearbyRiderDistance.clear();
+        nearbyRiderDistance.add("Getting nearby riders");
+    
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener()
         {
             @Override
             public void onLocationChanged(Location location)
             {
-                Log.d(tag, "location changed");
                 ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                driverLatitude = driverGeoPoint.getLatitude();
+                driverLongitude = driverGeoPoint.getLongitude();
                 ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
                 ParseUser.getCurrentUser().saveInBackground();
-                findNearbyRiders(location);
+                findNearbyRiderDistance(location);
             }
         
             @Override
@@ -89,8 +98,29 @@ public class RiderRequestsActivity extends Activity
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
         }
         
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nearbyRiders);
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nearbyRiderDistance);
         riderRequestsListView.setAdapter(adapter);
+        
+        riderRequestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                Log.d(tag, nearbyRiderUsername.get(i));
+                Log.d(tag, String.valueOf(nearbyRiderLatitude.get(i)));
+                Log.d(tag, String.valueOf(nearbyRiderLongitude.get(i)));
+    
+                Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("riderUsername", nearbyRiderUsername.get(i));
+                bundle.putDouble("riderLatitude", nearbyRiderLatitude.get(i));
+                bundle.putDouble("riderLongitude", nearbyRiderLongitude.get(i));
+                bundle.putDouble("driverLatitude", driverLatitude);
+                bundle.putDouble("driverLongitude", driverLongitude);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
     }
     
     public  void logoutTapped(View view)
@@ -101,7 +131,6 @@ public class RiderRequestsActivity extends Activity
     }
     
     //Disabling back button
-    
     @Override
     public void onBackPressed()
     {
@@ -122,20 +151,20 @@ public class RiderRequestsActivity extends Activity
                     lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 
                     //Simply setting map to last known location
-                    findNearbyRiders(lastKnownLocation);
+                    findNearbyRiderDistance(lastKnownLocation);
                 }
             }
         }
     }
     
-    public void findNearbyRiders(Location location)
+    public void findNearbyRiderDistance(Location location)
     {
-        nearbyRiders.clear();
-        nearbyRiders.add("Getting nearby riders");
+        nearbyRiderDistance.clear();
+        nearbyRiderDistance.add("Getting nearby riders");
+    
+        final ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
         
-        Log.d(tag, String.valueOf(location));
-        driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-        
+        //Getting list of nearby riders
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereDoesNotExist("Driver_Name");
         query.findInBackground(new FindCallback<ParseObject>()
@@ -147,11 +176,16 @@ public class RiderRequestsActivity extends Activity
                 {
                     if(objects.size() > 0)
                     {
-                        nearbyRiders.clear();
+                        nearbyRiderDistance.clear();
                         for(ParseObject object: objects)
                         {
                             Double distanceInMiles = (double) Math.round(driverGeoPoint.distanceInMilesTo(object.getParseGeoPoint("Rider_Location"))*10)/10;
-                            nearbyRiders.add(distanceInMiles+" mi.");
+                            nearbyRiderDistance.add(distanceInMiles+" mi.");
+                            
+                            // Adding the rider's usernames and location to array lists which is passed on to the next activity
+                            nearbyRiderUsername.add(object.getString("Rider_Name"));
+                            nearbyRiderLatitude.add(object.getParseGeoPoint("Rider_Location").getLatitude());
+                            nearbyRiderLongitude.add(object.getParseGeoPoint("Rider_Location").getLongitude());
                         }
                         adapter.notifyDataSetChanged();
                     }

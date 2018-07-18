@@ -1550,7 +1550,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>
@@ -2794,19 +2794,20 @@ public final class R {
     public static final int textView=0x7f070085;
     public static final int textView2=0x7f070086;
     public static final int textView3=0x7f070087;
-    public static final int time=0x7f070088;
-    public static final int title=0x7f070089;
-    public static final int title_template=0x7f07008a;
-    public static final int top=0x7f07008b;
-    public static final int topPanel=0x7f07008c;
-    public static final int up=0x7f07008d;
-    public static final int useLogo=0x7f07008e;
-    public static final int userRoleSwitch=0x7f07008f;
-    public static final int usernameTextView=0x7f070090;
-    public static final int wide=0x7f070091;
-    public static final int withText=0x7f070092;
-    public static final int wrap=0x7f070093;
-    public static final int wrap_content=0x7f070094;
+    public static final int textView4=0x7f070088;
+    public static final int time=0x7f070089;
+    public static final int title=0x7f07008a;
+    public static final int title_template=0x7f07008b;
+    public static final int top=0x7f07008c;
+    public static final int topPanel=0x7f07008d;
+    public static final int up=0x7f07008e;
+    public static final int useLogo=0x7f07008f;
+    public static final int userRoleSwitch=0x7f070090;
+    public static final int usernameTextView=0x7f070091;
+    public static final int wide=0x7f070092;
+    public static final int withText=0x7f070093;
+    public static final int wrap=0x7f070094;
+    public static final int wrap_content=0x7f070095;
   }
   public static final class integer {
     public static final int abc_config_activityDefaultDur=0x7f080000;
@@ -2842,29 +2843,30 @@ public final class R {
     public static final int abc_search_dropdown_item_icons_2line=0x7f090016;
     public static final int abc_search_view=0x7f090017;
     public static final int abc_select_dialog_material=0x7f090018;
-    public static final int activity_main=0x7f090019;
-    public static final int activity_rider=0x7f09001a;
-    public static final int activity_rider_requests=0x7f09001b;
-    public static final int notification_action=0x7f09001c;
-    public static final int notification_action_tombstone=0x7f09001d;
-    public static final int notification_media_action=0x7f09001e;
-    public static final int notification_media_cancel_action=0x7f09001f;
-    public static final int notification_template_big_media=0x7f090020;
-    public static final int notification_template_big_media_custom=0x7f090021;
-    public static final int notification_template_big_media_narrow=0x7f090022;
-    public static final int notification_template_big_media_narrow_custom=0x7f090023;
-    public static final int notification_template_custom_big=0x7f090024;
-    public static final int notification_template_icon_group=0x7f090025;
-    public static final int notification_template_lines=0x7f090026;
-    public static final int notification_template_lines_media=0x7f090027;
-    public static final int notification_template_media=0x7f090028;
-    public static final int notification_template_media_custom=0x7f090029;
-    public static final int notification_template_part_chronometer=0x7f09002a;
-    public static final int notification_template_part_time=0x7f09002b;
-    public static final int select_dialog_item_material=0x7f09002c;
-    public static final int select_dialog_multichoice_material=0x7f09002d;
-    public static final int select_dialog_singlechoice_material=0x7f09002e;
-    public static final int support_simple_spinner_dropdown_item=0x7f09002f;
+    public static final int activity_driver_map=0x7f090019;
+    public static final int activity_main=0x7f09001a;
+    public static final int activity_rider=0x7f09001b;
+    public static final int activity_rider_requests=0x7f09001c;
+    public static final int notification_action=0x7f09001d;
+    public static final int notification_action_tombstone=0x7f09001e;
+    public static final int notification_media_action=0x7f09001f;
+    public static final int notification_media_cancel_action=0x7f090020;
+    public static final int notification_template_big_media=0x7f090021;
+    public static final int notification_template_big_media_custom=0x7f090022;
+    public static final int notification_template_big_media_narrow=0x7f090023;
+    public static final int notification_template_big_media_narrow_custom=0x7f090024;
+    public static final int notification_template_custom_big=0x7f090025;
+    public static final int notification_template_icon_group=0x7f090026;
+    public static final int notification_template_lines=0x7f090027;
+    public static final int notification_template_lines_media=0x7f090028;
+    public static final int notification_template_media=0x7f090029;
+    public static final int notification_template_media_custom=0x7f09002a;
+    public static final int notification_template_part_chronometer=0x7f09002b;
+    public static final int notification_template_part_time=0x7f09002c;
+    public static final int select_dialog_item_material=0x7f09002d;
+    public static final int select_dialog_multichoice_material=0x7f09002e;
+    public static final int select_dialog_singlechoice_material=0x7f09002f;
+    public static final int support_simple_spinner_dropdown_item=0x7f090030;
   }
   public static final class mipmap {
     public static final int ic_launcher=0x7f0a0000;
@@ -2915,7 +2917,8 @@ public final class R {
     public static final int parse_client_key=0x7f0b002a;
     public static final int status_bar_notification_info_overflow=0x7f0b002b;
     public static final int title_activity_driver_location=0x7f0b002c;
-    public static final int title_activity_rider=0x7f0b002d;
+    public static final int title_activity_driver_map=0x7f0b002d;
+    public static final int title_activity_rider=0x7f0b002e;
   }
   public static final class style {
     public static final int AlertDialog_AppCompat=0x7f0c0000;
@@ -6804,7 +6807,7 @@ public final class R {
      * <tr><td>barrier</td><td>2</td><td></td></tr>
      * <tr><td>chains</td><td>4</td><td></td></tr>
      * <tr><td>dimensions</td><td>8</td><td></td></tr>
-     * <tr><td>direct</td><td>1</td><td>for now only direct & barriers</td></tr>
+     * <tr><td>direct</td><td>1</td><td></td></tr>
      * <tr><td>none</td><td>0</td><td></td></tr>
      * <tr><td>standard</td><td>3</td><td></td></tr>
      * </table>

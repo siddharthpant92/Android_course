@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:17:1-27:12
 MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\b54e11a193d214a87fd912fdc1cbb578\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\f86accc6a7d98e46ec8d79c9843b287c\AndroidManifest.xml:17:1-32:12
@@ -20,20 +20,20 @@ MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.grad
 MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f59de54df7db31e789a105a6cc9c0775\AndroidManifest.xml:17:1-31:12
 MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c189d15e7502fc99f7f3330ee072bfb1\AndroidManifest.xml:17:1-31:12
 MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\6304e10eb0469b4f88346f1739d48a93\AndroidManifest.xml:17:1-30:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
-INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
 	package
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:10:5-32
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
-		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
-		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-50:12
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
 		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:11-69
@@ -58,7 +58,7 @@ ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProjec
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:15:22-76
 application
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:17:5-48:19
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:17:5-51:19
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:25:5-20
 MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\bb51df33a13b4e7137b66d856935742a\AndroidManifest.xml:25:5-20
 MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\f86accc6a7d98e46ec8d79c9843b287c\AndroidManifest.xml:30:5-20
@@ -126,11 +126,17 @@ ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProjec
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:42:13-58
 activity#com.parse.starter.RiderActivity
-ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:45:9-47:69
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:45:9-47:60
 	android:label
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:47:13-57
 	android:name
 		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:46:13-42
+activity#com.parse.starter.DriverMapActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:48:9-50:74
+	android:label
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:50:13-62
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:49:13-46
 uses-sdk
 INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml

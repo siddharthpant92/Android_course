@@ -59,6 +59,9 @@
             android:name="com.parse.starter.RiderActivity"
             android:label="@string/title_activity_rider" />
         <activity
+            android:name="com.parse.starter.DriverMapActivity"
+            android:label="@string/title_activity_driver_map" />
+        <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:exported="false"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
