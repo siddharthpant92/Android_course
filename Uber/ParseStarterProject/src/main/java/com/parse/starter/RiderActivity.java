@@ -12,7 +12,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-//import android.util.Log;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,8 +41,6 @@ import java.util.List;
 
 public class RiderActivity extends FragmentActivity implements OnMapReadyCallback
 {
-    
-    
     Button callUberButton;
     
     String tag = "RiderActivity", user_name;
@@ -225,6 +222,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     }
     
   
+    // Driver hasn't accepted the request yet, so the map will show only the ride's location
     public void updateMapRiderOnly(Location location)
     {
         mMap.clear();
@@ -238,30 +236,33 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         ParseUser.getCurrentUser().saveInBackground();
         
     }
-    
-//    public void updateMapRiderDriver(Location driverLoc, String driverName)
-//    {
-//        ArrayList<Marker> markers = new ArrayList<>();
-//        markers.add(mMap.addMarker(new MarkerOptions().position(driverLoc).title("Driver: "+driverName)));
-//        markers.add(mMap.addMarker(new MarkerOptions().position(riderLocation).title("Rider: You").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
-//
-//        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-//        for (Marker marker : markers)
-//        {
-//            builder.include(marker.getPosition());
-//        }
-//
-//        LatLngBounds bounds = builder.build();
-//        int padding = 100; // offset from edges of the map in pixels
-//        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-//        mMap.animateCamera(cu);
-//    }
+
+    // Updating maps to show the rider's and driver's location
+    public void updateMapRiderDriver(String driverName)
+    {
+        mMap.clear();
+        
+        ArrayList<Marker> markers = new ArrayList<>();
+        markers.add(mMap.addMarker(new MarkerOptions().position(driver_location).title("Driver: "+driverName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+        markers.add(mMap.addMarker(new MarkerOptions().position(user_location).title("Rider: You")));
+
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markers)
+        {
+            builder.include(marker.getPosition());
+        }
+
+        LatLngBounds bounds = builder.build();
+        int padding = 100; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        mMap.animateCamera(cu);
+    }
     
     
     
     public void checkUserPreviousLocation()
     {
-         //Checking if the user has already booked an uber
+         // Checking if the user has already booked an uber
         final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Rider_Name", user_name);
         query.findInBackground(new FindCallback<ParseObject>()
@@ -374,10 +375,9 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         driver_location = new LatLng(driver_latitude, driver_longitude);
                         Log.d(tag, String.valueOf(driver_location));
                         
-                        Location driverLoc = new Location(LocationManager.GPS_PROVIDER);
-                        driverLoc.setLatitude(driver_latitude);
-                        driverLoc.setLongitude(driver_latitude);
-//                        updateMapRiderDriver(driverLoc, driverName);
+                        updateMapRiderDriver(driverName);
+    
+                        Toast.makeText(RiderActivity.this, "Driver assigned: "+driverName, Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
