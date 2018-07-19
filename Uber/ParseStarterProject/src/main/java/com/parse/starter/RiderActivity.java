@@ -294,13 +294,36 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
     public void checkDriverAcceptRequest()
     {
+        final String[] driverName = new String[1];
         handler.postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
                 // Checking if driver has been added to request
-                
+                ParseQuery<ParseObject> objectParseQuery = new ParseQuery<ParseObject>("Uber_Request");
+                objectParseQuery.whereEqualTo("Rider_Name", user_name);
+                objectParseQuery.whereExists("Driver_Name");
+                objectParseQuery.findInBackground(new FindCallback<ParseObject>()
+                {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e)
+                    {
+                        if(e == null)
+                        {
+                            if(objects.size() > 0)
+                            {
+                                driverName[0] = objects.get(0).getString("Driver_Name");
+                                Log.d(tag, driverName[0]);
+                            }
+                        }
+                        else
+                        {
+                            Toast.makeText(RiderActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            e.printStackTrace();
+                        }
+                    }
+                });
                 
                 handler.postDelayed(this, LOCATION_INTERVAL);
             }
