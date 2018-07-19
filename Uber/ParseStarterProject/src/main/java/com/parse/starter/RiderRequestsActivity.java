@@ -108,19 +108,22 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                final String nearbyRiderName = nearbyRiderUsername.get(i);
-                final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
-                final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
+                if(nearbyRiderUsername.size() > 0)
+                {
+                    final String nearbyRiderName = nearbyRiderUsername.get(i);
+                    final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
+                    final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
     
-                Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("riderUsername", nearbyRiderName);
-                bundle.putDouble("riderLatitude", nearbyRiderLat);
-                bundle.putDouble("riderLongitude", nearbyRiderLong);
-                bundle.putDouble("driverLatitude", driverLatitude);
-                bundle.putDouble("driverLongitude", driverLongitude);
-                intent.putExtras(bundle);
-                startActivity(intent);
+                    Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("riderUsername", nearbyRiderName);
+                    bundle.putDouble("riderLatitude", nearbyRiderLat);
+                    bundle.putDouble("riderLongitude", nearbyRiderLong);
+                    bundle.putDouble("driverLatitude", driverLatitude);
+                    bundle.putDouble("driverLongitude", driverLongitude);
+                    intent.putExtras(bundle);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -176,9 +179,9 @@ public class RiderRequestsActivity extends Activity
             {
                 if(e == null)
                 {
+                    nearbyRiderDistance.clear();
                     if(objects.size() > 0)
                     {
-                        nearbyRiderDistance.clear();
                         for(ParseObject object: objects)
                         {
                             Double distanceInMiles = (double) Math.round(driverGeoPoint.distanceInMilesTo(object.getParseGeoPoint("Rider_Location"))*10)/10;
@@ -189,12 +192,12 @@ public class RiderRequestsActivity extends Activity
                             nearbyRiderLatitude.add(object.getParseGeoPoint("Rider_Location").getLatitude());
                             nearbyRiderLongitude.add(object.getParseGeoPoint("Rider_Location").getLongitude());
                         }
-                        adapter.notifyDataSetChanged();
                     }
                     else
                     {
-                        Toast.makeText(RiderRequestsActivity.this, "No uber riders found", Toast.LENGTH_SHORT).show();
+                        nearbyRiderDistance.add("No nearby riders found");
                     }
+                    adapter.notifyDataSetChanged();
                 }
                 else 
                 {

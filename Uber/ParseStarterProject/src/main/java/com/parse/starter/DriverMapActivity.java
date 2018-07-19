@@ -1,6 +1,7 @@
 package com.parse.starter;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -114,6 +115,11 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                     if(e == null)
                                     {
                                         Toast.makeText(DriverMapActivity.this, "Uber booked", Toast.LENGTH_SHORT).show();
+                                        //Launching google maps intent
+                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                                                                    Uri.parse("http://maps.google.com/maps?saddr="+driverLatitude+","+driverLongitude+"&daddr="+riderLatitude+","+riderLongitude));
+                                        startActivity(intent);
+                                        
                                         // Call method on rider side to show that driver has been booked? Or handle that some way?
                                     }
                                     else
