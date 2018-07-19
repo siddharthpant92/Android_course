@@ -1,10 +1,10 @@
 #Internal package file, do not edit.
-#Sun Jul 15 21:29:37 MDT 2018
-1.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\13
+#Wed Jul 18 22:32:52 MDT 2018
+1.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\59
 2.path=classes.dex
 0.baseType=DIRECTORY
 3.baseType=DIRECTORY
-2.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+2.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\61
 3.set=DEX
 2.set=DEX
 1.baseType=DIRECTORY
@@ -12,8 +12,8 @@
 count=4
 1.set=DEX
 0.path=classes.dex
-3.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\12
+3.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\60
 0.set=DEX
-0.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\14
+0.base=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\58
 2.baseType=DIRECTORY
 1.path=classes.dex

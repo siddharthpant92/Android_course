@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ import java.util.List;
 
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback
 {
+    Button acceptRequestButton;
+    
     String riderUsername, tag = "DriverMapActivity";
     Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
     private GoogleMap mMap;
@@ -46,6 +49,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+    
+        acceptRequestButton = (Button) findViewById(R.id.acceptRequestButton);
     }
     
     
@@ -119,8 +124,9 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                                                     Uri.parse("http://maps.google.com/maps?saddr="+driverLatitude+","+driverLongitude+"&daddr="+riderLatitude+","+riderLongitude));
                                         startActivity(intent);
-                                        
+                                        acceptRequestButton.setText("Already accepted the Uber");
                                         // Call method on rider side to show that driver has been booked? Or handle that some way?
+    
                                     }
                                     else
                                     {

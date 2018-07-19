@@ -6,12 +6,14 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 //import android.util.Log;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -36,6 +38,7 @@ import java.util.List;
 public class RiderActivity extends FragmentActivity implements OnMapReadyCallback
 {
     
+    
     Button callUberButton;
     
     String tag = "RiderActivity", user_name;
@@ -44,8 +47,10 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     Location lastKnownLocation;
     LatLng user_location;
     Boolean isUberBooked = false;
+    Handler handler;
+    private static final long LOCATION_INTERVAL = 5000;
     
-    private GoogleMap mMap;
+    static GoogleMap mMap;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -60,6 +65,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
         user_name = ParseUser.getCurrentUser().getUsername();
         callUberButton = (Button) findViewById(R.id.callUberButton);
+    
+        handler =  new Handler();
     }
     
     @Override
@@ -142,6 +149,9 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         Toast.makeText(RiderActivity.this, "Uber has been booked", Toast.LENGTH_SHORT).show();
                         callUberButton.setText("Cancel Uber");
                         isUberBooked = true;
+    
+                        // Checking every 5 seconds if a driver has accepted the request
+                        checkDriverAcceptRequest();
                     }
                     else
                     {
@@ -186,6 +196,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         
     }
     
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
@@ -222,9 +233,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     }
     
     
-    public  void checkUserPreviousLocation()
+    public void checkUserPreviousLocation()
     {
-        
          //Checking if the user has already booked an uber
         final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Rider_Name", user_name);
@@ -255,6 +265,9 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         }
                         isUberBooked = true;
                         callUberButton.setText("Cancel Uber");
+    
+                        // Checking every 5 seconds if a driver has accepted the request
+                        checkDriverAcceptRequest();
                     }
                     else
                     {
@@ -276,5 +289,26 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                 }
             }
         });
+    }
+    
+    
+    public void checkDriverAcceptRequest()
+    {
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                // Checking if driver has been added to request
+                
+                
+                handler.postDelayed(this, LOCATION_INTERVAL);
+            }
+        }, LOCATION_INTERVAL);
+    }
+    
+    private void getDriverLocation()
+    {
+        Log.d(tag, "getting driver location");
     }
 }
