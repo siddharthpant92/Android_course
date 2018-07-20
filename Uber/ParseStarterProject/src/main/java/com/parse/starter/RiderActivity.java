@@ -51,7 +51,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     LocationListener locationListener;
     LatLng user_location, driver_location;
     Double driver_latitude, driver_longitude;
-    Boolean isUberBooked = false, isMapReady = false, isLoggedIn;
+    Boolean isUberBooked = false, isLoggedIn;
     Handler handler;
     private static final long LOCATION_INTERVAL = 2000;
     
@@ -77,40 +77,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         
         isLoggedIn = true; // It's always true until the user logs out. See locationListener
-    }
-    
-    
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
-        
-        // After enabling location in settings and coming back to activity, getting location
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-        {
-            Toast.makeText(this, "Loading your location", Toast.LENGTH_LONG).show();
-            // Checking every 2 seconds to see if map has been loaded
-            handler.postDelayed(new Runnable()
-            {
-                @Override
-                public void run()
-                {
-                    if(isMapReady)
-                    {
-                        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                        {
-                            checkUberBooked();
-                        }
-                    }
-                    handler.postDelayed(this, LOCATION_INTERVAL);
-                }
-            }, LOCATION_INTERVAL);
-        }
-        else
-        {
-            Toast.makeText(this, "Please turn on your location", Toast.LENGTH_SHORT).show();
-            turnOnLocation();
-        }
     }
     
     @Override
@@ -147,19 +113,18 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle)
             {
-    
             }
     
             @Override
             public void onProviderEnabled(String s)
             {
-    
+                checkUberBooked();
             }
     
             @Override
             public void onProviderDisabled(String s)
             {
-    
+                turnOnLocation();
             }
         };
         
@@ -172,8 +137,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             // Checking if uber has been booked, setting location accordingly
             checkUberBooked();
         }
-        
-        isMapReady = true;
     }
     
     public void logoutTapped(View view)
@@ -273,7 +236,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             }
             else
             {
-                Toast.makeText(this, "Please provide access to your locatin to book an uber", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please provide access to your location to book an uber", Toast.LENGTH_SHORT).show();
             }
         }
     }
