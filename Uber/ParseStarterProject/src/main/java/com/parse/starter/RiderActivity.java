@@ -98,7 +98,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     {
                         if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                         {
-                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                            checkUberBooked();
                         }
                     }
                     handler.postDelayed(this, LOCATION_INTERVAL);
@@ -177,11 +177,19 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
     public void logoutTapped(View view)
     {
-        //Stopping location updates. It'll restart when the user logs in again
-        locationManager.removeUpdates(locationListener);
-        ParseUser.logOut();
-        
-        finish();
+        // Can't log out if a rider has already requested an uber
+        if(!isUberBooked)
+        {
+            //Stopping location updates. It'll restart when the user logs in again
+            locationManager.removeUpdates(locationListener);
+            ParseUser.logOut();
+    
+            finish();
+        }
+        else
+        {
+            Toast.makeText(this, "You have to cancel your uber before you log out", Toast.LENGTH_SHORT).show();
+        }
     }
     
     public  void callUberTapped(View view)
@@ -277,7 +285,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     private void turnOnLocation()
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
                 .setCancelable(false)
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener()
                 {

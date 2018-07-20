@@ -5,28 +5,42 @@
     build-mode="COLD"
     density="xxhdpi"
     format="10"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.1.3"
-    timestamp="1532063771195"
+    timestamp="1532119851819"
     token="5798849706404108735"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="1459" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="0" />
+        duration="167" />
     <task
         name="verifier"
-        duration="0" />
+        duration="85" />
+
+    <artifact
+        location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
+        type="SPLIT" />
+    <artifact
+        location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\instant-run-apk\debug\ParseStarterProject-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1532055125218"
+        timestamp="1532119236058"
         verifier="FULL_BUILD_REQUESTED" >
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
+            type="SPLIT" />
+        <artifact
+            location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\instant-run-apk\debug\ParseStarterProject-debug.apk"
+            type="SPLIT_MAIN" />
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_7.apk"
             type="SPLIT" />
@@ -57,17 +71,20 @@
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_8.apk"
             type="SPLIT" />
-        <artifact
-            location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
-            type="SPLIT" />
+    </build>
+    <build
+        build-mode="COLD"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1532119782655"
+        verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\instant-run-apk\debug\ParseStarterProject-debug.apk"
             type="SPLIT_MAIN" />
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="METHOD_ADDED"
-        timestamp="1532063704059"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1532119851819"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\split-apk\debug\slices\slice_9.apk"
@@ -76,9 +93,5 @@
             location="C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\build\intermediates\instant-run-apk\debug\ParseStarterProject-debug.apk"
             type="SPLIT_MAIN" />
     </build>
-    <build
-        build-mode="COLD"
-        timestamp="1532063771195"
-        verifier="COLD_SWAP_REQUESTED" />
 
 </instant-run>

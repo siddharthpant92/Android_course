@@ -63,11 +63,16 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onLocationChanged(Location location)
             {
-                ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                driverLatitude = driverGeoPoint.getLatitude();
-                driverLongitude = driverGeoPoint.getLongitude();
-                ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
-                ParseUser.getCurrentUser().saveInBackground();
+                // If user has logged out, then can't update the location
+                if(ParseUser.getCurrentUser() != null)
+                {
+                    ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                    driverLatitude = driverGeoPoint.getLatitude();
+                    driverLongitude = driverGeoPoint.getLongitude();
+                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+                    ParseUser.getCurrentUser().saveInBackground();
+                }
+                
                 findNearbyRiderDistance(location);
             }
         
