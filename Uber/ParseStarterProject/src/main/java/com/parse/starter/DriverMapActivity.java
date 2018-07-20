@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ import java.util.List;
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback
 {
     Button acceptRequestButton;
+    ProgressBar progressBar2;
     
     String riderUsername, tag = "DriverMapActivity";
     Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
@@ -51,6 +53,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
     
         acceptRequestButton = (Button) findViewById(R.id.acceptRequestButton);
+        progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
     }
     
     
@@ -65,6 +68,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             @Override
             public void onGlobalLayout()
             {
+                progressBar2.setVisibility(View.INVISIBLE);
+                
                 Bundle bundle = getIntent().getExtras();
                 riderUsername = bundle.getString("riderUsername");
                 riderLatitude = bundle.getDouble("riderLatitude", 0);
@@ -124,7 +129,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                                                     Uri.parse("http://maps.google.com/maps?saddr="+driverLatitude+","+driverLongitude+"&daddr="+riderLatitude+","+riderLongitude));
                                         startActivity(intent);
-                                        acceptRequestButton.setText("Already accepted the Uber");
+                                        acceptRequestButton.setText("Already accepted an Uber");
+                                        acceptRequestButton.setEnabled(false);
                                         // Call method on rider side to show that driver has been booked? Or handle that some way?
     
                                     }

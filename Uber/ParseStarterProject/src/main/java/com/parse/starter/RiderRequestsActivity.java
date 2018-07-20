@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -47,6 +48,7 @@ public class RiderRequestsActivity extends Activity
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
+    ProgressBar progressBar3;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -55,6 +57,9 @@ public class RiderRequestsActivity extends Activity
         setContentView(R.layout.activity_rider_requests);
         
         riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
+        progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
+    
+        progressBar3.setVisibility(View.VISIBLE);
         user_name = ParseUser.getCurrentUser().getUsername();
     
         nearbyRiderDistance.clear();
@@ -229,6 +234,7 @@ public class RiderRequestsActivity extends Activity
                         nearbyRiderDistance.add("No nearby riders found");
                     }
                     adapter.notifyDataSetChanged();
+                    progressBar3.setVisibility(View.INVISIBLE);
                 }
                 else 
                 {
