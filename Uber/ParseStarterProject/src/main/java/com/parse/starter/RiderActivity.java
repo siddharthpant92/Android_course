@@ -1,7 +1,10 @@
 package com.parse.starter;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -69,7 +72,29 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         user_name = ParseUser.getCurrentUser().getUsername();
         callUberButton = (Button) findViewById(R.id.callUberButton);
     
-        handler =  new Handler();
+        handler = new Handler();
+    
+        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+    }
+    
+    
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        // After enabling location in settings, on coming back to activity, getting location
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+        {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+            }
+        }
+        else
+        {
+            Toast.makeText(this, "Please turn on your location", Toast.LENGTH_SHORT).show();
+        }
     }
     
     @Override
@@ -83,12 +108,13 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
-        locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        
         locationListener = new LocationListener()
         {
             @Override
             public void onLocationChanged(Location location)
             {
+                Log.d(tag, "2");
                 updateMapRiderOnly(location);
             }
     
@@ -208,19 +234,36 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+               if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-    
-                    lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                    
-                    //Simply setting map to last known location
-                    updateMapRiderOnly(lastKnownLocation);
+                    // Sending user to settings page to turn settings on if they accept
+                    // When user returns from settings page, onResume is called
+                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                    {
+                        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(final DialogInterface dialog, final int id)
+                                    {
+                                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                                {
+                                    public void onClick(final DialogInterface dialog, final int id)
+                                    {
+                                        dialog.cancel();
+                                    }
+                                });
+                        final AlertDialog alert = builder.create();
+                        alert.show();
+                    }
                 }
             }
         }
     }
-    
   
     // Driver hasn't accepted the request yet, so the map will show only the ride's location
     public void updateMapRiderOnly(Location location)
@@ -287,6 +330,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                 lastKnownLocation.setLatitude(geoPoint.getLatitude());
                                 lastKnownLocation.setLongitude(geoPoint.getLongitude());
     
+                                Log.d(tag, "3");
                                 updateMapRiderOnly(lastKnownLocation);
                             }
                         }
@@ -305,6 +349,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                             lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                             lastKnownLocation.setLatitude(geoPoint.getLatitude());
                             lastKnownLocation.setLongitude(geoPoint.getLongitude());
+                            Log.d(tag, "4");
                             updateMapRiderOnly(lastKnownLocation);
                         }
                     }
