@@ -1,13 +1,7 @@
-#Thu Jul 19 20:51:09 MDT 2018
-path.3=classes.dex
-path.2=classes.dex
+#Fri Jul 20 16:01:12 MDT 2018
+base.0=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\2
 path.1=classes.dex
-path.0=classes.dex
-renamed.3=classes4.dex
-renamed.2=classes3.dex
 renamed.1=classes2.dex
+path.0=classes.dex
 renamed.0=classes.dex
-base.3=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\17
-base.2=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\14
-base.1=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\16
-base.0=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\15
+base.1=C\:\\Users\\siddh\\Desktop\\Android\\Android_course\\Uber\\ParseStarterProject\\build\\intermediates\\transforms\\dexMerger\\debug\\18

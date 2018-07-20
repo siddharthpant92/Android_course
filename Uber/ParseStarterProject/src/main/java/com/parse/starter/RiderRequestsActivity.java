@@ -2,12 +2,15 @@ package com.parse.starter;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -32,6 +35,7 @@ import java.util.List;
 
 public class RiderRequestsActivity extends Activity
 {
+    private static final long INTERVAL = 2000;
     ListView riderRequestsListView;
     
     String tag = "RiderRequestsActivity", user_name;
@@ -43,7 +47,6 @@ public class RiderRequestsActivity extends Activity
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
-    Location lastKnownLocation;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,7 +67,7 @@ public class RiderRequestsActivity extends Activity
             public void onLocationChanged(Location location)
             {
                 // If user has logged out, then can't update the location
-                if(ParseUser.getCurrentUser() != null)
+                if (ParseUser.getCurrentUser() != null)
                 {
                     ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
                     driverLatitude = driverGeoPoint.getLatitude();
@@ -75,28 +78,32 @@ public class RiderRequestsActivity extends Activity
                 
                 findNearbyRiderDistance(location);
             }
-        
+    
             @Override
             public void onStatusChanged(String s, int i, Bundle bundle)
             {
-            
+    
             }
-        
+    
             @Override
             public void onProviderEnabled(String s)
             {
-            
+                if (ActivityCompat.checkSelfPermission(RiderRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                {
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                }
             }
-        
+    
             @Override
             public void onProviderDisabled(String s)
             {
-            
+                Toast.makeText(RiderRequestsActivity.this, "Please turn on your location", Toast.LENGTH_SHORT).show();
+                turnOnLocation();
             }
         };
     
     
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
         {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         }
@@ -113,7 +120,7 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
             {
-                if(nearbyRiderUsername.size() > 0)
+                if (nearbyRiderUsername.size() > 0)
                 {
                     final String nearbyRiderName = nearbyRiderUsername.get(i);
                     final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
@@ -133,7 +140,7 @@ public class RiderRequestsActivity extends Activity
         });
     }
     
-    public  void logoutTapped(View view)
+    public void logoutTapped(View view)
     {
         locationManager.removeUpdates(locationListener);
         ParseUser.logOut();
@@ -157,14 +164,33 @@ public class RiderRequestsActivity extends Activity
             {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                    lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                
-                    //Simply setting map to last known location
-                    findNearbyRiderDistance(lastKnownLocation);
+                    turnOnLocation();
                 }
             }
         }
+    }
+    
+    private void turnOnLocation()
+    {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
     
     public void findNearbyRiderDistance(Location location)
