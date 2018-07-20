@@ -49,12 +49,11 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     String tag = "RiderActivity", user_name;
     LocationManager locationManager;
     LocationListener locationListener;
-    Location lastKnownLocation;
     LatLng user_location, driver_location;
     Double driver_latitude, driver_longitude;
-    Boolean isUberBooked = false;
+    Boolean isUberBooked = false, isMapReady = false, isLoggedIn;
     Handler handler;
-    private static final long LOCATION_INTERVAL = 5000;
+    private static final long LOCATION_INTERVAL = 2000;
     
     static GoogleMap mMap;
     
@@ -75,6 +74,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         handler = new Handler();
     
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        
+        isLoggedIn = true; // It's always true until the user logs out. See locationListener
     }
     
     
@@ -82,18 +83,32 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     protected void onResume()
     {
         super.onResume();
-
-        // After enabling location in settings, on coming back to activity, getting location
+        
+        // After enabling location in settings and coming back to activity, getting location
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
         {
-            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+            Toast.makeText(this, "Loading your location", Toast.LENGTH_LONG).show();
+            // Checking every 2 seconds to see if map has been loaded
+            handler.postDelayed(new Runnable()
             {
-                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-            }
+                @Override
+                public void run()
+                {
+                    if(isMapReady)
+                    {
+                        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                        {
+                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                        }
+                    }
+                    handler.postDelayed(this, LOCATION_INTERVAL);
+                }
+            }, LOCATION_INTERVAL);
         }
         else
         {
             Toast.makeText(this, "Please turn on your location", Toast.LENGTH_SHORT).show();
+            turnOnLocation();
         }
     }
     
@@ -114,7 +129,17 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void onLocationChanged(Location location)
             {
-                Log.d(tag, "2");
+                user_location = new LatLng(location.getLatitude(), location.getLongitude());
+                
+                // If user has logged out, can't save location
+                if(ParseUser.getCurrentUser() != null)
+                {
+                    ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
+    
+                    ParseUser.getCurrentUser().put("User_Location", geoPoint);
+                    ParseUser.getCurrentUser().saveInBackground();
+                }
+                
                 updateMapRiderOnly(location);
             }
     
@@ -143,11 +168,11 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         }
         else
         {
-            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-            
-            // Getting the user's previously known location
-            checkUserPreviousLocation();
+            // Checking if uber has been booked, setting location accordingly
+            checkUberBooked();
         }
+        
+        isMapReady = true;
     }
     
     public void logoutTapped(View view)
@@ -155,6 +180,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         //Stopping location updates. It'll restart when the user logs in again
         locationManager.removeUpdates(locationListener);
         ParseUser.logOut();
+        
         finish();
     }
     
@@ -179,7 +205,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         callUberButton.setText("Cancel Uber");
                         isUberBooked = true;
     
-                        // Checking every 5 seconds if a driver has accepted the request
+                        // Triggering to check every 5 seconds if a driver has accepted the request
                         checkDriverAcceptRequest();
                     }
                     else
@@ -193,7 +219,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         else
         {
             // Cancelling the uber and deleting the request
-            ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
+            ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
             query.whereEqualTo("Rider_Name", user_name);
             query.findInBackground(new FindCallback<ParseObject>()
             {
@@ -230,57 +256,57 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == 1)
+        if (requestCode == 1 && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
         {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
-               if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                // Sending user to settings page to turn settings on if they accept
+                // When user returns from settings page, onResume is called
+                if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 {
-                    // Sending user to settings page to turn settings on if they accept
-                    // When user returns from settings page, onResume is called
-                    if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-                    {
-                        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
-                                .setCancelable(false)
-                                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                                {
-                                    public void onClick(final DialogInterface dialog, final int id)
-                                    {
-                                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                                    }
-                                })
-                                .setNegativeButton("No", new DialogInterface.OnClickListener()
-                                {
-                                    public void onClick(final DialogInterface dialog, final int id)
-                                    {
-                                        dialog.cancel();
-                                    }
-                                });
-                        final AlertDialog alert = builder.create();
-                        alert.show();
-                    }
+                    turnOnLocation();
                 }
+            }
+            else
+            {
+                Toast.makeText(this, "Please provide access to your locatin to book an uber", Toast.LENGTH_SHORT).show();
             }
         }
     }
-  
-    // Driver hasn't accepted the request yet, so the map will show only the ride's location
+    
+    private void turnOnLocation()
+    {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
+    
+    // Rider has booked an uber but it hasn't been accepted by a driver yet.
     public void updateMapRiderOnly(Location location)
     {
         mMap.clear();
         user_location = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.addMarker(new MarkerOptions().position(user_location).title("Your location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user_location, 15));
-    
-        ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
-        
-        ParseUser.getCurrentUser().put("User_Location",geoPoint);
-        ParseUser.getCurrentUser().saveInBackground();
-        
     }
 
-    // Updating maps to show the rider's and driver's location
+    // Driver has accepted rider's uber request
     public void updateMapRiderDriver(String driverName)
     {
         mMap.clear();
@@ -302,10 +328,9 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     }
     
     
-    
-    public void checkUserPreviousLocation()
+    // Checking if the rider has already booked an uber
+    public void checkUberBooked()
     {
-         // Checking if the user has already booked an uber
         final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Rider_Name", user_name);
         query.findInBackground(new FindCallback<ParseObject>()
@@ -326,32 +351,23 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                             ParseGeoPoint geoPoint = object.getParseGeoPoint("Rider_Location");
                             if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                             {
-                                lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                                lastKnownLocation.setLatitude(geoPoint.getLatitude());
-                                lastKnownLocation.setLongitude(geoPoint.getLongitude());
+                                Location uberRequestLocation = new Location(LocationManager.GPS_PROVIDER);
+                                uberRequestLocation.setLatitude(geoPoint.getLatitude());
+                                uberRequestLocation.setLongitude(geoPoint.getLongitude());
     
-                                Log.d(tag, "3");
-                                updateMapRiderOnly(lastKnownLocation);
+                                updateMapRiderOnly(uberRequestLocation);
                             }
                         }
                         isUberBooked = true;
                         callUberButton.setText("Cancel Uber");
     
-                        // Checking every 5 seconds if a driver has accepted the request
+                        // Triggering to check every 5 seconds if a driver has accepted the request
                         checkDriverAcceptRequest();
                     }
                     else
                     {
-                        // Getting the user's previously known location if they haven't called an uber
-                        ParseGeoPoint geoPoint = ParseUser.getCurrentUser().getParseGeoPoint("User_Location");
-                        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                        {
-                            lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                            lastKnownLocation.setLatitude(geoPoint.getLatitude());
-                            lastKnownLocation.setLongitude(geoPoint.getLongitude());
-                            Log.d(tag, "4");
-                            updateMapRiderOnly(lastKnownLocation);
-                        }
+                        // Getting the user's current if they haven't called an uber
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                     }
                 }
                 else
@@ -418,8 +434,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         driver_latitude = users.get(0).getParseGeoPoint("User_Location").getLatitude();
                         driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
                         driver_location = new LatLng(driver_latitude, driver_longitude);
-                        Log.d(tag, String.valueOf(driver_location));
-                        
+                       
                         updateMapRiderDriver(driverName);
     
                         Toast.makeText(RiderActivity.this, "Driver assigned: "+driverName, Toast.LENGTH_SHORT).show();
