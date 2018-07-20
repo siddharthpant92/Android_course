@@ -44,7 +44,7 @@ import java.util.List;
 
 public class RiderActivity extends FragmentActivity implements OnMapReadyCallback
 {
-    Button callUberButton;
+    Button callUberButton, logoutButton;
     
     String tag = "RiderActivity", user_name;
     LocationManager locationManager;
@@ -70,6 +70,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
         user_name = ParseUser.getCurrentUser().getUsername();
         callUberButton = (Button) findViewById(R.id.callUberButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
     
         handler = new Handler();
     
@@ -177,19 +178,11 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
     public void logoutTapped(View view)
     {
-        // Can't log out if a rider has already requested an uber
-        if(!isUberBooked)
-        {
-            //Stopping location updates. It'll restart when the user logs in again
-            locationManager.removeUpdates(locationListener);
-            ParseUser.logOut();
-    
-            finish();
-        }
-        else
-        {
-            Toast.makeText(this, "You have to cancel your uber before you log out", Toast.LENGTH_SHORT).show();
-        }
+        //Stopping location updates. It'll restart when the user logs in again
+        locationManager.removeUpdates(locationListener);
+        ParseUser.logOut();
+
+        finish();
     }
     
     public  void callUberTapped(View view)
@@ -211,8 +204,10 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     {
                         Toast.makeText(RiderActivity.this, "Uber has been booked", Toast.LENGTH_SHORT).show();
                         callUberButton.setText("Cancel Uber");
+                        logoutButton.setVisibility(View.INVISIBLE);
                         isUberBooked = true;
-    
+                        
+                        
                         // Triggering to check every 5 seconds if a driver has accepted the request
                         checkDriverAcceptRequest();
                     }
@@ -247,6 +242,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                     {
                                         Toast.makeText(RiderActivity.this, "Uber has been cancelled", Toast.LENGTH_SHORT).show();
                                         callUberButton.setText("Call Uber");
+                                        logoutButton.setVisibility(View.VISIBLE);
                                         isUberBooked = false;
                                     }
                                 }
@@ -368,6 +364,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         }
                         isUberBooked = true;
                         callUberButton.setText("Cancel Uber");
+                        logoutButton.setVisibility(View.INVISIBLE);
     
                         // Triggering to check every 5 seconds if a driver has accepted the request
                         checkDriverAcceptRequest();
