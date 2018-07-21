@@ -2,11 +2,18 @@
 <project version="4">
   <component name="AndroidLayouts">
     <shared>
-      <config />
+      <config>
+        <devices>
+          <device id="pixel_xl" />
+          <device id="Nexus 4" />
+          <device id="pixel_2" />
+          <device id="Galaxy Nexus" />
+        </devices>
+      </config>
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="RiderActivity" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="RiderRequestsActivity" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="debug" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
@@ -56,28 +63,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiderActivity.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="RiderActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="361" column="28" lean-forward="false" selection-start-line="361" selection-start-column="12" selection-end-line="361" selection-end-column="28" />
+            <state relative-caret-position="322">
+              <caret line="380" column="25" lean-forward="false" selection-start-line="380" selection-start-column="25" selection-end-line="380" selection-end-column="25" />
               <folding>
-                <element signature="e#4533#4534#0" expanded="true" />
-                <element signature="e#4581#4582#0" expanded="true" />
-                <element signature="e#5732#6697#0" expanded="true" />
-                <element signature="e#6696#6697#0" expanded="true" />
-                <element signature="e#6963#8228#0" expanded="true" />
-                <element signature="e#8227#8228#0" expanded="true" />
-                <element signature="e#9611#9922#0" expanded="true" />
-                <element signature="e#9921#9922#0" expanded="true" />
-                <element signature="e#9965#10207#0" expanded="true" />
-                <element signature="e#10206#10207#0" expanded="true" />
-                <element signature="e#11990#14271#0" expanded="true" />
-                <element signature="e#14270#14271#0" expanded="true" />
-                <element signature="e#14492#15940#0" expanded="true" />
-                <element signature="e#15939#15940#0" expanded="true" />
-                <element signature="e#16192#17439#0" expanded="true" />
-                <element signature="e#17438#17439#0" expanded="true" />
+                <element signature="e#14616#16064#0" expanded="true" />
+                <element signature="e#15039#15959#0" expanded="true" />
+                <element signature="e#15958#15959#0" expanded="true" />
+                <element signature="e#16063#16064#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -96,20 +91,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RiderRequestsActivity.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="RiderRequestsActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderRequestsActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="61" column="49" lean-forward="false" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
+            <state relative-caret-position="314">
+              <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
               <folding>
-                <element signature="e#4618#5747#0" expanded="true" />
-                <element signature="e#5746#5747#0" expanded="true" />
-                <element signature="e#7059#7370#0" expanded="true" />
-                <element signature="e#7369#7370#0" expanded="true" />
-                <element signature="e#7413#7655#0" expanded="true" />
-                <element signature="e#7654#7655#0" expanded="true" />
-                <element signature="e#8223#9895#0" expanded="true" />
-                <element signature="e#9894#9895#0" expanded="true" />
+                <element signature="e#5183#5857#0" expanded="true" />
+                <element signature="e#5856#5857#0" expanded="true" />
+                <element signature="e#7046#8521#0" expanded="true" />
+                <element signature="e#8520#8521#0" expanded="true" />
+                <element signature="e#10031#11703#0" expanded="true" />
+                <element signature="e#11702#11703#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -121,7 +114,7 @@
             <state />
           </provider>
           <provider editor-type-id="text-editor">
-            <state relative-caret-position="714">
+            <state relative-caret-position="1050">
               <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
               <folding />
             </state>
@@ -131,12 +124,9 @@
       <file leaf-file-name="DriverMapActivity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/DriverMapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="104" column="73" lean-forward="false" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
-              <folding>
-                <element signature="e#2380#4107#0" expanded="true" />
-                <element signature="e#4106#4107#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="420">
+              <caret line="57" column="4" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -145,14 +135,8 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>disabled</find>
-      <find>LocationMan</find>
-      <find>requestLocationUpdates(LocationManager.GPS_PROVIDER</find>
-      <find>isUberBooked</find>
-      <find>requestLocationUpdates</find>
       <find>locationUpdates</find>
       <find>handler.postDelayed</find>
-      <find>user_location</find>
       <find>locationUp</find>
       <find>findNearbyRiderDistance();</find>
       <find>LAST</find>
@@ -168,13 +152,19 @@
       <find>postde</find>
       <find>locationupdate</find>
       <find>handler.</find>
-      <find>postDe</find>
-      <find>marker</find>
       <find>checkUberBooked</find>
       <find>checkDriverAcceptRequest</find>
-      <find>Log.d</find>
       <find>findNearbyRiderDistance</find>
       <find>isDriverAssigned</find>
+      <find>user_location</find>
+      <find>marker</find>
+      <find>updateMapRiderOnly</find>
+      <find>chec</find>
+      <find>check</find>
+      <find>postDe</find>
+      <find>driverLatitude</find>
+      <find>post</find>
+      <find>Log.d</find>
     </findStrings>
     <replaceStrings>
       <replace>user_name</replace>
@@ -2214,14 +2204,14 @@
         <option value="$PROJECT_DIR$/ParseStarterProject/build.gradle" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_rider.xml" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_driver_map.xml" />
-        <option value="$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/DriverMapActivity.java" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderActivity.java" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_rider_requests.xml" />
+        <option value="$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/DriverMapActivity.java" />
         <option value="$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderRequestsActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="2391" />
     <option name="y" value="-9" />
     <option name="width" value="2018" />
@@ -2288,7 +2278,7 @@
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Uber" />
-    <property name="device.picker.selection" value="8623823b Nexus_5X_API_25" />
+    <property name="device.picker.selection" value="8623823b" />
     <property name="android.profiler.active" value="true" />
     <property name="ToolWindowDocumentation.ShowToolbar" value="false" />
   </component>
@@ -2465,7 +2455,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2391" y="-9" width="2018" height="1093" extended-state="0" />
+    <frame x="2391" y="-9" width="2018" height="1093" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -2475,21 +2465,21 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32899022" sideWeight="0.50205976" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32790446" sideWeight="0.49794027" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3275488" sideWeight="0.49794027" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32464713" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.324295" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20082389" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30911064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22708549" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Device File Explorer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32955715" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2551,22 +2541,10 @@
         <state relative-caret-position="1890">
           <caret line="124" column="26" lean-forward="false" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="26" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2586,10 +2564,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="115" column="81" lean-forward="false" selection-start-line="115" selection-start-column="81" selection-end-line="115" selection-end-column="81" />
-          <folding>
-            <element signature="e#2380#4107#0" expanded="true" />
-            <element signature="e#4106#4107#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2598,14 +2573,12 @@
         <state relative-caret-position="-273">
           <caret line="158" column="36" lean-forward="true" selection-start-line="158" selection-start-column="36" selection-end-line="158" selection-end-column="36" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2625,22 +2598,10 @@
         <state relative-caret-position="2184">
           <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2661,14 +2622,12 @@
         <state relative-caret-position="1470">
           <caret line="94" column="8" lean-forward="false" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2688,14 +2647,12 @@
         <state relative-caret-position="2793">
           <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="37" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2705,22 +2662,10 @@
         <state relative-caret-position="5796">
           <caret line="276" column="13" lean-forward="true" selection-start-line="276" selection-start-column="13" selection-end-line="276" selection-end-column="13" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2737,14 +2682,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-maps-15.0.1.aar/f86accc6a7d98e46ec8d79c9843b287c/jars/classes.jar!/com/google/android/gms/maps/model/LatLng.class">
@@ -2787,22 +2732,10 @@
         <state relative-caret-position="1890">
           <caret line="124" column="26" lean-forward="false" selection-start-line="124" selection-start-column="17" selection-end-line="124" selection-end-column="26" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2830,14 +2763,12 @@
         <state relative-caret-position="336">
           <caret line="62" column="35" lean-forward="false" selection-start-line="62" selection-start-column="35" selection-end-line="62" selection-end-column="35" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2846,10 +2777,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="47" column="5" lean-forward="false" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
-          <folding>
-            <element signature="e#2380#4107#0" expanded="true" />
-            <element signature="e#4106#4107#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2868,22 +2796,10 @@
         <state relative-caret-position="2184">
           <caret line="138" column="17" lean-forward="true" selection-start-line="138" selection-start-column="17" selection-end-line="138" selection-end-column="17" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2904,14 +2820,12 @@
         <state relative-caret-position="1470">
           <caret line="94" column="8" lean-forward="false" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2931,14 +2845,12 @@
         <state relative-caret-position="2793">
           <caret line="133" column="37" lean-forward="false" selection-start-line="133" selection-start-column="29" selection-end-line="133" selection-end-column="37" />
           <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2948,22 +2860,10 @@
         <state relative-caret-position="5796">
           <caret line="276" column="13" lean-forward="true" selection-start-line="276" selection-start-column="13" selection-end-line="276" selection-end-column="13" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2980,14 +2880,14 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/play-services-maps-15.0.1.aar/f86accc6a7d98e46ec8d79c9843b287c/jars/classes.jar!/com/google/android/gms/maps/model/LatLng.class">
@@ -3036,7 +2936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="588">
           <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3054,17 +2953,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_driver_map.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="462">
@@ -3072,28 +2960,6 @@
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/DriverMapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="104" column="73" lean-forward="false" selection-start-line="104" selection-start-column="73" selection-end-line="104" selection-end-column="73" />
-          <folding>
-            <element signature="e#2380#4107#0" expanded="true" />
-            <element signature="e#4106#4107#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_rider_requests.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -3108,44 +2974,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderRequestsActivity.java">
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_driver_map.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="50" column="46" lean-forward="false" selection-start-line="50" selection-start-column="46" selection-end-line="50" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/DriverMapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="61" column="49" lean-forward="false" selection-start-line="61" selection-start-column="49" selection-end-line="61" selection-end-column="49" />
-          <folding>
-            <element signature="e#4618#5747#0" expanded="true" />
-            <element signature="e#5746#5747#0" expanded="true" />
-            <element signature="e#7059#7370#0" expanded="true" />
-            <element signature="e#7369#7370#0" expanded="true" />
-            <element signature="e#7413#7655#0" expanded="true" />
-            <element signature="e#7654#7655#0" expanded="true" />
-            <element signature="e#8223#9895#0" expanded="true" />
-            <element signature="e#9894#9895#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="420">
+          <caret line="57" column="4" lean-forward="false" selection-start-line="57" selection-start-column="4" selection-end-line="57" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/res/layout/activity_rider_requests.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="361" column="28" lean-forward="false" selection-start-line="361" selection-start-column="12" selection-end-line="361" selection-end-column="28" />
+        <state relative-caret-position="322">
+          <caret line="380" column="25" lean-forward="false" selection-start-line="380" selection-start-column="25" selection-end-line="380" selection-end-column="25" />
           <folding>
-            <element signature="e#4533#4534#0" expanded="true" />
-            <element signature="e#4581#4582#0" expanded="true" />
-            <element signature="e#5732#6697#0" expanded="true" />
-            <element signature="e#6696#6697#0" expanded="true" />
-            <element signature="e#6963#8228#0" expanded="true" />
-            <element signature="e#8227#8228#0" expanded="true" />
-            <element signature="e#9611#9922#0" expanded="true" />
-            <element signature="e#9921#9922#0" expanded="true" />
-            <element signature="e#9965#10207#0" expanded="true" />
-            <element signature="e#10206#10207#0" expanded="true" />
-            <element signature="e#11990#14271#0" expanded="true" />
-            <element signature="e#14270#14271#0" expanded="true" />
-            <element signature="e#14492#15940#0" expanded="true" />
-            <element signature="e#15939#15940#0" expanded="true" />
-            <element signature="e#16192#17439#0" expanded="true" />
-            <element signature="e#17438#17439#0" expanded="true" />
+            <element signature="e#14616#16064#0" expanded="true" />
+            <element signature="e#15039#15959#0" expanded="true" />
+            <element signature="e#15958#15959#0" expanded="true" />
+            <element signature="e#16063#16064#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ParseStarterProject/src/main/java/com/parse/starter/RiderRequestsActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="70" column="8" lean-forward="false" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+          <folding>
+            <element signature="e#5183#5857#0" expanded="true" />
+            <element signature="e#5856#5857#0" expanded="true" />
+            <element signature="e#7046#8521#0" expanded="true" />
+            <element signature="e#8520#8521#0" expanded="true" />
+            <element signature="e#10031#11703#0" expanded="true" />
+            <element signature="e#11702#11703#0" expanded="true" />
           </folding>
         </state>
       </provider>

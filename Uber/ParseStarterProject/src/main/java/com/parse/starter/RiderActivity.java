@@ -80,6 +80,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         
         isLoggedIn = true; // It's always true until the user logs out. See locationListener
+        callUberButton.setVisibility(View.INVISIBLE);
     }
     
     @Override
@@ -273,7 +274,10 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     public void updateMapRiderOnly(Location location)
     {
         mMap.clear();
+        
         progressBar.setVisibility(View.INVISIBLE);
+        callUberButton.setVisibility(View.VISIBLE);
+        
         user_location = new LatLng(location.getLatitude(), location.getLongitude());
         mMap.addMarker(new MarkerOptions().position(user_location).title("Your location"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user_location, 15));

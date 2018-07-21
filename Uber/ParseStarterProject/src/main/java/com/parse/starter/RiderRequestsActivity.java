@@ -49,6 +49,8 @@ public class RiderRequestsActivity extends Activity
     LocationManager locationManager;
     LocationListener locationListener;
     ProgressBar progressBar3;
+    Boolean isRequestAccepted = false;
+    Handler handler;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -62,50 +64,58 @@ public class RiderRequestsActivity extends Activity
         progressBar3.setVisibility(View.VISIBLE);
         user_name = ParseUser.getCurrentUser().getUsername();
     
+        handler = new Handler();
         nearbyRiderDistance.clear();
         nearbyRiderDistance.add("Getting nearby riders");
-    
-        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-        locationListener = new LocationListener()
+        
+        // Checking if driver has already accepted a request where isRequestAccepted get set to true / false
+        checkExistingRequest();
+        
+        // If driver hasn't previously accepted a request, then getting current location and finding nearby rider requests
+        if(!isRequestAccepted)
         {
-            @Override
-            public void onLocationChanged(Location location)
+            locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+            locationListener = new LocationListener()
             {
-                // If user has logged out, then can't update the location
-                if (ParseUser.getCurrentUser() != null)
+                @Override
+                public void onLocationChanged(Location location)
                 {
-                    ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                    driverLatitude = driverGeoPoint.getLatitude();
-                    driverLongitude = driverGeoPoint.getLongitude();
-                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
-                    ParseUser.getCurrentUser().saveInBackground();
+                    // If user has logged out, then can't update the location
+                    if (ParseUser.getCurrentUser() != null)
+                    {
+                        ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                        driverLatitude = driverGeoPoint.getLatitude();
+                        driverLongitude = driverGeoPoint.getLongitude();
+                        ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+                        ParseUser.getCurrentUser().saveInBackground();
+                    }
+    
+                    findNearbyRiderDistance(location);
                 }
-                
-                findNearbyRiderDistance(location);
-            }
-    
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle)
-            {
-    
-            }
-    
-            @Override
-            public void onProviderEnabled(String s)
-            {
-                if (ActivityCompat.checkSelfPermission(RiderRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle)
                 {
-                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                }
-            }
     
-            @Override
-            public void onProviderDisabled(String s)
-            {
-                Toast.makeText(RiderRequestsActivity.this, "Please turn on your location", Toast.LENGTH_SHORT).show();
-                turnOnLocation();
-            }
-        };
+                }
+        
+                @Override
+                public void onProviderEnabled(String s)
+                {
+                    if (ActivityCompat.checkSelfPermission(RiderRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                    {
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                    }
+                }
+        
+                @Override
+                public void onProviderDisabled(String s)
+                {
+                    Toast.makeText(RiderRequestsActivity.this, "Please turn on your location", Toast.LENGTH_SHORT).show();
+                    turnOnLocation();
+                }
+            };
+        }
     
     
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -131,15 +141,8 @@ public class RiderRequestsActivity extends Activity
                     final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
                     final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
     
-                    Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("riderUsername", nearbyRiderName);
-                    bundle.putDouble("riderLatitude", nearbyRiderLat);
-                    bundle.putDouble("riderLongitude", nearbyRiderLong);
-                    bundle.putDouble("driverLatitude", driverLatitude);
-                    bundle.putDouble("driverLongitude", driverLongitude);
-                    intent.putExtras(bundle);
-                    startActivity(intent);
+                    goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLatitude, driverLongitude);
+                    
                 }
             }
         });
@@ -174,6 +177,44 @@ public class RiderRequestsActivity extends Activity
             }
         }
     }
+    
+    public void checkExistingRequest()
+    {
+        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Driver_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if(e == null)
+                {
+                    if(objects.size() > 0)
+                    {
+                        String nearbyRiderName = objects.get(0).getString("Rider_Name");
+                        Double nearbyRiderLat = objects.get(0).getParseGeoPoint("Rider_Location").getLatitude();
+                        Double nearbyRiderLong = objects.get(0).getParseGeoPoint("Rider_Location").getLongitude();
+                        Double driverLat = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude();
+                        Double driverLong = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude();
+    
+                        progressBar3.setVisibility(View.INVISIBLE);
+                        isRequestAccepted = true;
+                        goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLat, driverLong);
+                    }
+                    else
+                    {
+                        isRequestAccepted = false;
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderRequestsActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
     
     private void turnOnLocation()
     {
@@ -243,5 +284,18 @@ public class RiderRequestsActivity extends Activity
                 }
             }
         });
+    }
+    
+    public void goToDriverMapActivity(String nearbyRiderName, Double nearbyRiderLat, Double nearbyRiderLong, Double driverLatitude, Double driverLongitude)
+    {
+        Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("riderUsername", nearbyRiderName);
+        bundle.putDouble("riderLatitude", nearbyRiderLat);
+        bundle.putDouble("riderLongitude", nearbyRiderLong);
+        bundle.putDouble("driverLatitude", driverLatitude);
+        bundle.putDouble("driverLongitude", driverLongitude);
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 }
