@@ -33,13 +33,20 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
+
 public class DriverMapActivity extends FragmentActivity implements OnMapReadyCallback
 {
+    /**
+     * Not needed to update the driver's location here because once they accept the request, google maps is launched which handles that
+     */
     Button acceptRequestButton;
+    Button logoutButton;
     ProgressBar progressBar2;
     
-    String riderUsername, tag = "DriverMapActivity";
+    String riderUsername, driver_user_name, tag = "DriverMapActivity";
     Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
+    Boolean isRequestAccepted;
     private GoogleMap mMap;
     
     @Override
@@ -53,9 +60,33 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         mapFragment.getMapAsync(this);
     
         acceptRequestButton = (Button) findViewById(R.id.acceptRequestButton);
+        logoutButton = (Button) findViewById(R.id.logoutButton);
         progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
+        
+        isRequestAccepted = false;
+        driver_user_name = ParseUser.getCurrentUser().getUsername();
     }
     
+    @Override
+    public void onBackPressed()
+    {
+        if(isRequestAccepted)
+        {
+            Toast.makeText(this, "You cannot go back to accept another request. Please cancel this request first before you go back", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            super.onBackPressed();
+        }
+    }
+    
+    public void logoutTapped(View view)
+    {
+        ParseUser.logOut();
+        Intent intent = new Intent(DriverMapActivity.this, MainActivity.class);
+        intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
     
     @Override
     public void onMapReady(GoogleMap googleMap)
@@ -101,9 +132,78 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     
     public void acceptRequestTapped(View view)
     {
+        if(!isRequestAccepted)
+        {
+            acceptUberRequest();
+        }
+        else
+        {
+            cancelUberRequest();   
+        }
+    }
+    
+    public void acceptUberRequest()
+    {
         // Finding the uber request so that the driver can be added.
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Rider_Name", riderUsername);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if (e == null)
+                {
+                    if (objects.size() > 0)
+                    {
+                        for (ParseObject object : objects)
+                        {
+                            // Adding the driver to that uber requests
+                            object.put("Driver_Name", ParseUser.getCurrentUser().getUsername());
+                            object.saveInBackground(new SaveCallback()
+                            {
+                                @Override
+                                public void done(ParseException e)
+                                {
+                                    if (e == null)
+                                    {
+                                        Toast.makeText(DriverMapActivity.this, "Uber booked", Toast.LENGTH_SHORT).show();
+                                        //Launching google maps intent
+                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                                                Uri.parse("http://maps.google.com/maps?saddr=" + driverLatitude + "," + driverLongitude + "&daddr=" + riderLatitude + "," + riderLongitude));
+                                        startActivity(intent);
+                                    
+                                        acceptRequestButton.setText("Cancel Current Request");
+                                        isRequestAccepted = true;
+                                        logoutButton.setVisibility(View.INVISIBLE);
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(DriverMapActivity.this, "Check exception 2: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    else
+                    {
+                        Toast.makeText(DriverMapActivity.this, "Could not find the selected request.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(DriverMapActivity.this, "Check exception 1: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    public void cancelUberRequest()
+    {
+        ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
+        query.whereEqualTo("Driver_Name", driver_user_name);
         query.findInBackground(new FindCallback<ParseObject>()
         {
             @Override
@@ -115,8 +215,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     {
                         for(ParseObject object: objects)
                         {
-                            // Adding the driver to that uber requests
-                            object.put("Driver_Name", ParseUser.getCurrentUser().getUsername());
+                            object.remove("Driver_Name");
                             object.saveInBackground(new SaveCallback()
                             {
                                 @Override
@@ -124,19 +223,14 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                 {
                                     if(e == null)
                                     {
-                                        Toast.makeText(DriverMapActivity.this, "Uber booked", Toast.LENGTH_SHORT).show();
-                                        //Launching google maps intent
-                                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                                                                    Uri.parse("http://maps.google.com/maps?saddr="+driverLatitude+","+driverLongitude+"&daddr="+riderLatitude+","+riderLongitude));
-                                        startActivity(intent);
-                                        acceptRequestButton.setText("Already accepted an Uber");
-                                        acceptRequestButton.setEnabled(false);
-                                        // Call method on rider side to show that driver has been booked? Or handle that some way?
-    
+                                        Toast.makeText(DriverMapActivity.this, "The request has been declined", Toast.LENGTH_SHORT).show();
+                                        isRequestAccepted = false;
+                                        logoutButton.setVisibility(View.VISIBLE);
+                                        acceptRequestButton.setText("Accept Request");
                                     }
                                     else
                                     {
-                                        Toast.makeText(DriverMapActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(DriverMapActivity.this, "check exception 4: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                                         e.printStackTrace();
                                     }
                                 }
@@ -145,12 +239,12 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     }
                     else
                     {
-                        Toast.makeText(DriverMapActivity.this, "Could not find the selected request. ", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(DriverMapActivity.this, "Request not found", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
                 {
-                    Toast.makeText(DriverMapActivity.this, "Check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverMapActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
