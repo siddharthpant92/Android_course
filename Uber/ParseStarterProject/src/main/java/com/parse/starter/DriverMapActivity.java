@@ -239,7 +239,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     }
                     else
                     {
-                        Toast.makeText(DriverMapActivity.this, "Request not found", Toast.LENGTH_SHORT).show();
+                        finish();
+//                        Toast.makeText(DriverMapActivity.this, "Request not found", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else

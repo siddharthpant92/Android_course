@@ -50,7 +50,6 @@ public class RiderRequestsActivity extends Activity
     LocationListener locationListener;
     ProgressBar progressBar3;
     Boolean isRequestAccepted = false;
-    Handler handler;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -64,7 +63,6 @@ public class RiderRequestsActivity extends Activity
         progressBar3.setVisibility(View.VISIBLE);
         user_name = ParseUser.getCurrentUser().getUsername();
     
-        handler = new Handler();
         nearbyRiderDistance.clear();
         nearbyRiderDistance.add("Getting nearby riders");
         
@@ -72,8 +70,8 @@ public class RiderRequestsActivity extends Activity
         checkExistingRequest();
         
         // If driver hasn't previously accepted a request, then getting current location and finding nearby rider requests
-        if(!isRequestAccepted)
-        {
+//        if(!isRequestAccepted)
+//        {
             locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
             locationListener = new LocationListener()
             {
@@ -115,7 +113,7 @@ public class RiderRequestsActivity extends Activity
                     turnOnLocation();
                 }
             };
-        }
+//        }
     
     
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -239,13 +237,18 @@ public class RiderRequestsActivity extends Activity
         alert.show();
     }
     
-    public void findNearbyRiderDistance(Location location)
+    /**
+     * A rider's location is saved in Uber_Requests only when they CALL an uber.
+     * If they call an uber and then change their location, the location from which they booked is the one which is locked.
+     */
+    
+    public void findNearbyRiderDistance(final Location location)
     {
         nearbyRiderDistance.clear();
         nearbyRiderDistance.add("Getting nearby riders");
-    
-        final ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
         
+        final ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+
         //Getting list of nearby riders
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereDoesNotExist("Driver_Name");
@@ -263,7 +266,7 @@ public class RiderRequestsActivity extends Activity
                         {
                             Double distanceInMiles = (double) Math.round(driverGeoPoint.distanceInMilesTo(object.getParseGeoPoint("Rider_Location"))*10)/10;
                             nearbyRiderDistance.add(distanceInMiles+" mi.");
-                            
+                
                             // Adding the rider's usernames and location to array lists which is passed on to the next activity
                             nearbyRiderUsername.add(object.getString("Rider_Name"));
                             nearbyRiderLatitude.add(object.getParseGeoPoint("Rider_Location").getLatitude());
@@ -277,7 +280,7 @@ public class RiderRequestsActivity extends Activity
                     adapter.notifyDataSetChanged();
                     progressBar3.setVisibility(View.INVISIBLE);
                 }
-                else 
+                else
                 {
                     Toast.makeText(RiderRequestsActivity.this, "Check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
