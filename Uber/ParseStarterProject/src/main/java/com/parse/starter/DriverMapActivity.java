@@ -2,6 +2,7 @@ package com.parse.starter;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
@@ -47,7 +48,10 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     String riderUsername, driver_user_name, tag = "DriverMapActivity";
     Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
     Boolean isRequestAccepted;
+    Handler handler;
     private GoogleMap mMap;
+    
+    private static final long TIME_INTERVAL = 2000;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -65,6 +69,10 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         
         isRequestAccepted = false;
         driver_user_name = ParseUser.getCurrentUser().getUsername();
+        handler = new Handler();
+        
+        // Checking periodically if the rider cancels the request.
+        checkRiderCancelsRequest();
     }
     
     @Override
@@ -203,6 +211,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     public void cancelUberRequest()
     {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
+        query.whereEqualTo("Rider_Name", riderUsername);
         query.whereEqualTo("Driver_Name", driver_user_name);
         query.findInBackground(new FindCallback<ParseObject>()
         {
@@ -250,5 +259,48 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                 }
             }
         });
+    }
+    
+    public void checkRiderCancelsRequest()
+    {
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                if(isRequestAccepted)
+                {
+                    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
+                    query.whereEqualTo("Rider_Name", riderUsername);
+                    query.whereEqualTo("Driver_Name", driver_user_name);
+                    query.findInBackground(new FindCallback<ParseObject>()
+                    {
+                        @Override
+                        public void done(List<ParseObject> objects, ParseException e)
+                        {
+                            if(e == null)
+                            {
+                                // The request was not found which means the rider cancelled it.
+                                if(objects.size() == 0)
+                                {
+                                    Toast.makeText(DriverMapActivity.this, "Rider cancelled the request", Toast.LENGTH_SHORT).show();
+                                    isRequestAccepted = false;
+                                    logoutButton.setVisibility(View.VISIBLE);
+                                    acceptRequestButton.setText("Accept Request");
+                                    mMap.clear();
+                                    finish();
+                                }
+                            }
+                            else
+                            {
+                                Toast.makeText(DriverMapActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+                handler.postDelayed(this, TIME_INTERVAL);
+            }
+        }, TIME_INTERVAL);
     }
 }

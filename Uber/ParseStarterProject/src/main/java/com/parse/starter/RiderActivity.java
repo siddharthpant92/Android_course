@@ -53,7 +53,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     LocationListener locationListener;
     LatLng user_location, driver_location;
     Double driver_latitude, driver_longitude;
-    Boolean isUberBooked = false, isDriverAssigned = false, isLoggedIn;
+    Boolean isUberBooked = false, isDriverAssigned = false;
     Handler handler;
     private static final long LOCATION_INTERVAL = 2000;
     
@@ -79,7 +79,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         
-        isLoggedIn = true; // It's always true until the user logs out. See locationListener
         isDriverAssigned = false;
         callUberButton.setVisibility(View.INVISIBLE);
     }
@@ -111,15 +110,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     ParseUser.getCurrentUser().put("User_Location", geoPoint);
                     ParseUser.getCurrentUser().saveInBackground();
                 }
-                
-                if(isDriverAssigned)
-                {
-                    updateMapRiderDriver(user_name);
-                }
-                else
-                {
-                    updateMapRiderOnly(location);
-                }
+    
+                checkUberBooked();
             }
     
             @Override
@@ -131,7 +123,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             public void onProviderEnabled(String s)
             {
                 progressBar.setVisibility(View.VISIBLE);
-                checkUberBooked();
             }
     
             @Override
@@ -165,6 +156,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     {
         if(!isUberBooked)
         {
+            isUberBooked = true;
             callUberButton.setText("Cancel Uber");
             logoutButton.setVisibility(View.INVISIBLE);
             
@@ -183,8 +175,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     {
                         Toast.makeText(RiderActivity.this, "Uber has been booked", Toast.LENGTH_SHORT).show();
                         
-                        isUberBooked = true;
-                        
                         // Triggering to check every 5 seconds if a driver has accepted the request
                         checkDriverAcceptRequest();
                     }
@@ -198,8 +188,11 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         }
         else
         {
+            isUberBooked = false;
+            isDriverAssigned = false;
             callUberButton.setText("Call Uber");
             logoutButton.setVisibility(View.VISIBLE);
+            mMap.clear();
             
             // Cancelling the uber and deleting the request
             ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
@@ -211,7 +204,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                 {
                     if(e == null && objects.size() > 0)
                     {
-                        for(ParseObject object: objects)
+                        for(final ParseObject object: objects)
                         {
                             object.deleteInBackground(new DeleteCallback()
                             {
@@ -222,8 +215,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                     {
                                         Toast.makeText(RiderActivity.this, "Uber has been cancelled", Toast.LENGTH_SHORT).show();
                                         
-                                        isUberBooked = false;
-                                        isDriverAssigned = false;
+                                        showCurrentLocationOnMap();
                                     }
                                 }
                             });
@@ -281,6 +273,20 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         alert.show();
     }
     
+    
+    public void showCurrentLocationOnMap()
+    {
+        // Updating the map
+        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            Location prevRequestLocation = new Location(LocationManager.GPS_PROVIDER);
+            prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
+            prevRequestLocation.setLongitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
+        
+            updateMapRiderOnly(prevRequestLocation);
+        }
+    }
+    
     // Rider has booked an uber but it hasn't been accepted by a driver yet.
     public void updateMapRiderOnly(Location location)
     {
@@ -331,8 +337,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                 {
                     if (objects.size() > 0)
                     {
-                        
-                        Toast.makeText(RiderActivity.this, "Uber has already been booked", Toast.LENGTH_SHORT).show();
                         for (ParseObject object : objects)
                         {
                             
@@ -345,7 +349,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                 uberRequestLocation.setLongitude(geoPoint.getLongitude());
     
                                 updateMapRiderOnly(uberRequestLocation);
-//                                isDriverAssigned = true;
                             }
                         }
                         isUberBooked = true;
@@ -359,6 +362,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     {
                         // Getting the user's current if they haven't called an uber
                         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                        
+                        showCurrentLocationOnMap();
                     }
                 }
                 else
@@ -401,10 +406,19 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                      */
                                     getDriverLocation(objects.get(0).getString("Driver_Name"));
                                 }
+                                else
+                                {
+                                    Toast.makeText(RiderActivity.this, "If a driver was assigned to you then the driver may have cancelled the request. Waiting for another driver to accept the request", Toast.LENGTH_SHORT).show();
+                                    // Driver accepted the request and then cancelled it
+                                    isDriverAssigned = false;
+    
+                                    // Updating map to show rider location
+                                    showCurrentLocationOnMap();
+                                }
                             }
                             else
                             {
-                                Toast.makeText(RiderActivity.this, "Check exception 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                               Toast.makeText(RiderActivity.this, "Check exception 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 e.printStackTrace();
                             }
                         }
@@ -418,45 +432,32 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     private void getDriverLocation(final String driverName)
     {
         // Constantly checking for new locations
-        handler.postDelayed(new Runnable()
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("username", driverName);
+        query.findInBackground(new FindCallback<ParseUser>()
         {
             @Override
-            public void run()
+            public void done(List<ParseUser> users, ParseException e)
             {
-                ParseQuery<ParseUser> query = ParseUser.getQuery();
-                query.whereEqualTo("username", driverName);
-                query.findInBackground(new FindCallback<ParseUser>()
+                if (e == null)
                 {
-                    @Override
-                    public void done(List<ParseUser> users, ParseException e)
+                    if (users.size() > 0)
                     {
-                        if (e == null)
-                        {
-                            if (users.size() > 0)
-                            {
-                                progressBar.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.VISIBLE);
 
-                                driver_latitude = users.get(0).getParseGeoPoint("User_Location").getLatitude();
-                                driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
-                                driver_location = new LatLng(driver_latitude, driver_longitude);
-                                
-                                isDriverAssigned = true;
-                                updateMapRiderDriver(driverName);
-                            }
-                            else
-                            {
-                                Log.d(tag, "nothing");
-                            }
-                        }
-                        else
-                        {
-                            Toast.makeText(RiderActivity.this, "Check exception 4: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                            e.printStackTrace();
-                        }
+                        driver_latitude = users.get(0).getParseGeoPoint("User_Location").getLatitude();
+                        driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
+                        driver_location = new LatLng(driver_latitude, driver_longitude);
+                        
+                        updateMapRiderDriver(driverName);
                     }
-                });
-                handler.postDelayed(this, LOCATION_INTERVAL);
+                }
+                else
+                {
+                    Toast.makeText(RiderActivity.this, "Check exception 4: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
             }
-        }, LOCATION_INTERVAL);
+        });
     }
 }
