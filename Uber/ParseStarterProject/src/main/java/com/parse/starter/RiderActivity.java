@@ -408,7 +408,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                                 }
                                 else
                                 {
-                                    Toast.makeText(RiderActivity.this, "If a driver was assigned to you then the driver may have cancelled the request. Waiting for another driver to accept the request", Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(RiderActivity.this, "If a driver was assigned to you then the driver may have cancelled the request. Waiting for another driver to accept the request", Toast.LENGTH_SHORT).show();
                                     // Driver accepted the request and then cancelled it
                                     isDriverAssigned = false;
     
