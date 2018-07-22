@@ -109,19 +109,19 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
                     ParseUser.getCurrentUser().put("User_Location", geoPoint);
                     ParseUser.getCurrentUser().saveInBackground();
-                }
     
-//                checkUberBooked();
-    
-                if(!isDriverAssigned)
-                {
+                    if(!isDriverAssigned)
+                    {
 //                    updateMapRiderDriver(user_name);
 //                }
 //                else
 //                {
 //                    updateMapRiderOnly(location);
-                    checkUberBooked();
+                        checkUberBooked();
+                    }
                 }
+    
+//                checkUberBooked();
     
             }
     

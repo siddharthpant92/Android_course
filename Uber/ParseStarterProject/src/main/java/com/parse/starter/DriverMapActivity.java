@@ -100,7 +100,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
-    
+        
         ConstraintLayout mapLayout = (ConstraintLayout)findViewById(R.id.activityLayout);
         mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
         {
@@ -269,16 +269,16 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     
     public void checkRiderCancelsRequest()
     {
+        final Boolean[] isRiderRequestActive = {true};
         handler.postDelayed(new Runnable()
         {
             @Override
             public void run()
             {
-                if(isRequestAccepted)
+                if(isRiderRequestActive[0])
                 {
                     ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
                     query.whereEqualTo("Rider_Name", riderUsername);
-                    query.whereEqualTo("Driver_Name", driver_user_name);
                     query.findInBackground(new FindCallback<ParseObject>()
                     {
                         @Override
@@ -291,6 +291,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                 {
                                     Toast.makeText(DriverMapActivity.this, "Request has been cancelled", Toast.LENGTH_SHORT).show();
                                     isRequestAccepted = false;
+                                    isRiderRequestActive[0] = false;
                                     logoutButton.setVisibility(View.VISIBLE);
                                     acceptRequestButton.setText("Accept Request");
                                     mMap.clear();
