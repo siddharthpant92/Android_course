@@ -69,51 +69,48 @@ public class RiderRequestsActivity extends Activity
         // Checking if driver has already accepted a request where isRequestAccepted get set to true / false
         checkExistingRequest();
         
-        // If driver hasn't previously accepted a request, then getting current location and finding nearby rider requests
-//        if(!isRequestAccepted)
-//        {
-            locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
-            locationListener = new LocationListener()
+        // Constantly updating driver location
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
+        locationListener = new LocationListener()
+        {
+            @Override
+            public void onLocationChanged(Location location)
             {
-                @Override
-                public void onLocationChanged(Location location)
+                // If user has logged out, then can't update the location
+                if (ParseUser.getCurrentUser() != null)
                 {
-                    // If user has logged out, then can't update the location
-                    if (ParseUser.getCurrentUser() != null)
-                    {
-                        ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                        driverLatitude = driverGeoPoint.getLatitude();
-                        driverLongitude = driverGeoPoint.getLongitude();
-                        ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
-                        ParseUser.getCurrentUser().saveInBackground();
-                    }
+                    ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                    driverLatitude = driverGeoPoint.getLatitude();
+                    driverLongitude = driverGeoPoint.getLongitude();
+                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+                    ParseUser.getCurrentUser().saveInBackground();
+                }
+
+                findNearbyRiderDistance(location);
+            }
     
-                    findNearbyRiderDistance(location);
-                }
-        
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle)
-                {
+            @Override
+            public void onStatusChanged(String s, int i, Bundle bundle)
+            {
+
+            }
     
-                }
-        
-                @Override
-                public void onProviderEnabled(String s)
+            @Override
+            public void onProviderEnabled(String s)
+            {
+                if (ActivityCompat.checkSelfPermission(RiderRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    if (ActivityCompat.checkSelfPermission(RiderRequestsActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                    {
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                    }
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
                 }
-        
-                @Override
-                public void onProviderDisabled(String s)
-                {
-                    Toast.makeText(RiderRequestsActivity.this, "Please turn on your location", Toast.LENGTH_SHORT).show();
-                    turnOnLocation();
-                }
-            };
-//        }
+            }
+    
+            @Override
+            public void onProviderDisabled(String s)
+            {
+                turnOnLocation();
+            }
+        };
+
     
     
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
@@ -206,7 +203,8 @@ public class RiderRequestsActivity extends Activity
                 }
                 else
                 {
-                    Toast.makeText(RiderRequestsActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RiderRequestsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: checkExistingRequest");
                     e.printStackTrace();
                 }
             }
@@ -238,8 +236,9 @@ public class RiderRequestsActivity extends Activity
     }
     
     /**
-     * A rider's location is saved in Uber_Requests only when they CALL an uber.
+     * A rider's location is saved in Uber_Requests only when they call an uber.
      * If they call an uber and then change their location, the location from which they booked is the one which is locked.
+     * This method finds only those riders which have booked an uber
      */
     
     public void findNearbyRiderDistance(final Location location)

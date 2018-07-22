@@ -111,7 +111,18 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                     ParseUser.getCurrentUser().saveInBackground();
                 }
     
-                checkUberBooked();
+//                checkUberBooked();
+    
+                if(!isDriverAssigned)
+                {
+//                    updateMapRiderDriver(user_name);
+//                }
+//                else
+//                {
+//                    updateMapRiderOnly(location);
+                    checkUberBooked();
+                }
+    
             }
     
             @Override
@@ -173,14 +184,20 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                 {
                     if(e == null)
                     {
-                        Toast.makeText(RiderActivity.this, "Uber has been booked", Toast.LENGTH_SHORT).show();
-                        
-                        // Triggering to check every 5 seconds if a driver has accepted the request
-                        checkDriverAcceptRequest();
+                        // Letting user know of udpate
+                        progressBar.setVisibility(View.VISIBLE);
+    
+    
+                        // checkUberBooked is executed all the time anyway which checks if a driver has accepted an uber request
                     }
                     else
                     {
-                        Toast.makeText(RiderActivity.this, "Check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        isUberBooked = false;
+                        callUberButton.setText("Call Uber");
+                        logoutButton.setVisibility(View.VISIBLE);
+                        
+                        Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d(tag, "HERE: callUberTapped");
                         e.printStackTrace();
                     }
                 }
@@ -237,7 +254,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
                 // Sending user to settings page to turn settings on if they accept
-                // When user returns from settings page, onResume is called
                 if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
                 {
                     turnOnLocation();
@@ -245,7 +261,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             }
             else
             {
-                Toast.makeText(this, "Please provide access to your location to book an uber", Toast.LENGTH_SHORT).show();
+                turnOnLocation();
             }
         }
     }
@@ -280,8 +296,13 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
         {
             Location prevRequestLocation = new Location(LocationManager.GPS_PROVIDER);
-            prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
-            prevRequestLocation.setLongitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
+            
+            // Will be null when a user just signs up
+            if(ParseUser.getCurrentUser().getParseGeoPoint("User_Location") != null)
+            {
+                prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
+                prevRequestLocation.setLongitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
+            }
         
             updateMapRiderOnly(prevRequestLocation);
         }
@@ -290,9 +311,13 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     // Rider has booked an uber but it hasn't been accepted by a driver yet.
     public void updateMapRiderOnly(Location location)
     {
-        mMap.clear();
+       mMap.clear();
         
-        progressBar.setVisibility(View.INVISIBLE);
+        // If an uber is booked, letting the progress bar show. It'll become invisible when a driver is assigned
+        if(!isUberBooked)
+        {
+            progressBar.setVisibility(View.INVISIBLE);
+        }
         callUberButton.setVisibility(View.VISIBLE);
         
         user_location = new LatLng(location.getLatitude(), location.getLongitude());
@@ -368,7 +393,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                 }
                 else
                 {
-                    Toast.makeText(RiderActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: checkUberBooked");
                     e.printStackTrace();
                 }
             }
@@ -383,9 +409,9 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             @Override
             public void run()
             {
-                // Stopping once driver has been assigned
-                if(!isDriverAssigned)
-                {
+                 // Stopping once driver has been assigned
+//                if(!isDriverAssigned)
+//                {
                     // Checking every 'LOCATION_INTERVAL' if driver has been added to request
                     ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
                     query.whereEqualTo("Rider_Name", user_name);
@@ -411,6 +437,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
 //                                    Toast.makeText(RiderActivity.this, "If a driver was assigned to you then the driver may have cancelled the request. Waiting for another driver to accept the request", Toast.LENGTH_SHORT).show();
                                     // Driver accepted the request and then cancelled it
                                     isDriverAssigned = false;
+                                    progressBar.setVisibility(View.VISIBLE);
     
                                     // Updating map to show rider location
                                     showCurrentLocationOnMap();
@@ -418,12 +445,13 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                             }
                             else
                             {
-                               Toast.makeText(RiderActivity.this, "Check exception 3: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                               Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                               Log.d(tag, "HERE: checkDriverAcceptRequest");
                                 e.printStackTrace();
                             }
                         }
                     });
-                }
+//                }
                 handler.postDelayed(this, LOCATION_INTERVAL);
             }
         }, LOCATION_INTERVAL);
@@ -449,12 +477,14 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
                         driver_location = new LatLng(driver_latitude, driver_longitude);
                         
+                        isDriverAssigned = true;
                         updateMapRiderDriver(driverName);
                     }
                 }
                 else
                 {
-                    Toast.makeText(RiderActivity.this, "Check exception 4: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: getDriverLocation");
                     e.printStackTrace();
                 }
             }

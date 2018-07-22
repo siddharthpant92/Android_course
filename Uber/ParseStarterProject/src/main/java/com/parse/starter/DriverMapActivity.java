@@ -152,6 +152,10 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     
     public void acceptUberRequest()
     {
+        acceptRequestButton.setText("Cancel Current Request");
+        isRequestAccepted = true;
+        logoutButton.setVisibility(View.INVISIBLE);
+        
         // Finding the uber request so that the driver can be added.
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Rider_Name", riderUsername);
@@ -180,10 +184,6 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                                 Uri.parse("http://maps.google.com/maps?saddr=" + driverLatitude + "," + driverLongitude + "&daddr=" + riderLatitude + "," + riderLongitude));
                                         startActivity(intent);
-                                    
-                                        acceptRequestButton.setText("Cancel Current Request");
-                                        isRequestAccepted = true;
-                                        logoutButton.setVisibility(View.INVISIBLE);
                                     }
                                     else
                                     {
@@ -201,7 +201,12 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                 }
                 else
                 {
-                    Toast.makeText(DriverMapActivity.this, "Check exception 1: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    acceptRequestButton.setText("Accept Request");
+                    isRequestAccepted = false;
+                    logoutButton.setVisibility(View.VISIBLE);
+                    
+                    Toast.makeText(DriverMapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: acceptUberRequest");
                     e.printStackTrace();
                 }
             }
@@ -232,14 +237,14 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                 {
                                     if(e == null)
                                     {
-                                        Toast.makeText(DriverMapActivity.this, "The request has been declined", Toast.LENGTH_SHORT).show();
                                         isRequestAccepted = false;
                                         logoutButton.setVisibility(View.VISIBLE);
                                         acceptRequestButton.setText("Accept Request");
                                     }
                                     else
                                     {
-                                        Toast.makeText(DriverMapActivity.this, "check exception 4: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(DriverMapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                        Log.d(tag, "HERE: cancelUberRequest");
                                         e.printStackTrace();
                                     }
                                 }
@@ -248,13 +253,14 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                     }
                     else
                     {
+                        Toast.makeText(DriverMapActivity.this, "Request not found", Toast.LENGTH_SHORT).show();
                         finish();
-//                        Toast.makeText(DriverMapActivity.this, "Request not found", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else
                 {
-                    Toast.makeText(DriverMapActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DriverMapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: cancelUberRequest");
                     e.printStackTrace();
                 }
             }
@@ -283,7 +289,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                 // The request was not found which means the rider cancelled it.
                                 if(objects.size() == 0)
                                 {
-                                    Toast.makeText(DriverMapActivity.this, "Rider cancelled the request", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(DriverMapActivity.this, "Request has been cancelled", Toast.LENGTH_SHORT).show();
                                     isRequestAccepted = false;
                                     logoutButton.setVisibility(View.VISIBLE);
                                     acceptRequestButton.setText("Accept Request");
@@ -293,7 +299,8 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                             }
                             else
                             {
-                                Toast.makeText(DriverMapActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(DriverMapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Log.d(tag, "HERE: checkRiderCancelSRequest");
                                 e.printStackTrace();
                             }
                         }
