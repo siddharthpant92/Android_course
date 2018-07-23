@@ -36,7 +36,6 @@ import java.util.List;
 
 public class RiderRequestsActivity extends Activity
 {
-    private static final long INTERVAL = 2000;
     ListView riderRequestsListView;
     
     String tag = "RiderRequestsActivity", user_name;
@@ -66,7 +65,6 @@ public class RiderRequestsActivity extends Activity
         nearbyRiderDistance.clear();
         nearbyRiderDistance.add("Getting nearby riders");
         
-        // Checking if driver has already accepted a request where isRequestAccepted get set to true / false
         checkExistingRequest();
         
         // Constantly updating driver location
@@ -86,6 +84,7 @@ public class RiderRequestsActivity extends Activity
                     ParseUser.getCurrentUser().saveInBackground();
                 }
 
+                // Continuously finding nearby riders.
                 findNearbyRiderDistance(location);
             }
     
@@ -173,6 +172,9 @@ public class RiderRequestsActivity extends Activity
         }
     }
     
+    /**
+     * Checking if driver has already accepted a request.
+     */
     public void checkExistingRequest()
     {
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
@@ -211,7 +213,9 @@ public class RiderRequestsActivity extends Activity
         });
     }
     
-    
+    /**
+     * Prompts the user to switch on their location to high accuracy mode.
+     */
     private void turnOnLocation()
     {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);

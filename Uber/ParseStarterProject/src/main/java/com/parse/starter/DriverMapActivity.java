@@ -150,6 +150,10 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         }
     }
     
+    /**
+     * The driver accepts the uber requests.
+     * The location for both the rider and the driver are sent to google maps.
+     */
     public void acceptUberRequest()
     {
         acceptRequestButton.setText("Cancel Current Request");
@@ -180,6 +184,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
                                     if (e == null)
                                     {
                                         Toast.makeText(DriverMapActivity.this, "Uber booked", Toast.LENGTH_SHORT).show();
+                                        
                                         //Launching google maps intent
                                         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                                                 Uri.parse("http://maps.google.com/maps?saddr=" + driverLatitude + "," + driverLongitude + "&daddr=" + riderLatitude + "," + riderLongitude));
@@ -213,6 +218,10 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         });
     }
     
+    /**
+     * The driver cancels the request and the rider should be notified.
+     * The driver's name is removed from Uber_Request and the rider goes back to waiting for a driver to accept the request.
+     */
     public void cancelUberRequest()
     {
         ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
@@ -267,6 +276,11 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         });
     }
     
+    /**
+     * If the rider cancels the request then the driver should be notified.
+     * If the rider cancels the request, then the request is deleted from Uber_Request, the query doesn't return anything and isRiderRequestActive gets set to false.
+     * If the driver cancels the request, the driver cancels the
+     */
     public void checkRiderCancelsRequest()
     {
         final Boolean[] isRiderRequestActive = {true};
