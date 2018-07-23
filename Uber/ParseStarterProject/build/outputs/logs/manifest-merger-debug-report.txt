@@ -1,0 +1,229 @@
+-- Merging decision tree log ---
+manifest
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:17:1-27:12
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\40824d38c7c0fadc8312c02780194114\AndroidManifest.xml:17:1-22:12
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:17:1-32:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\8a201e43853ad8a6e540e94f67a8cd67\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fcd130c347df746206278b72ab3109e1\AndroidManifest.xml:2:1-9:12
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4e71b86239946ffff051ec4791ac7483\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:17:1-29:12
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\ea5eae36a88a8f71e6f139d1944e76f8\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:17:1-28:12
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:17:1-31:12
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:17:1-31:12
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:17:1-30:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+	package
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:10:5-32
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:1-53:12
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:9:11-69
+uses-permission#android.permission.INTERNET
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:12:5-67
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:24:5-67
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:24:5-67
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:12:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:13:5-79
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:23:5-79
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:23:5-79
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:13:22-76
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:14:5-80
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:14:22-77
+uses-permission#android.permission.ACCESS_FINE_LOCATION
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:15:5-79
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:15:22-76
+application
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:17:5-51:19
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:25:5-20
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:30:5-20
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:30:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\8a201e43853ad8a6e540e94f67a8cd67\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\8a201e43853ad8a6e540e94f67a8cd67\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fcd130c347df746206278b72ab3109e1\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fcd130c347df746206278b72ab3109e1\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4e71b86239946ffff051ec4791ac7483\AndroidManifest.xml:7:5-20
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4e71b86239946ffff051ec4791ac7483\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:22:5-27:19
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\ea5eae36a88a8f71e6f139d1944e76f8\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\ea5eae36a88a8f71e6f139d1944e76f8\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:22:5-26:19
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:22:5-26:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:25:5-29:19
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:25:5-29:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:24:5-28:19
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:24:5-28:19
+	android:label
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:21:9-41
+	android:icon
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:20:9-43
+	android:allowBackup
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:19:9-35
+	android:theme
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:22:9-40
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:18:9-43
+activity#com.parse.starter.MainActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:23:9-31:20
+	android:label
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:25:13-45
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:24:13-41
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:26:13-30:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:27:17-69
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:27:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:29:17-77
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:29:27-74
+activity#com.parse.starter.RiderRequestsActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:32:9-59
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:32:19-56
+meta-data#com.google.android.geo.API_KEY
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:41:9-43:55
+	android:value
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:43:13-52
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:42:13-58
+activity#com.parse.starter.RiderActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:45:9-47:60
+	android:label
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:47:13-57
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:46:13-42
+activity#com.parse.starter.DriverMapActivity
+ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:48:9-50:74
+	android:label
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:50:13-62
+	android:name
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml:49:13-46
+uses-sdk
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:21:5-23:78
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\40824d38c7c0fadc8312c02780194114\AndroidManifest.xml:20:5-43
+MERGED from [com.android.support:multidex:1.0.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\multidex-1.0.2.aar\40824d38c7c0fadc8312c02780194114\AndroidManifest.xml:20:5-43
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\8a201e43853ad8a6e540e94f67a8cd67\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.2] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.2.aar\8a201e43853ad8a6e540e94f67a8cd67\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fcd130c347df746206278b72ab3109e1\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:animated-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-23.4.0.aar\fcd130c347df746206278b72ab3109e1\AndroidManifest.xml:5:5-44
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4e71b86239946ffff051ec4791ac7483\AndroidManifest.xml:5:5-43
+MERGED from [com.android.support:support-vector-drawable:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-23.4.0.aar\4e71b86239946ffff051ec4791ac7483\AndroidManifest.xml:5:5-43
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\ea5eae36a88a8f71e6f139d1944e76f8\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-tasks:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-tasks-15.0.1.aar\ea5eae36a88a8f71e6f139d1944e76f8\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:21:5-23:60
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:21:5-23:58
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:20:5-22:41
+MERGED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:20:5-22:41
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+	tools:overrideLibrary
+		ADDED from [com.android.support:appcompat-v7:23.4.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\appcompat-v7-23.4.0.aar\dfbf68c90813f31ebd3846a8b10e104c\AndroidManifest.xml:23:9-75
+	android:targetSdkVersion
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		ADDED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\siddh\Desktop\Android\Android_course\Uber\ParseStarterProject\src\main\AndroidManifest.xml
+uses-feature#0x00020000
+ADDED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:26:5-28:35
+	android:glEsVersion
+		ADDED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:27:9-41
+	android:required
+		ADDED from [com.google.android.gms:play-services-maps:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-maps-15.0.1.aar\cd000cec7e5e73489d3c8e8f4d9d2ff3\AndroidManifest.xml:28:9-32
+activity#com.google.android.gms.common.api.GoogleApiActivity
+ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:23:9-26:75
+	android:exported
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:25:13-37
+	android:theme
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:26:13-72
+	android:name
+		ADDED from [com.google.android.gms:play-services-base:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-base-15.0.1.aar\507ef9383391010cbe522febc7073a80\AndroidManifest.xml:24:13-79
+meta-data#com.google.android.gms.version
+ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:23:9-25:69
+	android:value
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:25:13-66
+	android:name
+		ADDED from [com.google.android.gms:play-services-basement:15.0.1] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\play-services-basement-15.0.1.aar\05f40c15ef1c5e2fdb0e710a7d718318\AndroidManifest.xml:24:13-58
+meta-data#android.support.VERSION
+ADDED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-media-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-media-compat-26.1.0.aar\590e6e0cf513e127e5a6d28a31e800b7\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-fragment:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-fragment-26.1.0.aar\2bd96c535e9a5fda2fb53b900f83c3e6\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-utils:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-utils-26.1.0.aar\a5eae258e9abe6ff1a84b225e2f9241b\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-core-ui:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-core-ui-26.1.0.aar\f50f86b647941e89fba7f08f7a251883\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:26:9-28:38
+MERGED from [com.android.support:support-compat:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-compat-26.1.0.aar\c9b712e7935f3af75a0c31a2c4256951\AndroidManifest.xml:26:9-28:38
+	android:value
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:28:13-35
+	android:name
+		ADDED from [com.android.support:support-v4:26.1.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\support-v4-26.1.0.aar\2be5337a19bc91e3eb8126629a080761\AndroidManifest.xml:27:13-51
+meta-data#android.arch.lifecycle.VERSION
+ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:25:9-27:47
+	android:value
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:27:13-44
+	android:name
+		ADDED from [android.arch.lifecycle:runtime:1.0.0] C:\Users\siddh\.gradle\caches\transforms-1\files-1.1\runtime-1.0.0.aar\ff7b82621a44bde7e8e8c2a2cb0452e3\AndroidManifest.xml:26:13-58
