@@ -53,7 +53,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     LocationListener locationListener;
     LatLng user_location, driver_location;
     Double driver_latitude, driver_longitude;
-    Boolean isUberBooked = false, isDriverAssigned = false;
+    Boolean isUberBooked, isDriverAssigned;
     Handler handler;
     private static final long LOCATION_INTERVAL = 2000;
     
@@ -79,7 +79,8 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
         locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
         
-        isDriverAssigned = false;
+        isUberBooked = false; // Set to true once the rider books the uber request
+        isDriverAssigned = false; // Set to true when a driver accepts the uber request
         callUberButton.setVisibility(View.INVISIBLE);
     }
     
@@ -174,6 +175,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             // Booking an uber and saving the request
             ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
     
+            // Saving the rider's  name and location
             ParseObject parseObject = new ParseObject("Uber_Request");
             parseObject.put("Rider_Name", user_name);
             parseObject.put("Rider_Location", geoPoint);
@@ -205,7 +207,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         else
         {
             // Cancelling the uber
-            
             isUberBooked = false;
             isDriverAssigned = false;
             callUberButton.setText("Call Uber");
@@ -304,7 +305,6 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         {
             Location prevRequestLocation = new Location(LocationManager.GPS_PROVIDER);
             
-            // Will be null when a user just signs up
             if(ParseUser.getCurrentUser().getParseGeoPoint("User_Location") != null)
             {
                 prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
@@ -419,7 +419,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     
     /**
      * Checking periodically if a driver has accepted the uber request.
-     * If a driver hasn't been assigned or when a driver cancels the request, only the rider's location will show on tbe map.
+     * If a driver hasn't been assigned or if a driver cancels the request, only the rider's location will show on tbe map.
      * Once a driver accepts the request, the map updates to show both locations.
      */
     public void checkDriverAcceptRequest()

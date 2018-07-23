@@ -48,7 +48,6 @@ public class RiderRequestsActivity extends Activity
     LocationManager locationManager;
     LocationListener locationListener;
     ProgressBar progressBar3;
-    Boolean isRequestAccepted = false;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -74,7 +73,7 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onLocationChanged(Location location)
             {
-                // If user has logged out, then can't update the location
+                // If user has logged out, then can't save the updated location
                 if (ParseUser.getCurrentUser() != null)
                 {
                     ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
@@ -173,7 +172,8 @@ public class RiderRequestsActivity extends Activity
     }
     
     /**
-     * Checking if driver has already accepted a request.
+     * When a driver logs in, checking if driver has already accepted a request.
+     * If the user has already accepted a request, getting the details and going to DriverMapActivity
      */
     public void checkExistingRequest()
     {
@@ -195,12 +195,7 @@ public class RiderRequestsActivity extends Activity
                         Double driverLong = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude();
     
                         progressBar3.setVisibility(View.INVISIBLE);
-                        isRequestAccepted = true;
                         goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLat, driverLong);
-                    }
-                    else
-                    {
-                        isRequestAccepted = false;
                     }
                 }
                 else
@@ -270,7 +265,7 @@ public class RiderRequestsActivity extends Activity
                             Double distanceInMiles = (double) Math.round(driverGeoPoint.distanceInMilesTo(object.getParseGeoPoint("Rider_Location"))*10)/10;
                             nearbyRiderDistance.add(distanceInMiles+" mi.");
                 
-                            // Adding the rider's usernames and location to array lists which is passed on to the next activity
+                            // Adding the rider's username and location to array lists which is passed on to the next activity
                             nearbyRiderUsername.add(object.getString("Rider_Name"));
                             nearbyRiderLatitude.add(object.getParseGeoPoint("Rider_Location").getLatitude());
                             nearbyRiderLongitude.add(object.getParseGeoPoint("Rider_Location").getLongitude());

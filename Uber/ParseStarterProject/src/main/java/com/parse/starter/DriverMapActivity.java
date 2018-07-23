@@ -67,7 +67,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         logoutButton = (Button) findViewById(R.id.logoutButton);
         progressBar2 = (ProgressBar) findViewById(R.id.progressBar2);
         
-        isRequestAccepted = false;
+        isRequestAccepted = false; // Set to true when a driver accepts the request
         driver_user_name = ParseUser.getCurrentUser().getUsername();
         handler = new Handler();
         
