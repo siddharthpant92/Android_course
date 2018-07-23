@@ -269,14 +269,22 @@ public class RiderRequestsActivity extends Activity
                             nearbyRiderUsername.add(object.getString("Rider_Name"));
                             nearbyRiderLatitude.add(object.getParseGeoPoint("Rider_Location").getLatitude());
                             nearbyRiderLongitude.add(object.getParseGeoPoint("Rider_Location").getLongitude());
+                            
+                            
                         }
                     }
                     else
                     {
                         nearbyRiderDistance.add("No nearby riders found");
                     }
-                    adapter.notifyDataSetChanged();
-                    progressBar3.setVisibility(View.INVISIBLE);
+                    // Coming back to main thread to update the listView
+                    RiderRequestsActivity.this.runOnUiThread(new Runnable() {
+                        public void run()
+                        {
+                            adapter.notifyDataSetChanged();
+                            progressBar3.setVisibility(View.INVISIBLE);
+                        }
+                    });
                 }
                 else
                 {

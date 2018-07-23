@@ -531,7 +531,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
                         driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
                         driver_location = new LatLng(driver_latitude, driver_longitude);
     
-                        isDriverAssigned = true;    
+                        isDriverAssigned = true;
                         
                         //Updating the map only if the driver's location has changed
                         if(!driverPrevLocation.equals(driver_location))
