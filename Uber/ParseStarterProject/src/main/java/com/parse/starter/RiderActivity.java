@@ -89,6 +89,17 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         callUberButton.setVisibility(View.INVISIBLE);
     }
     
+    
+    //region USER ACTIONS
+    public void logoutTapped(View view)
+    {
+        //Stopping location updates. It'll restart when the user logs in again
+        locationManager.removeUpdates(locationListener);
+        ParseUser.logOut();
+    
+        finish();
+    }
+    
     @Override
     public void onBackPressed()
     {
@@ -96,6 +107,26 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     }
     
     
+    /**
+     * Either cancels or makes the uber request.
+     * @param view
+     */
+    public  void callUberTapped(View view)
+    {
+        // Booking the uber
+        if(!isUberBooked)
+        {
+            bookUber();
+        }
+        else
+        {
+            cancelUberRequest();
+        }
+    }
+    //endregion
+    
+    
+    //region MAPS
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
@@ -154,71 +185,321 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         }
     }
     
-    public void logoutTapped(View view)
+    
+    /**
+     * Gets the rider's current location and updates the map to show only the rider's location.
+     */
+    private void showCurrentLocationOnMap()
     {
-        //Stopping location updates. It'll restart when the user logs in again
-        locationManager.removeUpdates(locationListener);
-        ParseUser.logOut();
-
-        finish();
+        // Updating the map
+        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+        {
+            Location prevRequestLocation = new Location(LocationManager.GPS_PROVIDER);
+            
+            if(ParseUser.getCurrentUser().getParseGeoPoint("User_Location") != null)
+            {
+                prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
+                prevRequestLocation.setLongitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
+            }
+            
+            updateMapRiderOnly(prevRequestLocation);
+        }
     }
     
     /**
-     * Either cancels or makes the uber request.
-     * @param view
+     * Rider has booked an uber but it hasn't been accepted by a driver yet.
+     * @param location
      */
-    public  void callUberTapped(View view)
+    private void updateMapRiderOnly(Location location)
     {
-        // Booking the uber
+        mMap.clear();
+        
+        // If an uber is booked, letting the progress bar show. It'll become invisible when a driver is assigned
         if(!isUberBooked)
         {
-            isUberBooked = true;
-            callUberButton.setText("Cancel Uber");
-            logoutButton.setVisibility(View.INVISIBLE);
-            // Setting a countdown timer for 1 minute to find a nearby request
-            startCountDownATimer();
-    
-            // Booking an uber and saving the request
-            ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
-    
-            // Saving the rider's  name and location
-            ParseObject parseObject = new ParseObject("Uber_Request");
-            parseObject.put("Rider_Name", user_name);
-            parseObject.put("Rider_Location", geoPoint);
-            parseObject.saveInBackground(new SaveCallback()
-            {
-                @Override
-                public void done(ParseException e)
-                {
-                    if(e == null)
-                    {
-                        // Letting user know of udpate
-                        progressBar.setVisibility(View.VISIBLE);
-                        
-                        // checkUberBooked continues to be executed which checks if a driver has accepted an uber request
-                    }
-                    else
-                    {
-                        isUberBooked = false;
-                        callUberButton.setText("Call Uber");
-                        logoutButton.setVisibility(View.VISIBLE);
-                        
-                        Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d(tag, "HERE: callUberTapped");
-                        e.printStackTrace();
-                    }
-                }
-            });
+            progressBar.setVisibility(View.INVISIBLE);
         }
-        else
-        {
-            cancelUberRequest();
-        }
+        callUberButton.setVisibility(View.VISIBLE);
+        
+        user_location = new LatLng(location.getLatitude(), location.getLongitude());
+        mMap.addMarker(new MarkerOptions().position(user_location).title("Your location"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user_location, 15));
         
     }
     
+    /**
+     * Driver has accepted rider's uber request.
+     * @param driverName
+     */
+    private void updateMapRiderDriver(String driverName)
+    {
+        mMap.clear();
+        progressBar.setVisibility(View.INVISIBLE);
+        ArrayList<Marker> markers = new ArrayList<>();
+        markers.add(mMap.addMarker(new MarkerOptions().position(driver_location).title("Driver: "+driverName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
+        markers.add(mMap.addMarker(new MarkerOptions().position(user_location).title("Rider: You")));
+        
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        for (Marker marker : markers)
+        {
+            builder.include(marker.getPosition());
+        }
+        
+        LatLngBounds bounds = builder.build();
+        int padding = 100; // offset from edges of the map in pixels
+        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+        mMap.animateCamera(cu);
+    }
+    //endregion
     
-    @Override
+    
+    //region UBER REQUESTS
+    /**
+     * Checking if the rider has booked an uber. The request is saved when the user taps the request button.
+     * If s request has been made, the map updates to show the rider's location and triggers the periodic check to see if the driver accepts the request.
+     */
+    private void checkUberBooked()
+    {
+        final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Rider_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if (e == null)
+                {
+                    if (objects.size() > 0)
+                    {
+                        for (ParseObject object : objects)
+                        {
+                            
+                            // Getting the location from where the user previously booked an uber
+                            ParseGeoPoint geoPoint = object.getParseGeoPoint("Rider_Location");
+                            if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
+                            {
+                                Location uberRequestLocation = new Location(LocationManager.GPS_PROVIDER);
+                                uberRequestLocation.setLatitude(geoPoint.getLatitude());
+                                uberRequestLocation.setLongitude(geoPoint.getLongitude());
+    
+                                // Since this is called in onLocationChanged, the map updates every time the location changes
+                                updateMapRiderOnly(uberRequestLocation);
+                            }
+                        }
+                        isUberBooked = true;
+                        callUberButton.setText("Cancel Uber");
+                        logoutButton.setVisibility(View.INVISIBLE);
+    
+                        // Triggering to check every 5 seconds if a driver has accepted the request
+                        checkDriverAcceptRequest();
+                    }
+                    else
+                    {
+                        // Getting the user's current if they haven't called an uber
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+                        
+                        showCurrentLocationOnMap();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: checkUberBooked");
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    /**
+     * Booking the uber
+     */
+    private void bookUber()
+    {
+        isUberBooked = true;
+        callUberButton.setText("Cancel Uber");
+        logoutButton.setVisibility(View.INVISIBLE);
+        // Setting a countdown timer for 1 minute to find a nearby request
+        startCountDownATimer();
+    
+        // Booking an uber and saving the request
+        ParseGeoPoint geoPoint = new ParseGeoPoint(user_location.latitude, user_location.longitude);
+    
+        // Saving the rider's  name and location
+        ParseObject parseObject = new ParseObject("Uber_Request");
+        parseObject.put("Rider_Name", user_name);
+        parseObject.put("Rider_Location", geoPoint);
+        parseObject.saveInBackground(new SaveCallback()
+        {
+            @Override
+            public void done(ParseException e)
+            {
+                if(e == null)
+                {
+                    // Letting user know of udpate
+                    progressBar.setVisibility(View.VISIBLE);
+                
+                    // checkUberBooked continues to be executed which checks if a driver has accepted an uber request
+                }
+                else
+                {
+                    isUberBooked = false;
+                    callUberButton.setText("Call Uber");
+                    logoutButton.setVisibility(View.VISIBLE);
+                
+                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: callUberTapped");
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    /**
+     * Cancelling the uber request
+     */
+    private void cancelUberRequest()
+    {
+        isUberBooked = false;
+        isDriverAssigned = false;
+        callUberButton.setText("Call Uber");
+        logoutButton.setVisibility(View.VISIBLE);
+        mMap.clear();
+    
+        // Cancelling the uber and deleting the request
+        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Rider_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if(e == null && objects.size() > 0)
+                {
+                    for(final ParseObject object: objects)
+                    {
+                        object.deleteInBackground(new DeleteCallback()
+                        {
+                            @Override
+                            public void done(ParseException e)
+                            {
+                                if(e == null)
+                                {
+                                    Toast.makeText(RiderActivity.this, "Could not find a driver. Please try again later", Toast.LENGTH_SHORT).show();
+                                
+                                    // Get's the rider's current location and updates the map
+                                    showCurrentLocationOnMap();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });
+    }
+    //endregion
+    
+    
+    //region DRIVER
+    /**
+     * Checking periodically if a driver has accepted the uber request.
+     * If a driver hasn't been assigned or if a driver cancels the request, only the rider's location will show on tbe map.
+     * Once a driver accepts the request, the map updates periodically to show both locations.
+     */
+    private void checkDriverAcceptRequest()
+    {
+        handler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                // Checking every 'LOCATION_INTERVAL' if driver has accepted the request
+                ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+                query.whereEqualTo("Rider_Name", user_name);
+                query.whereExists("Driver_Name");
+                query.findInBackground(new FindCallback<ParseObject>()
+                {
+                    @Override
+                    public void done(List<ParseObject> objects, ParseException e)
+                    {
+                        if (e == null)
+                        {
+                            if (objects.size() > 0)
+                            {
+                                /**
+                                 * isDriverAssigned has to be set to true in getDriverLocation. If it's set here, updating map to rider and driver
+                                 * could be called from location listener before driver location is actually set.
+                                 */
+                                getDriverLocation(objects.get(0).getString("Driver_Name"));
+                            }
+                            else
+                            {
+                                // Driver accepted the request and then cancelled it
+                                isDriverAssigned = false;
+                                progressBar.setVisibility(View.VISIBLE);
+                                
+                                // Updating map to show rider location
+                                showCurrentLocationOnMap();
+                            }
+                        }
+                        else
+                        {
+                           Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                           Log.d(tag, "HERE: checkDriverAcceptRequest");
+                           e.printStackTrace();
+                        }
+                    }
+                });
+                handler.postDelayed(this, LOCATION_INTERVAL);
+            }
+        }, LOCATION_INTERVAL);
+    }
+    
+    /**
+     *  Getting the driver's location and then updating the map.
+     *  This method is called from checkDriverAcceptRequest periodically as long as a driver is assigned to the request.
+     * @param driverName
+     */
+    private void getDriverLocation(final String driverName)
+    {
+        ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("username", driverName);
+        query.findInBackground(new FindCallback<ParseUser>()
+        {
+            @Override
+            public void done(List<ParseUser> users, ParseException e)
+            {
+                if (e == null)
+                {
+                    if (users.size() > 0)
+                    {
+                        driver_latitude = users.get(0).getParseGeoPoint("User_Location").getLatitude();
+                        driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
+                        driver_location = new LatLng(driver_latitude, driver_longitude);
+    
+                        isDriverAssigned = true;
+                        
+                        //Updating the map only if the driver's location has changed
+                        if(!driverPrevLocation.equals(driver_location))
+                        {
+                            updateMapRiderDriver(driverName);
+                            driverPrevLocation = driver_location;
+                        }
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: getDriverLocation");
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    //endregion
+    
+    
+    //region PERMISSIONS
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -264,142 +545,22 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
         final AlertDialog alert = builder.create();
         alert.show();
     }
-    
-    /**
-     * Gets the rider's current location and updates the map to show only the rider's location.
-     */
-    public void showCurrentLocationOnMap()
-    {
-        // Updating the map
-        if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-        {
-            Location prevRequestLocation = new Location(LocationManager.GPS_PROVIDER);
-            
-            if(ParseUser.getCurrentUser().getParseGeoPoint("User_Location") != null)
-            {
-                prevRequestLocation.setLatitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
-                prevRequestLocation.setLongitude(ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
-            }
-        
-            updateMapRiderOnly(prevRequestLocation);
-        }
-    }
-    
-    /**
-     * Rider has booked an uber but it hasn't been accepted by a driver yet.
-     * @param location
-     */
-    public void updateMapRiderOnly(Location location)
-    {
-       mMap.clear();
-        
-        // If an uber is booked, letting the progress bar show. It'll become invisible when a driver is assigned
-        if(!isUberBooked)
-        {
-            progressBar.setVisibility(View.INVISIBLE);
-        }
-        callUberButton.setVisibility(View.VISIBLE);
-        
-        user_location = new LatLng(location.getLatitude(), location.getLongitude());
-        mMap.addMarker(new MarkerOptions().position(user_location).title("Your location"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(user_location, 15));
-        
-    }
-    
-    /**
-     * Driver has accepted rider's uber request.
-     * @param driverName
-     */
-    public void updateMapRiderDriver(String driverName)
-    {
-        mMap.clear();
-        progressBar.setVisibility(View.INVISIBLE);
-        ArrayList<Marker> markers = new ArrayList<>();
-        markers.add(mMap.addMarker(new MarkerOptions().position(driver_location).title("Driver: "+driverName).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))));
-        markers.add(mMap.addMarker(new MarkerOptions().position(user_location).title("Rider: You")));
-
-        LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        for (Marker marker : markers)
-        {
-            builder.include(marker.getPosition());
-        }
-
-        LatLngBounds bounds = builder.build();
-        int padding = 100; // offset from edges of the map in pixels
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        mMap.animateCamera(cu);
-    }
+    //endregion
     
     
-    /**
-     * Checking if the rider has booked an uber. The request is saved when the user taps the request button.
-     * If s request has been made, the map updates to show the rider's location and triggers the periodic check to see if the driver accepts the request.
-     */
-    public void checkUberBooked()
-    {
-        final ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-        query.whereEqualTo("Rider_Name", user_name);
-        query.findInBackground(new FindCallback<ParseObject>()
-        {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e)
-            {
-                if (e == null)
-                {
-                    if (objects.size() > 0)
-                    {
-                        for (ParseObject object : objects)
-                        {
-                            
-                            // Getting the location from where the user previously booked an uber
-                            ParseGeoPoint geoPoint = object.getParseGeoPoint("Rider_Location");
-                            if (ActivityCompat.checkSelfPermission(RiderActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
-                            {
-                                Location uberRequestLocation = new Location(LocationManager.GPS_PROVIDER);
-                                uberRequestLocation.setLatitude(geoPoint.getLatitude());
-                                uberRequestLocation.setLongitude(geoPoint.getLongitude());
-    
-                                updateMapRiderOnly(uberRequestLocation);
-                            }
-                        }
-                        isUberBooked = true;
-                        callUberButton.setText("Cancel Uber");
-                        logoutButton.setVisibility(View.INVISIBLE);
-    
-                        // Triggering to check every 5 seconds if a driver has accepted the request
-                        checkDriverAcceptRequest();
-                    }
-                    else
-                    {
-                        // Getting the user's current if they haven't called an uber
-                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-                        
-                        showCurrentLocationOnMap();
-                    }
-                }
-                else
-                {
-                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d(tag, "HERE: checkUberBooked");
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    
+    //region HELPERS
     
     /**
      * Running a countdown timer for 60 seconds to find a driver to accept the request.
      */
-    public void startCountDownATimer()
+    private void startCountDownATimer()
     {
+        Toast.makeText(this, "Please wait while we try to find you a driver", Toast.LENGTH_SHORT).show();
         countDownTimer = new CountDownTimer(60000, 1000)
         {
             public void onTick(long millisUntilFinished)
-            {
-                // Do nothing here. If a toast is displayed, it remains displayed if a driver accapts or if the rider cancels.
-            }
-        
+            {}
+            
             public void onFinish()
             {
                 // Cancelling the request if driver wasn't assigned
@@ -410,145 +571,5 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
             }
         }.start();
     }
-    
-    /**
-     * Cancelling the uber request
-     */
-    public void cancelUberRequest()
-    {
-        isUberBooked = false;
-        isDriverAssigned = false;
-        callUberButton.setText("Call Uber");
-        logoutButton.setVisibility(View.VISIBLE);
-        mMap.clear();
-    
-        // Cancelling the uber and deleting the request
-        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-        query.whereEqualTo("Rider_Name", user_name);
-        query.findInBackground(new FindCallback<ParseObject>()
-        {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e)
-            {
-                if(e == null && objects.size() > 0)
-                {
-                    for(final ParseObject object: objects)
-                    {
-                        object.deleteInBackground(new DeleteCallback()
-                        {
-                            @Override
-                            public void done(ParseException e)
-                            {
-                                if(e == null)
-                                {
-                                    Toast.makeText(RiderActivity.this, "Could not find a driver. Please try again later", Toast.LENGTH_SHORT).show();
-                                
-                                    // Get's the rider's current location and updates the map
-                                    showCurrentLocationOnMap();
-                                }
-                            }
-                        });
-                    }
-                }
-            }
-        });
-    }
-    
-    
-    /**
-     * Checking periodically if a driver has accepted the uber request.
-     * If a driver hasn't been assigned or if a driver cancels the request, only the rider's location will show on tbe map.
-     * Once a driver accepts the request, the map updates to show both locations.
-     */
-    public void checkDriverAcceptRequest()
-    {
-        handler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                // Checking every 'LOCATION_INTERVAL' if driver has been added to request
-                ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-                query.whereEqualTo("Rider_Name", user_name);
-                query.whereExists("Driver_Name");
-                query.findInBackground(new FindCallback<ParseObject>()
-                {
-                    @Override
-                    public void done(List<ParseObject> objects, ParseException e)
-                    {
-                        if (e == null)
-                        {
-                            if (objects.size() > 0)
-                            {
-                                /**
-                                 * isDriverAssigned has to be set to true in getDriverLocation. If it's set here, updating map to rider and driver
-                                 * could be called from location listener before driver location is actually set.
-                                 */
-                                getDriverLocation(objects.get(0).getString("Driver_Name"));
-                            }
-                            else
-                            {
-                                // Driver accepted the request and then cancelled it
-                                isDriverAssigned = false;
-                                progressBar.setVisibility(View.VISIBLE);
-                                
-                                // Updating map to show rider location
-                                showCurrentLocationOnMap();
-                            }
-                        }
-                        else
-                        {
-                           Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                           Log.d(tag, "HERE: checkDriverAcceptRequest");
-                            e.printStackTrace();
-                        }
-                    }
-                });
-                handler.postDelayed(this, LOCATION_INTERVAL);
-            }
-        }, LOCATION_INTERVAL);
-    }
-    
-    /**
-     *  Getting the driver's location and then updating the map.
-     *  This method is called periodically as long as a driver is assigned to the request.
-     * @param driverName
-     */
-    private void getDriverLocation(final String driverName)
-    {
-        ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("username", driverName);
-        query.findInBackground(new FindCallback<ParseUser>()
-        {
-            @Override
-            public void done(List<ParseUser> users, ParseException e)
-            {
-                if (e == null)
-                {
-                    if (users.size() > 0)
-                    {
-                        driver_latitude = users.get(0).getParseGeoPoint("User_Location").getLatitude();
-                        driver_longitude = users.get(0).getParseGeoPoint("User_Location").getLongitude();
-                        driver_location = new LatLng(driver_latitude, driver_longitude);
-    
-                        isDriverAssigned = true;
-                        
-                        //Updating the map only if the driver's location has changed
-                        if(!driverPrevLocation.equals(driver_location))
-                        {
-                            Log.d(tag, "changed");
-                            updateMapRiderDriver(driverName);
-                            driverPrevLocation = driver_location;
-                        }
-                    }
-                }
-                else
-                {
-                    Toast.makeText(RiderActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d(tag, "HERE: getDriverLocation");
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+    //endregion
 }

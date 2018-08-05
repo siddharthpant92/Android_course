@@ -69,6 +69,8 @@ public class MainActivity extends Activity
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
     
+    //region USER ACTIONS
+    
     public void loginTapped(View view)
     {
         setUserRole();
@@ -129,6 +131,7 @@ public class MainActivity extends Activity
             });
         }
     }
+    //endregion
     
     public boolean getCredentials()
     {
