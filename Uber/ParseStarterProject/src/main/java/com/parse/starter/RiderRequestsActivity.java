@@ -141,6 +141,8 @@ public class RiderRequestsActivity extends Activity
         });
     }
     
+    //region USER ACTIONS
+    // NOTE: riderRequestsListView.setOnItemClickListener is in onCreate
     public void logoutTapped(View view)
     {
         locationManager.removeUpdates(locationListener);
@@ -154,7 +156,10 @@ public class RiderRequestsActivity extends Activity
     {
         Toast.makeText(this, "Click on the logout button to go back", Toast.LENGTH_SHORT).show();
     }
+    //endregion
     
+    
+    //region PERMISSIONS
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
     {
@@ -169,43 +174,6 @@ public class RiderRequestsActivity extends Activity
                 }
             }
         }
-    }
-    
-    /**
-     * When a driver logs in, checking if driver has already accepted a request.
-     * If the user has already accepted a request, getting the details and going to DriverMapActivity
-     */
-    public void checkExistingRequest()
-    {
-        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
-        query.whereEqualTo("Driver_Name", user_name);
-        query.findInBackground(new FindCallback<ParseObject>()
-        {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e)
-            {
-                if(e == null)
-                {
-                    if(objects.size() > 0)
-                    {
-                        String nearbyRiderName = objects.get(0).getString("Rider_Name");
-                        Double nearbyRiderLat = objects.get(0).getParseGeoPoint("Rider_Location").getLatitude();
-                        Double nearbyRiderLong = objects.get(0).getParseGeoPoint("Rider_Location").getLongitude();
-                        Double driverLat = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude();
-                        Double driverLong = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude();
-    
-                        progressBar3.setVisibility(View.INVISIBLE);
-                        goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLat, driverLong);
-                    }
-                }
-                else
-                {
-                    Toast.makeText(RiderRequestsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d(tag, "HERE: checkExistingRequest");
-                    e.printStackTrace();
-                }
-            }
-        });
     }
     
     /**
@@ -233,7 +201,11 @@ public class RiderRequestsActivity extends Activity
         final AlertDialog alert = builder.create();
         alert.show();
     }
+    //endregion
     
+    
+    
+    //region HELPERS
     /**
      * A rider's location is saved in Uber_Requests only when they call an uber.
      * If they call an uber and then change their location, the location from which they booked is the one which is locked.
@@ -295,6 +267,43 @@ public class RiderRequestsActivity extends Activity
         });
     }
     
+    /**
+     * When a driver logs in, checking if driver has already accepted a request.
+     * If the user has already accepted a request, getting the details and going to DriverMapActivity
+     */
+    public void checkExistingRequest()
+    {
+        ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
+        query.whereEqualTo("Driver_Name", user_name);
+        query.findInBackground(new FindCallback<ParseObject>()
+        {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e)
+            {
+                if(e == null)
+                {
+                    if(objects.size() > 0)
+                    {
+                        String nearbyRiderName = objects.get(0).getString("Rider_Name");
+                        Double nearbyRiderLat = objects.get(0).getParseGeoPoint("Rider_Location").getLatitude();
+                        Double nearbyRiderLong = objects.get(0).getParseGeoPoint("Rider_Location").getLongitude();
+                        Double driverLat = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude();
+                        Double driverLong = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude();
+                        
+                        progressBar3.setVisibility(View.INVISIBLE);
+                        goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLat, driverLong);
+                    }
+                }
+                else
+                {
+                    Toast.makeText(RiderRequestsActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Log.d(tag, "HERE: checkExistingRequest");
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
     public void goToDriverMapActivity(String nearbyRiderName, Double nearbyRiderLat, Double nearbyRiderLong, Double driverLatitude, Double driverLongitude)
     {
         Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
@@ -307,4 +316,5 @@ public class RiderRequestsActivity extends Activity
         intent.putExtras(bundle);
         startActivity(intent);
     }
+    //endregion
 }

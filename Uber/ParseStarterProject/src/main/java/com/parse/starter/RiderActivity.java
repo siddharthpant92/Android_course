@@ -548,7 +548,7 @@ public class RiderActivity extends FragmentActivity implements OnMapReadyCallbac
     //endregion
     
     
-    //region HELPER
+    //region HELPERS
     
     /**
      * Running a countdown timer for 60 seconds to find a driver to accept the request.

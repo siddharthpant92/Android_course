@@ -75,6 +75,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         checkRiderCancelsRequest();
     }
     
+    //region USER ACTIONS
     @Override
     public void onBackPressed()
     {
@@ -96,6 +97,21 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         startActivity(intent);
     }
     
+    
+    public void acceptRequestTapped(View view)
+    {
+        if(!isRequestAccepted)
+        {
+            acceptUberRequest();
+        }
+        else
+        {
+            cancelUberRequest();
+        }
+    }
+    //endregion
+    
+    //region MAP
     @Override
     public void onMapReady(GoogleMap googleMap)
     {
@@ -137,19 +153,9 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             }
         });
     }
+    //endregion
     
-    public void acceptRequestTapped(View view)
-    {
-        if(!isRequestAccepted)
-        {
-            acceptUberRequest();
-        }
-        else
-        {
-            cancelUberRequest();   
-        }
-    }
-    
+    //region UBER REQUEST HANDLERS
     /**
      * The driver accepts the uber requests.
      * The location for both the rider and the driver are sent to google maps.
@@ -275,7 +281,9 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             }
         });
     }
+    //endregion
     
+    //region HELPERS
     /**
      * If the rider cancels the request then the driver should be notified.
      * If the rider cancels the request, then the request is deleted from Uber_Request, the query doesn't return anything and isRiderRequestActive gets set to false.
@@ -325,4 +333,5 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             }
         }, TIME_INTERVAL);
     }
+    //endregion
 }
