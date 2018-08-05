@@ -4,10 +4,10 @@
 
 ### If the instance was stopped and then restarted:
  - You might have to reconnect to the instance via the [aws console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console) . 
- - Once connected and the terminal shows up, go to apps/parse/htdocs and oepn server.js . Include the relevant information in StarterApplication.java , and then open up the server url to see the data. 
- - Don't forget to the slash at the end of the url 
+ - Once connected and the terminal shows up, go to apps/parse/htdocs and open server.js . Include the relevant information in StarterApplication.java , and then open up the server url (replace parse with apps in the url) to see the data. 
+ - Don't forget to add the slash at the end of the url 
 
-### Booking and cancelling cenarios handled: 
+### Booking and cancelling scenarios handled: 
  - Rider books, Driver accepts and then cancels => rider should be notified
  - Rider books, Driver accepts => location updates must be visible to rider
  - Rider books, Driver hasn't accepted but changes location => distance between rider and driver should update, driver's location on map should update
