@@ -10,27 +10,20 @@ package com.parse.starter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
 import com.parse.LogInCallback;
-import com.parse.Parse;
 import com.parse.ParseAnalytics;
-import com.parse.ParseAnonymousUtils;
 import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
-import java.util.ArrayList;
-import java.util.List;
+import Model.UserClass;
 
 
 public class MainActivity extends Activity
@@ -41,10 +34,12 @@ public class MainActivity extends Activity
     
     String user_role, tag="MainActivity", username, password;
     
+    UserClass userClass = new UserClass();
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        userClass.getCurrentUser();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
@@ -53,17 +48,13 @@ public class MainActivity extends Activity
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         passwordTextView = (TextView) findViewById(R.id.passwordTextView);
     
+        UserClass currentUser = userClass.getCurrentUser();
+        
         // Checking if user is already logged in
-        try
+        if(currentUser != null)
         {
-            username = ParseUser.getCurrentUser().getUsername();
-            Toast.makeText(this, "Logged in as:  "+username, Toast.LENGTH_SHORT).show();
-            user_role = ParseUser.getCurrentUser().getString("User_Role");
-            redirectUser();
-        }
-        catch(Exception e)
-        {
-            Log.d(tag, "no current user");
+            Toast.makeText(this, "Logged in as:  "+currentUser.username, Toast.LENGTH_SHORT).show();
+            redirectUser(currentUser);
         }
         
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
@@ -149,29 +140,29 @@ public class MainActivity extends Activity
     
     public void addUserRole(final ParseUser user)
     {
-        user.put("User_Role", user_role);
-        user.saveInBackground(new SaveCallback()
-        {
-            @Override
-            public void done(ParseException e)
-            {
-                if(e == null)
-                {
-                    redirectUser();
-                }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
+//        user.put("User_Role", user_role);
+//        user.saveInBackground(new SaveCallback()
+//        {
+//            @Override
+//            public void done(ParseException e)
+//            {
+//                if(e == null)
+//                {
+//                    redirectUser(currentUser);
+//                }
+//                else
+//                {
+//                    Toast.makeText(MainActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
     }
     
-    public void redirectUser()
+    public void redirectUser(UserClass currentUser)
     {
         Intent intent;
-        if(user_role.equals("rider"))
+        if(currentUser.role.equals("rider"))
         {
             intent = new Intent(MainActivity.this, RiderActivity.class);
         }
