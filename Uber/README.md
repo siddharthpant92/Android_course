@@ -1,6 +1,6 @@
 ## Make sure the EC2 instance is launched when running the app. Then you have to be connected to it. 
 
-### To get bitnami parse server credentials: https://docs.bitnami.com/aws/faq/starting-bitnami-aws/find_credentials/
+### To get bitnami parse server credentials: https://docs.bitnami.com/aws/faq/get-started/find-credentials/
 
 ### If the instance was stopped and then restarted:
  - You might have to reconnect to the instance via the [aws console](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html?icmpid=docs_ec2_console) . 
