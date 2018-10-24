@@ -22,6 +22,7 @@ import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -102,34 +103,40 @@ public class MainActivity extends Activity
             });
         }
     }
-//
-//    public void signupTapped(View view)
-//    {
-//        String selectedRole = getSelectedUserRole();
-//
-//        if(getCredentials())
-//        {
-//            final ParseUser user = new ParseUser();
-//            user.setUsername(username);
-//            user.setPassword(password);
-//
-//            user.signUpInBackground(new SignUpCallback() {
-//                @Override
-//                public void done(ParseException e) {
-//                    if(e == null)
-//                    {
-//                        saveUserRole(user);
-//                    }
-//                    else
-//                    {
-//                        Toast.makeText(MainActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-//        }
-//    }
-//    //endregion
+
+    public void signupTapped(View view)
+    {
+        Map<String, Object> userCredentials;
+        userCredentials = getCredentials();
+    
+        if((Boolean) userCredentials.get("isValid"))
+        {
+            final String username = (String) userCredentials.get("username");
+            String password = (String) userCredentials.get("password");
+            
+            final ParseUser user = new ParseUser();
+            user.setUsername(username);
+            user.setPassword(password);
+
+            user.signUpInBackground(new SignUpCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if(e == null)
+                    {
+                        String selectedRole = getSelectedUserRole();
+    
+                        saveUserRole(user, selectedRole, username);
+                    }
+                    else
+                    {
+                        Toast.makeText(MainActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
+    }
+    //endregion
     
     /**
      * Gets the credentials the user entered
