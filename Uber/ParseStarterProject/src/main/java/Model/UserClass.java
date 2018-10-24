@@ -1,5 +1,7 @@
 package Model;
 
+import android.util.Log;
+
 import com.parse.ParseUser;
 
 public class UserClass
@@ -23,11 +25,23 @@ public class UserClass
         role = user_role;
     }
     
+    /**
+     * Gets the currently logged in user
+     * @return null or the currently logged in user
+     */
     public UserClass getCurrentUser()
     {
-        username = ParseUser.getCurrentUser().getUsername();
-        role = ParseUser.getCurrentUser().getString("User_Role");
+        try
+        {
+            username = ParseUser.getCurrentUser().getUsername();
+            role = ParseUser.getCurrentUser().getString("User_Role");
+            return new UserClass(username, role);
+        }
+        catch(Exception e)
+        {
+            // User has not logged in
+            return null;
+        }
         
-        return new UserClass(username, role);
     }
 }
