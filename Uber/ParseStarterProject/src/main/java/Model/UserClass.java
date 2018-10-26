@@ -1,13 +1,21 @@
 package Model;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.parse.LogInCallback;
+import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
+import com.parse.SignUpCallback;
+import com.parse.starter.MainActivity;
 
 public class UserClass
 {
     String TAG = "UserClass";
     ParseUser parseUser;
+    MainActivity mainActivity = MainActivity.getInstance(); // Gets an object instance of MainActivity
     
     public String username, role;
     
@@ -43,5 +51,102 @@ public class UserClass
             return null;
         }
         
+    }
+    
+    /**
+     * Saving the user role in the server and then redirecting the user
+     * @param user          Object instance of ParseUser
+     * @param role          Role the user selected
+     * @param isRedirecUser If the user should be redirected or not
+     * @param context       The activity that called this function
+     */
+    public void saveUserRole(ParseUser user, final String role, final Boolean isRedirecUser, final Context context)
+    {
+        Log.d(TAG, role);
+        user.put("User_Role", role);
+    
+        user.saveInBackground(new SaveCallback()
+        {
+            @Override
+            public void done(ParseException e)
+            {
+                if(e == null)
+                {
+                    if(isRedirecUser)
+                    {
+                        mainActivity.redirectUser(role);
+                    }
+                }
+                else
+                {
+                    Toast.makeText(context, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    /**
+     *
+     * @param username      Username of user logging in
+     * @param password      Password of user logging in
+     * @param selectedRole  Role selected by the user
+     * @param context       Activity calling this function
+     */
+    public void userLogin(String username, String password, final String selectedRole, final Context context)
+    {
+        ParseUser pu = new ParseUser();
+        pu.logInInBackground(username, password, new LogInCallback() {
+            @Override
+            public void done(final ParseUser parseUser, ParseException e) {
+                if(parseUser != null && e == null)
+                {
+                    // Checking role of user trying to login
+                    String userRole = String.valueOf(parseUser.get("User_Role"));
+                    if(userRole.equals(selectedRole))
+                    {
+                        saveUserRole(parseUser, selectedRole, true, context);
+                    }
+                    else
+                    {
+                        Toast.makeText(context, "In correct role. Cannot log in", Toast.LENGTH_SHORT).show();
+                        ParseUser.logOut();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(context, "check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+    
+    /**
+     * @param username      Username of user signing up
+     * @param password      Password of user signing up
+     * @param selectedRole  Role selected by the user
+     * @param context       Activity calling this function
+     */
+    public void userSignup(String username, String password, final String selectedRole, final Context context)
+    {
+        final ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+    
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e == null)
+                {
+                    saveUserRole(user, selectedRole, true, context);
+                }
+                else
+                {
+                    Toast.makeText(context, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
