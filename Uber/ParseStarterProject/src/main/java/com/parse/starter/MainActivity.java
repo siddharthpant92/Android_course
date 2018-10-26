@@ -21,7 +21,6 @@ import com.parse.LogInCallback;
 import com.parse.ParseAnalytics;
 import com.parse.ParseException;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
 import java.util.HashMap;
@@ -32,6 +31,7 @@ import Model.UserClass;
 
 public class MainActivity extends Activity
 {
+    static MainActivity mainActivity; // instance of this activity
     Switch userRoleSwitch;
     Button loginButton, signupButton;
     TextView usernameTextView, passwordTextView;
@@ -44,6 +44,7 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
+        mainActivity = this; // Initializing this instance
         userRoleSwitch = (Switch) findViewById(R.id.userRoleSwitch);
         loginButton = (Button) findViewById(R.id.loginButton);
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
@@ -56,16 +57,23 @@ public class MainActivity extends Activity
         if(currentUser != null)
         {
             Toast.makeText(this, "Logged in as:  "+currentUser.username, Toast.LENGTH_SHORT).show();
-            redirectUser(currentUser);
+            redirectUser(currentUser.role);
         }
         
         ParseAnalytics.trackAppOpenedInBackground(getIntent());
     }
     
+    // Other classes and activities can call this method to create an object of MainActivity.
+    public static MainActivity getInstance()
+    {
+        return mainActivity;
+    }
+
     //region USER ACTIONS
     
     public void loginTapped(View view)
     {
+        final UserClass userClass = new UserClass();
         final String selectedRole = getSelectedUserRole();
         
         Map<String, Object> userCredentials;
@@ -76,17 +84,17 @@ public class MainActivity extends Activity
             final String username = (String) userCredentials.get("username");
             String password = (String) userCredentials.get("password");
             
-            ParseUser user = new ParseUser();
-            user.logInInBackground(username, password, new LogInCallback() {
+            ParseUser pu = new ParseUser();
+            pu.logInInBackground(username, password, new LogInCallback() {
                 @Override
-                public void done(final ParseUser user, ParseException e) {
-                    if(user != null && e == null)
+                public void done(final ParseUser parseUser, ParseException e) {
+                    if(parseUser != null && e == null)
                     {
                         // Checking role of user trying to login
-                        String userRole = String.valueOf(user.get("User_Role"));
+                        String userRole = String.valueOf(parseUser.get("User_Role"));
                         if(userRole.equals(selectedRole))
                         {
-                            saveUserRole(user, selectedRole, username);
+                            userClass.saveUserRole(parseUser, selectedRole, true, MainActivity.this);
                         }
                         else
                         {
@@ -106,14 +114,15 @@ public class MainActivity extends Activity
 
     public void signupTapped(View view)
     {
+        final UserClass userClass = new UserClass();
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
-    
+
         if((Boolean) userCredentials.get("isValid"))
         {
             final String username = (String) userCredentials.get("username");
             String password = (String) userCredentials.get("password");
-            
+
             final ParseUser user = new ParseUser();
             user.setUsername(username);
             user.setPassword(password);
@@ -124,8 +133,8 @@ public class MainActivity extends Activity
                     if(e == null)
                     {
                         String selectedRole = getSelectedUserRole();
-    
-                        saveUserRole(user, selectedRole, username);
+
+                        userClass.saveUserRole(user, selectedRole, true, MainActivity.this);
                     }
                     else
                     {
@@ -166,46 +175,13 @@ public class MainActivity extends Activity
     }
     
     /**
-     * Saving the user role in the server and then redirecting the user
-     * @param user          Object instance of ParseUser
-     * @param role          Role the user selected
-     * @param username      Username the user entered
+     * Redirects the user based on their role. Called from UserClass once the role has been saved
+     * @param role   The role of currently logged in user
      */
-    public void saveUserRole(ParseUser user, final String role, final String username)
-    {
-        final Boolean[] result = new Boolean[1];
-        result[0] = false; //Deafult value
-        
-        user.put("User_Role", role);
-        
-        user.saveInBackground(new SaveCallback()
-        {
-            @Override
-            public void done(ParseException e)
-            {
-                if(e == null)
-                {
-                    UserClass currentUser = new UserClass(username, role);
-                    
-                    redirectUser(currentUser);
-                }
-                else
-                {
-                    Toast.makeText(MainActivity.this, "Check exception 2: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-    
-    /**
-     * Redirects the user based on their role
-     * @param currentUser   The currently logged in user
-     */
-    public void redirectUser(UserClass currentUser)
+    public void redirectUser(String role)
     {
         Intent intent;
-        if(currentUser.role.equals("rider"))
+        if(role.equals("rider"))
         {
             intent = new Intent(MainActivity.this, RiderActivity.class);
         }
