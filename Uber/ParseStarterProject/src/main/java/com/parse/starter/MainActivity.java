@@ -73,76 +73,37 @@ public class MainActivity extends Activity
     
     public void loginTapped(View view)
     {
-        final UserClass userClass = new UserClass();
-        final String selectedRole = getSelectedUserRole();
+        UserClass userClass = new UserClass();
         
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
     
         if((Boolean) userCredentials.get("isValid"))
         {
-            final String username = (String) userCredentials.get("username");
+            String selectedRole = getSelectedUserRole();
+            
+            String username = (String) userCredentials.get("username");
             String password = (String) userCredentials.get("password");
             
-            ParseUser pu = new ParseUser();
-            pu.logInInBackground(username, password, new LogInCallback() {
-                @Override
-                public void done(final ParseUser parseUser, ParseException e) {
-                    if(parseUser != null && e == null)
-                    {
-                        // Checking role of user trying to login
-                        String userRole = String.valueOf(parseUser.get("User_Role"));
-                        if(userRole.equals(selectedRole))
-                        {
-                            userClass.saveUserRole(parseUser, selectedRole, true, MainActivity.this);
-                        }
-                        else
-                        {
-                            Toast.makeText(MainActivity.this, "In correct role. Cannot log in", Toast.LENGTH_SHORT).show();
-                            ParseUser.logOut();
-                        }
-                    }
-                    else
-                    {
-                        Toast.makeText(MainActivity.this, "check exception 1: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            });
+            userClass.userLogin(username, password, selectedRole, MainActivity.this);
         }
     }
 
     public void signupTapped(View view)
     {
-        final UserClass userClass = new UserClass();
+        UserClass userClass = new UserClass();
+    
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
 
         if((Boolean) userCredentials.get("isValid"))
         {
-            final String username = (String) userCredentials.get("username");
+            String selectedRole = getSelectedUserRole();
+            
+            String username = (String) userCredentials.get("username");
             String password = (String) userCredentials.get("password");
-
-            final ParseUser user = new ParseUser();
-            user.setUsername(username);
-            user.setPassword(password);
-
-            user.signUpInBackground(new SignUpCallback() {
-                @Override
-                public void done(ParseException e) {
-                    if(e == null)
-                    {
-                        String selectedRole = getSelectedUserRole();
-
-                        userClass.saveUserRole(user, selectedRole, true, MainActivity.this);
-                    }
-                    else
-                    {
-                        Toast.makeText(MainActivity.this, "Check exception 3: "+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        e.printStackTrace();
-                    }
-                }
-            });
+    
+            userClass.userSignup(username, password, selectedRole, MainActivity.this);
         }
     }
     //endregion
