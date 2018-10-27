@@ -20,6 +20,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.model.LatLng;
@@ -55,6 +56,7 @@ public class RiderRequestsActivity extends Activity
     LocationManager locationManager;
     LocationListener locationListener;
     ProgressBar progressBar3;
+    TextView riderListTitle;
     
     DriverClass driverClass;
     UserClass userClass;
@@ -72,21 +74,22 @@ public class RiderRequestsActivity extends Activity
         locationClass = new LocationClass(this); // So that LocationClass can call functions in this activity
         
         
-//        riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
-//        progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
-//
-//        progressBar3.setVisibility(View.VISIBLE);
-//        user_name = ParseUser.getCurrentUser().getUsername();
-//
-//        nearbyRiderDistance.clear();
-//        nearbyRiderDistance.add("Getting nearby riders");
-//
-//        UserClass currentUser = userClass.getCurrentUser();
-//
-//        // Checking if the driver had already accepted a request previously
-//        driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
-//
-////        // Constantly updating driver location
+        riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
+        progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
+        riderListTitle = (TextView) findViewById(R.id.riderListTitle);
+
+        progressBar3.setVisibility(View.VISIBLE);
+        user_name = ParseUser.getCurrentUser().getUsername();
+
+        nearbyRiderDistance.clear();
+        nearbyRiderDistance.add("Getting nearby riders");
+
+        UserClass currentUser = userClass.getCurrentUser();
+
+        // Checking if the driver had already accepted a request previously
+        driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
+
+//        // Constantly updating driver location
 //        locationClass.updateLocation(locationManager, locationListener, RiderRequestsActivity.this);
         
         
@@ -310,17 +313,24 @@ public class RiderRequestsActivity extends Activity
     
     public void goToDriverMapActivity(HashMap<String, Object> bookingDetails)
     {
-        riderRequestsActivity.progressBar3.setVisibility(View.INVISIBLE);
+        progressBar3.setVisibility(View.INVISIBLE);
         
-        Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putString("riderUsername", bookingDetails.get("nearbyRiderName").toString());
-        bundle.putDouble("riderLatitude", Double.valueOf(bookingDetails.get("nearbyRiderLat").toString()));
-        bundle.putDouble("riderLongitude", Double.valueOf(bookingDetails.get("nearbyRiderLong").toString()));
-        bundle.putDouble("driverLatitude", Double.valueOf(bookingDetails.get("driverLatitude").toString()));
-        bundle.putDouble("driverLongitude", Double.valueOf(bookingDetails.get("driverLongitude").toString()));
-        intent.putExtras(bundle);
-        startActivity(intent);
+        if((Boolean) bookingDetails.get("isBookingEmpty"))
+        {
+            riderListTitle.setText("There are currently no bookings available");
+        }
+        else
+        {
+            Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("riderUsername", bookingDetails.get("nearbyRiderName").toString());
+            bundle.putDouble("riderLatitude", Double.valueOf(bookingDetails.get("nearbyRiderLat").toString()));
+            bundle.putDouble("riderLongitude", Double.valueOf(bookingDetails.get("nearbyRiderLong").toString()));
+            bundle.putDouble("driverLatitude", Double.valueOf(bookingDetails.get("driverLatitude").toString()));
+            bundle.putDouble("driverLongitude", Double.valueOf(bookingDetails.get("driverLongitude").toString()));
+            intent.putExtras(bundle);
+            startActivity(intent);
+        }
     }
     //endregion
 }

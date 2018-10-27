@@ -43,7 +43,6 @@ public class DriverClass
             @Override
             public void done(List<ParseObject> objects, ParseException e)
             {
-                Log.d(TAG, String.valueOf(objects.size()));
                 if(e == null)
                 {
                     if(objects.size() > 0)
@@ -53,9 +52,13 @@ public class DriverClass
                         bookingDetails.put("nearbyRiderLong", objects.get(0).getParseGeoPoint("Rider_Location").getLongitude());
                         bookingDetails.put("driverLat", ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude());
                         bookingDetails.put("driverLong",ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude());
-                        
-                        riderRequestsActivity.goToDriverMapActivity(bookingDetails);
+                        bookingDetails.put("isBookingEmpty", false);
                     }
+                    else
+                    {
+                        bookingDetails.put("isBookingEmpty", true);
+                    }
+                    riderRequestsActivity.goToDriverMapActivity(bookingDetails);
                 }
                 else
                 {
