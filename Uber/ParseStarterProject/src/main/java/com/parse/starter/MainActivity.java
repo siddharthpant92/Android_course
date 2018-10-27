@@ -38,15 +38,17 @@ public class MainActivity extends Activity
     
     String TAG = "MainActivity";
     
-    UserClass userClass = new UserClass();
+    UserClass userClass;
     
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    
+//        mainActivity = this; // Initializing this instance
+        userClass = new UserClass(this); // So that UserClass can call functions in this activity
         
-        mainActivity = this; // Initializing this instance
         userRoleSwitch = (Switch) findViewById(R.id.userRoleSwitch);
         loginButton = (Button) findViewById(R.id.loginButton);
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
@@ -65,10 +67,10 @@ public class MainActivity extends Activity
     }
     
     // Other classes and activities can call this method to create an object of MainActivity.
-    public static MainActivity getInstance()
-    {
-        return mainActivity;
-    }
+//    public static MainActivity getInstance()
+//    {
+//        return mainActivity;
+//    }
 
     //region USER ACTIONS
     

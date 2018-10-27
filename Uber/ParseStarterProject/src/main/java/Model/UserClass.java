@@ -10,12 +10,14 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.parse.starter.MainActivity;
+import com.parse.starter.RiderRequestsActivity;
 
 public class UserClass
 {
     String TAG = "UserClass";
     ParseUser parseUser;
-    MainActivity mainActivity = MainActivity.getInstance(); // Gets an object instance of MainActivity
+    MainActivity mainActivity; // Gets an object instance of MainActivity
+    RiderRequestsActivity riderRequestsActivity;
     
     public String username, role;
     
@@ -31,6 +33,16 @@ public class UserClass
     {
         username = user_name;
         role = user_role;
+    }
+    
+    public UserClass(MainActivity mainActivity)
+    {
+        this.mainActivity = mainActivity;
+    }
+    
+    public UserClass(RiderRequestsActivity riderRequestsActivity)
+    {
+        this.riderRequestsActivity = riderRequestsActivity;
     }
     
     /**
@@ -57,12 +69,11 @@ public class UserClass
      * Saving the user role in the server and then redirecting the user
      * @param user          Object instance of ParseUser
      * @param role          Role the user selected
-     * @param isRedirecUser If the user should be redirected or not
+     * @param isRedirectUser If the user should be redirected or not
      * @param context       The activity that called this function
      */
-    public void saveUserRole(ParseUser user, final String role, final Boolean isRedirecUser, final Context context)
+    public void saveUserRole(ParseUser user, final String role, final Boolean isRedirectUser, final Context context)
     {
-        Log.d(TAG, role);
         user.put("User_Role", role);
     
         user.saveInBackground(new SaveCallback()
@@ -72,7 +83,7 @@ public class UserClass
             {
                 if(e == null)
                 {
-                    if(isRedirecUser)
+                    if(isRedirectUser)
                     {
                         mainActivity.redirectUser(role);
                     }
