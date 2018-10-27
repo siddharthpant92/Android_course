@@ -38,6 +38,8 @@ public class MainActivity extends Activity
     
     String TAG = "MainActivity";
     
+    UserClass userClass = new UserClass();
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -49,8 +51,7 @@ public class MainActivity extends Activity
         loginButton = (Button) findViewById(R.id.loginButton);
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         passwordTextView = (TextView) findViewById(R.id.passwordTextView);
-        UserClass userClass = new UserClass();
-    
+        
         UserClass currentUser = userClass.getCurrentUser();
         
         // Checking if user is already logged in
@@ -73,8 +74,6 @@ public class MainActivity extends Activity
     
     public void loginTapped(View view)
     {
-        UserClass userClass = new UserClass();
-        
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
     
@@ -91,8 +90,6 @@ public class MainActivity extends Activity
 
     public void signupTapped(View view)
     {
-        UserClass userClass = new UserClass();
-    
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
 
