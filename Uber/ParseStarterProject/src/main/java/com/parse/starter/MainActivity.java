@@ -38,19 +38,22 @@ public class MainActivity extends Activity
     
     String TAG = "MainActivity";
     
+    UserClass userClass;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    
+//        mainActivity = this; // Initializing this instance
+        userClass = new UserClass(this); // So that UserClass can call functions in this activity
         
-        mainActivity = this; // Initializing this instance
         userRoleSwitch = (Switch) findViewById(R.id.userRoleSwitch);
         loginButton = (Button) findViewById(R.id.loginButton);
         usernameTextView = (TextView) findViewById(R.id.usernameTextView);
         passwordTextView = (TextView) findViewById(R.id.passwordTextView);
-        UserClass userClass = new UserClass();
-    
+        
         UserClass currentUser = userClass.getCurrentUser();
         
         // Checking if user is already logged in
@@ -64,17 +67,15 @@ public class MainActivity extends Activity
     }
     
     // Other classes and activities can call this method to create an object of MainActivity.
-    public static MainActivity getInstance()
-    {
-        return mainActivity;
-    }
+//    public static MainActivity getInstance()
+//    {
+//        return mainActivity;
+//    }
 
     //region USER ACTIONS
     
     public void loginTapped(View view)
     {
-        UserClass userClass = new UserClass();
-        
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
     
@@ -91,8 +92,6 @@ public class MainActivity extends Activity
 
     public void signupTapped(View view)
     {
-        UserClass userClass = new UserClass();
-    
         Map<String, Object> userCredentials;
         userCredentials = getCredentials();
 
