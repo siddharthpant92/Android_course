@@ -23,18 +23,21 @@ public class LocationClass
 {
     String TAG = "LocationClass";
     
+    UserClass userClass = new UserClass();
+    
     RiderRequestsActivity riderRequestsActivity;
+    LocationManager locationManager;
+    static LocationListener locationListener;
+    
     
     public LocationClass(RiderRequestsActivity riderRequestsActivity)
     {
         this.riderRequestsActivity = riderRequestsActivity;
     }
     
-    public void updateLocation(LocationManager locationManager, LocationListener locationListener, final Context context)
+    
+    public static LocationListener getLocationListener(final LocationManager locationManager, final Context context)
     {
-        locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-        final LocationManager finalLocationManager = locationManager;
-        final LocationListener finalLocationListener = locationListener;
         locationListener = new LocationListener()
         {
             @Override
@@ -44,11 +47,13 @@ public class LocationClass
                 if (ParseUser.getCurrentUser() != null)
                 {
                     ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                    Log.d(TAG, String.valueOf(driverGeoPoint.getLatitude()));
+                    Log.d("test", String.valueOf(driverGeoPoint.getLatitude()));
 //                    driverLatitude = driverGeoPoint.getLatitude();
 //                    driverLongitude = driverGeoPoint.getLongitude();
-                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
-                    ParseUser.getCurrentUser().saveInBackground();
+//                    Log.d(TAG, driverLatitude.toString());
+//                    Log.d(TAG, driverLongitude.toString());
+//                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+//                    ParseUser.getCurrentUser().saveInBackground();
                 }
             
                 // Continuously finding nearby riders.
@@ -66,41 +71,17 @@ public class LocationClass
             {
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    finalLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, finalLocationListener);
+                    locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);;
                 }
             }
         
             @Override
             public void onProviderDisabled(String s)
             {
-                turnOnLocation(context);
+//                turnOnLocation();
             }
         };
-    }
-    
-    /**
-     * Prompts the user to switch on their location to high accuracy mode.
-     */
-    public void turnOnLocation(final Context context)
-    {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(final DialogInterface dialog, final int id)
-                    {
-                        context.startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(final DialogInterface dialog, final int id)
-                    {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
+        
+        return locationListener;
     }
 }

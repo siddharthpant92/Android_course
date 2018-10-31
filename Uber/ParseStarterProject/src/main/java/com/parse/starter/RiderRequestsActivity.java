@@ -3,6 +3,7 @@ package com.parse.starter;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -46,7 +47,7 @@ public class RiderRequestsActivity extends Activity
     ListView riderRequestsListView;
     
     static RiderRequestsActivity riderRequestsActivity; // instance of this activity
-    String tag = "RiderRequestsActivity", user_name;
+    String TAG = "RiderRequestsActivity", user_name;
     ArrayList<String> nearbyRiderDistance = new ArrayList<>();
     ArrayList<String> nearbyRiderUsername = new ArrayList<>();
     ArrayList<Double> nearbyRiderLatitude = new ArrayList<>();
@@ -88,12 +89,13 @@ public class RiderRequestsActivity extends Activity
 
         // Checking if the driver had already accepted a request previously
         driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
-
-//        // Constantly updating driver location
-//        locationClass.updateLocation(locationManager, locationListener, RiderRequestsActivity.this);
+    
+        // Constantly updating driver location
+    
+        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         
+        locationListener = LocationClass.getLocationListener(locationManager, RiderRequestsActivity.this);
         
-//        locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
 //        locationListener = new LocationListener()
 //        {
 //            @Override
@@ -105,6 +107,8 @@ public class RiderRequestsActivity extends Activity
 //                    ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
 //                    driverLatitude = driverGeoPoint.getLatitude();
 //                    driverLongitude = driverGeoPoint.getLongitude();
+//                    Log.d(TAG, driverLatitude.toString());
+//                    Log.d(TAG, driverLongitude.toString());
 //                    ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
 //                    ParseUser.getCurrentUser().saveInBackground();
 //                }
@@ -137,41 +141,37 @@ public class RiderRequestsActivity extends Activity
 
     
     
-//        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-//        {
-//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
-//        }
-//        else
-//        {
-//            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
-//        }
-//
-//        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nearbyRiderDistance);
-//        riderRequestsListView.setAdapter(adapter);
-//
-//        riderRequestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-//        {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
-//            {
-//                if (nearbyRiderUsername.size() > 0)
-//                {
-//                    final String nearbyRiderName = nearbyRiderUsername.get(i);
-//                    final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
-//                    final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
-//
-////                    goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLatitude, driverLongitude);
-//
-//                }
-//            }
-//        });
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        }
+        else
+        {
+            Log.d(TAG, "here");
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
+        }
+
+        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nearbyRiderDistance);
+        riderRequestsListView.setAdapter(adapter);
+
+        riderRequestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l)
+            {
+                if (nearbyRiderUsername.size() > 0)
+                {
+                    final String nearbyRiderName = nearbyRiderUsername.get(i);
+                    final Double nearbyRiderLat = nearbyRiderLatitude.get(i);
+                    final Double nearbyRiderLong = nearbyRiderLongitude.get(i);
+
+                    goToDriverMapActivity(nearbyRiderName, nearbyRiderLat, nearbyRiderLong, driverLatitude, driverLongitude);
+
+                }
+            }
+        });
     }
     
-    // Other classes and activities can call this method to create an object of RiderRequestsActivity.
-//    public static RiderRequestsActivity getInstance()
-//    {
-//        return riderRequestsActivity;
-//    }
     //region USER ACTIONS
     // NOTE: riderRequestsListView.setOnItemClickListener is in onCreate
     public void logoutTapped(View view)
@@ -201,42 +201,43 @@ public class RiderRequestsActivity extends Activity
             {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    locationClass.turnOnLocation(RiderRequestsActivity.this);
+                    turnOnLocation();
                 }
             }
         }
     }
     
-//    /**
-//     * Prompts the user to switch on their location to high accuracy mode.
-//     */
-//    private void turnOnLocation()
-//    {
-//        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
-//                .setCancelable(false)
-//                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-//                {
-//                    public void onClick(final DialogInterface dialog, final int id)
-//                    {
-//                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-//                    }
-//                })
-//                .setNegativeButton("No", new DialogInterface.OnClickListener()
-//                {
-//                    public void onClick(final DialogInterface dialog, final int id)
-//                    {
-//                        dialog.cancel();
-//                    }
-//                });
-//        final AlertDialog alert = builder.create();
-//        alert.show();
-//    }
+    /**
+     * Prompts the user to switch on their location to high accuracy mode.
+     */
+    private void turnOnLocation()
+    {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(final DialogInterface dialog, final int id)
+                    {
+                        dialog.cancel();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
+    }
     //endregion
     
     
     
     //region HELPERS
+    
     /**
      * A rider's location is saved in Uber_Requests only when they call an uber.
      * If they call an uber and then change their location, the location from which they booked is the one which is locked.
@@ -298,18 +299,18 @@ public class RiderRequestsActivity extends Activity
         });
     }
     
-//    public void goToDriverMapActivity(String nearbyRiderName, Double nearbyRiderLat, Double nearbyRiderLong, Double driverLatitude, Double driverLongitude)
-//    {
-//        Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("riderUsername", nearbyRiderName);
-//        bundle.putDouble("riderLatitude", nearbyRiderLat);
-//        bundle.putDouble("riderLongitude", nearbyRiderLong);
-//        bundle.putDouble("driverLatitude", driverLatitude);
-//        bundle.putDouble("driverLongitude", driverLongitude);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-//    }
+    public void goToDriverMapActivity(String nearbyRiderName, Double nearbyRiderLat, Double nearbyRiderLong, Double driverLatitude, Double driverLongitude)
+    {
+        Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("riderUsername", nearbyRiderName);
+        bundle.putDouble("riderLatitude", nearbyRiderLat);
+        bundle.putDouble("riderLongitude", nearbyRiderLong);
+        bundle.putDouble("driverLatitude", driverLatitude);
+        bundle.putDouble("driverLongitude", driverLongitude);
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
     
     public void goToDriverMapActivity(HashMap<String, Object> bookingDetails)
     {
