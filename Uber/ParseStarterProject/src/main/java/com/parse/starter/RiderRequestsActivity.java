@@ -46,10 +46,7 @@ public class RiderRequestsActivity extends Activity
 {
     ListView riderRequestsListView;
     
-    static RiderRequestsActivity riderRequestsActivity; // instance of this activity
     String TAG = "RiderRequestsActivity";
-//    ArrayList<String> nearbyRiderDistance = new ArrayList<>();
-//    Double driverLatitude, driverLongitude;
     ArrayAdapter adapter;
     LocationManager locationManager;
     LocationListener locationListener;
@@ -79,7 +76,6 @@ public class RiderRequestsActivity extends Activity
         final UserClass currentUser = userClass.getCurrentUser();
     
         // Checking if the driver had already accepted a request previously
-//        nearbyRiderDistance.clear();
         driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
     
         // Constantly updating driver location
@@ -118,7 +114,7 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onProviderDisabled(String s)
             {
-                turnOnLocation();
+                locationClass.turnOnLocation(RiderRequestsActivity.this);
             }
         };
 
@@ -135,10 +131,9 @@ public class RiderRequestsActivity extends Activity
     }
     
     //region USER ACTIONS
-    // NOTE: riderRequestsListView.setOnItemClickListener is in onCreate
     public void logoutTapped(View view)
     {
-//        locationManager.removeUpdates(locationListener);
+        locationManager.removeUpdates(locationListener);
         ParseUser.logOut();
         finish();
     }
@@ -163,57 +158,16 @@ public class RiderRequestsActivity extends Activity
             {
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
                 {
-                    turnOnLocation();
+                    locationClass.turnOnLocation(RiderRequestsActivity.this);
                 }
             }
         }
-    }
-    
-    /**
-     * Prompts the user to switch on their location to high accuracy mode.
-     */
-    private void turnOnLocation()
-    {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it? Please enable it to your high accuracy mode.")
-                .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(final DialogInterface dialog, final int id)
-                    {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener()
-                {
-                    public void onClick(final DialogInterface dialog, final int id)
-                    {
-                        dialog.cancel();
-                    }
-                });
-        final AlertDialog alert = builder.create();
-        alert.show();
     }
     //endregion
     
     
     
     //region HELPERS
-
-    
-//    public void goToDriverMapActivity(String nearbyRiderName, Double nearbyRiderLat, Double nearbyRiderLong, Double driverLatitude, Double driverLongitude)
-//    {
-//        Intent intent = new Intent(RiderRequestsActivity.this, DriverMapActivity.class);
-//        Bundle bundle = new Bundle();
-//        bundle.putString("riderUsername", nearbyRiderName);
-//        bundle.putDouble("riderLatitude", nearbyRiderLat);
-//        bundle.putDouble("riderLongitude", nearbyRiderLong);
-//        bundle.putDouble("driverLatitude", driverLatitude);
-//        bundle.putDouble("driverLongitude", driverLongitude);
-//        intent.putExtras(bundle);
-//        startActivity(intent);
-//    }
-    
     public void goToDriverMapActivity(HashMap<String, Object> bookingDetails)
     {
         progressBar3.setVisibility(View.INVISIBLE);
@@ -222,6 +176,8 @@ public class RiderRequestsActivity extends Activity
         {
             // See if there are nearby riders
             riderListTitle.setText("There is no existing booking");
+            
+            // drierClass.findNearbyRiderDistance is called automatically from onLocationChanged
         }
         else
         {
@@ -259,10 +215,8 @@ public class RiderRequestsActivity extends Activity
                     bookingDetails.put("driverLat", currentUser.user_latitude);
                     bookingDetails.put("driverLong", currentUser.user_longitude);
                     bookingDetails.put("isExistingBooking", false);
-    
-    
+                    
                     goToDriverMapActivity(bookingDetails);
-                
                 }
             }
         });

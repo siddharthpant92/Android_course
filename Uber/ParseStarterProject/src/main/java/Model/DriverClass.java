@@ -89,11 +89,6 @@ public class DriverClass
     
     public void findNearbyRiderDistance(final Location location, final Context context)
     {
-        nearbyRiderDistance.clear();
-        nearbyRiderUsername.clear();
-        nearbyRiderLatitude.clear();
-        nearbyRiderLongitude.clear();
-        
         final ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
         
         //Getting list of nearby riders
@@ -106,6 +101,11 @@ public class DriverClass
             {
                 if(e == null)
                 {
+                    nearbyRiderDistance.clear();
+                    nearbyRiderUsername.clear();
+                    nearbyRiderLatitude.clear();
+                    nearbyRiderLongitude.clear();
+                    
                     if(objects.size() > 0)
                     {
                         for(ParseObject object: objects)
