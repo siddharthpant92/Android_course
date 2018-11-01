@@ -10,6 +10,7 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
+import com.parse.starter.DriverMapActivity;
 import com.parse.starter.MainActivity;
 import com.parse.starter.RiderRequestsActivity;
 
@@ -19,6 +20,7 @@ public class UserClass
     ParseUser parseUser;
     MainActivity mainActivity; // Gets an object instance of MainActivity
     RiderRequestsActivity riderRequestsActivity;
+    DriverMapActivity driverMapActivity;
     
     public String username, role;
     public Double user_latitude, user_longitude;
@@ -49,6 +51,11 @@ public class UserClass
     public UserClass(RiderRequestsActivity riderRequestsActivity)
     {
         this.riderRequestsActivity = riderRequestsActivity;
+    }
+    
+    public UserClass(DriverMapActivity driverMapActivity)
+    {
+        this.driverMapActivity = driverMapActivity;
     }
     
     /**
