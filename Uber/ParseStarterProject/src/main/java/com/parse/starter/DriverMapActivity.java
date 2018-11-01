@@ -1,17 +1,14 @@
 package com.parse.starter;
 
 import android.content.Intent;
-import android.net.Uri;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdate;
@@ -24,16 +21,10 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.parse.FindCallback;
-import com.parse.ParseException;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import Model.UserClass;
 
@@ -48,7 +39,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     Button logoutButton;
     ProgressBar progressBar2;
     
-    String TAG = "DriverMapActivity";
+    private String TAG = "DriverMapActivity";
 //    String riderUsername, driver_user_name;
 //    Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
     Boolean isRequestAccepted;
@@ -67,7 +58,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        userClass = new UserClass(this);
+        userClass = new UserClass();
     
         acceptRequestButton = (Button) findViewById(R.id.acceptRequestButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
@@ -349,7 +340,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         }
         else
         {
-            Toast.makeText(DriverMapActivity.this, "There was some problem in getting the booking details. please try acceptig again", Toast.LENGTH_SHORT);
+            Toast.makeText(DriverMapActivity.this, "There was some problem in getting the booking details. please try acceptig again", Toast.LENGTH_SHORT).show();
         }
         return bookingDetails;
     }

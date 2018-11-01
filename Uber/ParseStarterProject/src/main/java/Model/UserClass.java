@@ -10,17 +10,12 @@ import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
-import com.parse.starter.DriverMapActivity;
 import com.parse.starter.MainActivity;
-import com.parse.starter.RiderRequestsActivity;
 
 public class UserClass
 {
-    String TAG = "UserClass";
-    ParseUser parseUser;
-    MainActivity mainActivity; // Gets an object instance of MainActivity
-    RiderRequestsActivity riderRequestsActivity;
-    DriverMapActivity driverMapActivity;
+    private String TAG = "UserClass";
+    private MainActivity mainActivity; // Gets an object instance of MainActivity
     
     public String username, role;
     public Double user_latitude, user_longitude;
@@ -46,16 +41,6 @@ public class UserClass
     public UserClass(MainActivity mainActivity)
     {
         this.mainActivity = mainActivity;
-    }
-    
-    public UserClass(RiderRequestsActivity riderRequestsActivity)
-    {
-        this.riderRequestsActivity = riderRequestsActivity;
-    }
-    
-    public UserClass(DriverMapActivity driverMapActivity)
-    {
-        this.driverMapActivity = driverMapActivity;
     }
     
     /**
@@ -87,7 +72,7 @@ public class UserClass
      * @param isRedirectUser If the user should be redirected or not
      * @param context       The activity that called this function
      */
-    public void saveUserRole(ParseUser user, final String role, final Boolean isRedirectUser, final Context context)
+    private void saveUserRole(ParseUser user, final String role, final Boolean isRedirectUser, final Context context)
     {
         user.put("User_Role", role);
     
@@ -178,7 +163,12 @@ public class UserClass
     
     public void saveUserLocation(ParseGeoPoint driverGeoPoint)
     {
-        ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
-        ParseUser.getCurrentUser().saveInBackground();
+        // If user has logged out, cant save location
+        if(ParseUser.getCurrentUser() != null)
+        {
+            ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+            ParseUser.getCurrentUser().saveInBackground();
+        }
+        
     }
 }

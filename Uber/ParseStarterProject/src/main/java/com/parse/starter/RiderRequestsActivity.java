@@ -2,16 +2,12 @@ package com.parse.starter;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -24,19 +20,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
-import com.parse.FindCallback;
-import com.parse.Parse;
-import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
-import com.parse.ParseObject;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
-import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import Model.DriverClass;
 import Model.LocationClass;
@@ -47,7 +35,7 @@ public class RiderRequestsActivity extends Activity
     ListView riderRequestsListView;
     
     String TAG = "RiderRequestsActivity";
-    ArrayAdapter adapter;
+    ArrayAdapter<String> adapter;
     LocationManager locationManager;
     LocationListener locationListener;
     ProgressBar progressBar3;
@@ -64,8 +52,8 @@ public class RiderRequestsActivity extends Activity
         setContentView(R.layout.activity_rider_requests);
   
         driverClass = new DriverClass(this); // So that DriverClass can call functions in this activity
-        userClass = new UserClass(this); // So that UserClass can call functions in this activity
-        locationClass = new LocationClass(this); // So that LocationClass can call functions in this activity
+        userClass = new UserClass();
+        locationClass = new LocationClass(); // So that LocationClass can call functions in this activity
         
         riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
         progressBar3 = (ProgressBar) findViewById(R.id.progressBar3);
@@ -85,15 +73,11 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onLocationChanged(Location location)
             {
-                // If user has logged out, then can't save the updated location
-                if (!currentUser.equals(null))
-                {
-                    ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                    currentUser.saveUserLocation(driverGeoPoint);
-                    
-                    // Continuously finding nearby riders.
-                    driverClass.findNearbyRiderDistance(location, RiderRequestsActivity.this);
-                }
+                ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
+                currentUser.saveUserLocation(driverGeoPoint);
+    
+                // Continuously finding nearby riders.
+                driverClass.findNearbyRiderDistance(location, RiderRequestsActivity.this);
             }
 
             @Override
@@ -134,6 +118,7 @@ public class RiderRequestsActivity extends Activity
     public void logoutTapped(View view)
     {
         locationManager.removeUpdates(locationListener);
+        locationManager = null;
         ParseUser.logOut();
         finish();
     }
@@ -199,7 +184,7 @@ public class RiderRequestsActivity extends Activity
         final UserClass currentUser = userClass.getCurrentUser();
     
         
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nearbyRiderDistance);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nearbyRiderDistance);
         riderRequestsListView.setAdapter(adapter);
     
         riderRequestsListView.setOnItemClickListener(new AdapterView.OnItemClickListener()

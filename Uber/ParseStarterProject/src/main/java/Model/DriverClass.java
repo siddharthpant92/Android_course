@@ -3,7 +3,6 @@ package Model;
 import android.content.Context;
 import android.location.Location;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -11,7 +10,6 @@ import com.parse.ParseException;
 import com.parse.ParseGeoPoint;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
-import com.parse.ParseUser;
 import com.parse.starter.RiderRequestsActivity;
 
 import java.util.ArrayList;
@@ -20,14 +18,13 @@ import java.util.List;
 
 public class DriverClass
 {
-    String TAG = "DriverClass";
-    ArrayList<String> nearbyRiderDistance = new ArrayList<>();
-    ArrayList<String> nearbyRiderUsername = new ArrayList<>();
-    ArrayList<Double> nearbyRiderLatitude = new ArrayList<>();
-    ArrayList<Double> nearbyRiderLongitude = new ArrayList<>();
+    private String TAG = "DriverClass";
+    private ArrayList<String> nearbyRiderDistance = new ArrayList<>();
+    private ArrayList<String> nearbyRiderUsername = new ArrayList<>();
+    private ArrayList<Double> nearbyRiderLatitude = new ArrayList<>();
+    private ArrayList<Double> nearbyRiderLongitude = new ArrayList<>();
     
-    RiderRequestsActivity riderRequestsActivity;
-    UserClass userClass;
+    private RiderRequestsActivity riderRequestsActivity;
     
     public DriverClass(RiderRequestsActivity riderRequestsActivity)
     {
@@ -44,7 +41,7 @@ public class DriverClass
     {
         final HashMap<String, Object> bookingDetails = new HashMap<>();
     
-        userClass = new UserClass();
+        UserClass userClass = new UserClass();
         final UserClass currentUser = userClass.getCurrentUser();
         ParseQuery<ParseObject> query = new ParseQuery<>("Uber_Request");
         query.whereEqualTo("Driver_Name", username);
