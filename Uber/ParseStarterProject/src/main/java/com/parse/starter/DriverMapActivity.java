@@ -87,6 +87,7 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     
     public void logoutTapped(View view)
     {
+        RiderRequestsActivity.stopLocationUpdates();
         ParseUser.logOut();
         Intent intent = new Intent(DriverMapActivity.this, MainActivity.class);
         intent.setFlags(FLAG_ACTIVITY_CLEAR_TOP);

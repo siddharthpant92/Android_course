@@ -1,5 +1,6 @@
 package Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
@@ -11,11 +12,13 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 import com.parse.starter.MainActivity;
+import com.parse.starter.RiderRequestsActivity;
 
 public class UserClass
 {
     private String TAG = "UserClass";
     private MainActivity mainActivity; // Gets an object instance of MainActivity
+    private RiderRequestsActivity riderRequestsActivity;
     
     public String username, role;
     public Double user_latitude, user_longitude;
@@ -41,6 +44,11 @@ public class UserClass
     public UserClass(MainActivity mainActivity)
     {
         this.mainActivity = mainActivity;
+    }
+    
+    public UserClass(RiderRequestsActivity riderRequestsActivity)
+    {
+        this.riderRequestsActivity = riderRequestsActivity;
     }
     
     /**
@@ -169,6 +177,5 @@ public class UserClass
             ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
             ParseUser.getCurrentUser().saveInBackground();
         }
-        
     }
 }

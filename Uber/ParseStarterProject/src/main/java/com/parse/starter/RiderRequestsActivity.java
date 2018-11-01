@@ -36,8 +36,8 @@ public class RiderRequestsActivity extends Activity
     
     String TAG = "RiderRequestsActivity";
     ArrayAdapter<String> adapter;
-    LocationManager locationManager;
-    LocationListener locationListener;
+    static LocationManager locationManager;
+    static LocationListener locationListener;
     ProgressBar progressBar3;
     TextView riderListTitle;
     
@@ -52,7 +52,7 @@ public class RiderRequestsActivity extends Activity
         setContentView(R.layout.activity_rider_requests);
   
         driverClass = new DriverClass(this); // So that DriverClass can call functions in this activity
-        userClass = new UserClass();
+        userClass = new UserClass(this);
         locationClass = new LocationClass(); // So that LocationClass can call functions in this activity
         
         riderRequestsListView = (ListView) findViewById(R.id.riderRequestsListView);
@@ -73,6 +73,7 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onLocationChanged(Location location)
             {
+                Log.d(TAG, String.valueOf(location.getLatitude()));
                 ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
                 currentUser.saveUserLocation(driverGeoPoint);
     
@@ -117,9 +118,9 @@ public class RiderRequestsActivity extends Activity
     //region USER ACTIONS
     public void logoutTapped(View view)
     {
-        locationManager.removeUpdates(locationListener);
-        locationManager = null;
         ParseUser.logOut();
+        stopLocationUpdates();
+        
         finish();
     }
     
@@ -150,9 +151,12 @@ public class RiderRequestsActivity extends Activity
     }
     //endregion
     
-    
-    
     //region HELPERS
+    public static void stopLocationUpdates()
+    {
+        locationManager.removeUpdates(locationListener);
+        locationManager = null;
+    }
     public void goToDriverMapActivity(HashMap<String, Object> bookingDetails)
     {
         progressBar3.setVisibility(View.INVISIBLE);
