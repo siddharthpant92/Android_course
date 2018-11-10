@@ -62,10 +62,12 @@ public class RiderRequestsActivity extends Activity
         progressBar3.setVisibility(View.VISIBLE);
 
         final UserClass currentUser = userClass.getCurrentUser();
-    
-        // Checking if the driver had already accepted a request previously
-        driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
-    
+        if(currentUser != null) // In this case location might not be saved either, which means ride could not have been booked
+        {
+            // Checking if the driver had already accepted a request previously
+            driverClass.checkExistingRequest(currentUser.username, RiderRequestsActivity.this);
+        }
+        
         // Constantly updating driver location
         locationManager = (LocationManager) this.getSystemService(LOCATION_SERVICE);
         locationListener = new LocationListener()
@@ -73,10 +75,9 @@ public class RiderRequestsActivity extends Activity
             @Override
             public void onLocationChanged(Location location)
             {
-                Log.d(TAG, String.valueOf(location.getLatitude()));
                 ParseGeoPoint driverGeoPoint = new ParseGeoPoint(location.getLatitude(), location.getLongitude());
-                currentUser.saveUserLocation(driverGeoPoint);
-    
+                userClass.saveUserLocation(driverGeoPoint); // Can't use currentUser as it might be null if location wasn't saved earlier
+                
                 // Continuously finding nearby riders.
                 driverClass.findNearbyRiderDistance(location, RiderRequestsActivity.this);
             }
