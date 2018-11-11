@@ -1,11 +1,13 @@
 package Model;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.parse.LogInCallback;
 import com.parse.ParseException;
+import com.parse.ParseGeoPoint;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
@@ -14,25 +16,29 @@ import com.parse.starter.RiderRequestsActivity;
 
 public class UserClass
 {
-    String TAG = "UserClass";
-    ParseUser parseUser;
-    MainActivity mainActivity; // Gets an object instance of MainActivity
-    RiderRequestsActivity riderRequestsActivity;
+    private String TAG = "UserClass";
+    private MainActivity mainActivity; // Gets an object instance of MainActivity
+    private RiderRequestsActivity riderRequestsActivity;
     
     public String username, role;
+    public Double user_latitude, user_longitude;
     
     // Default constructor
     public UserClass()
     {
         username = null;
         role = null;
+        user_latitude = null;
+        user_longitude = null;
     }
     
     // Constructor to initialise object
-    public UserClass(String user_name, String user_role)
+    public UserClass(String user_name, String user_role, Double userLatitude, Double userLongitude)
     {
         username = user_name;
         role = user_role;
+        user_latitude = userLatitude;
+        user_longitude = userLongitude;
     }
     
     public UserClass(MainActivity mainActivity)
@@ -55,7 +61,9 @@ public class UserClass
         {
             username = ParseUser.getCurrentUser().getUsername();
             role = ParseUser.getCurrentUser().getString("User_Role");
-            return new UserClass(username, role);
+            user_latitude = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLatitude();
+            user_longitude = ParseUser.getCurrentUser().getParseGeoPoint("User_Location").getLongitude();
+            return new UserClass(username, role, user_latitude, user_longitude);
         }
         catch(Exception e)
         {
@@ -72,7 +80,7 @@ public class UserClass
      * @param isRedirectUser If the user should be redirected or not
      * @param context       The activity that called this function
      */
-    public void saveUserRole(ParseUser user, final String role, final Boolean isRedirectUser, final Context context)
+    private void saveUserRole(ParseUser user, final String role, final Boolean isRedirectUser, final Context context)
     {
         user.put("User_Role", role);
     
@@ -159,5 +167,15 @@ public class UserClass
                 }
             }
         });
+    }
+    
+    public void saveUserLocation(ParseGeoPoint driverGeoPoint)
+    {
+        // If user has logged out, cant save location
+        if(ParseUser.getCurrentUser() != null)
+        {
+            ParseUser.getCurrentUser().put("User_Location", driverGeoPoint);
+            ParseUser.getCurrentUser().saveInBackground();
+        }
     }
 }
