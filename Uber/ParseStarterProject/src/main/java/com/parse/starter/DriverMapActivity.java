@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
@@ -23,9 +24,11 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.parse.ParseUser;
 
+import java.sql.Driver;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import Model.BookingClass;
 import Model.UserClass;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
@@ -40,12 +43,12 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     ProgressBar progressBar2;
     
     private String TAG = "DriverMapActivity";
-//    String riderUsername, driver_user_name;
-//    Double riderLatitude,riderLongitude,driverLatitude, driverLongitude;
     Boolean isRequestAccepted;
     Handler handler;
     private GoogleMap mMap;
+    
     UserClass userClass;
+    BookingClass bookingClass;
     
     private static final long TIME_INTERVAL = 2000;
     
@@ -58,7 +61,9 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+        
         userClass = new UserClass();
+        bookingClass = new BookingClass(this);
     
         acceptRequestButton = (Button) findViewById(R.id.acceptRequestButton);
         logoutButton = (Button) findViewById(R.id.logoutButton);
@@ -66,9 +71,6 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
         
         isRequestAccepted = false; // Set to true when a driver accepts the request
         handler = new Handler();
-        
-        // Checking periodically if the rider cancels the request.
-        checkRiderCancelsRequest();
     }
     
     //region USER ACTIONS
@@ -113,6 +115,11 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap googleMap)
     {
         mMap = googleMap;
+    
+        final HashMap<String, Object> bookingDetails  = getBookingDetails();
+        
+        // Checking periodically if the rider cancels the request.
+        bookingClass.checkRiderCancelsRequest(DriverMapActivity.this, bookingDetails.get("riderUsername").toString());
         
         ConstraintLayout mapLayout = (ConstraintLayout)findViewById(R.id.activityLayout);
         mapLayout.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener()
@@ -121,8 +128,6 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
             public void onGlobalLayout()
             {
                 progressBar2.setVisibility(View.INVISIBLE);
-                
-                HashMap<String, Object> bookingDetails  = getBookingDetails();
                 
                 LatLng driverLocation = new LatLng((Double) bookingDetails.get("driverLatitude"), (Double) bookingDetails.get("driverLongitude"));
                 LatLng riderLocation = new LatLng((Double) bookingDetails.get("riderLatitude"), (Double) bookingDetails.get("riderLongitude"));
@@ -276,54 +281,18 @@ public class DriverMapActivity extends FragmentActivity implements OnMapReadyCal
     //endregion
     
     //region HELPERS
-    /**
-     * If the rider cancels the request then the driver should be notified.
-     * If the rider cancels the request, then the request is deleted from Uber_Request, the query doesn't return anything and isRiderRequestActive gets set to false.
-     * If the driver cancels the request, the driver cancels the
-     */
-    public void checkRiderCancelsRequest()
+    public void riderCancelsRequestResult(Boolean isRequestCancelled)
     {
-//        final Boolean[] isRiderRequestActive = {true};
-//        handler.postDelayed(new Runnable()
-//        {
-//            @Override
-//            public void run()
-//            {
-//                if(isRiderRequestActive[0])
-//                {
-//                    ParseQuery<ParseObject> query = new ParseQuery<ParseObject>("Uber_Request");
-//                    query.whereEqualTo("Rider_Name", riderUsername);
-//                    query.findInBackground(new FindCallback<ParseObject>()
-//                    {
-//                        @Override
-//                        public void done(List<ParseObject> objects, ParseException e)
-//                        {
-//                            if(e == null)
-//                            {
-//                                // The request was not found which means the rider cancelled it.
-//                                if(objects.size() == 0)
-//                                {
-//                                    Toast.makeText(DriverMapActivity.this, "Request has been cancelled", Toast.LENGTH_SHORT).show();
-//                                    isRequestAccepted = false;
-//                                    isRiderRequestActive[0] = false;
-//                                    logoutButton.setVisibility(View.VISIBLE);
-//                                    acceptRequestButton.setText("Accept Request");
-//                                    mMap.clear();
-//                                    finish();
-//                                }
-//                            }
-//                            else
-//                            {
-//                                Toast.makeText(DriverMapActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-//                                Log.d(TAG, "HERE: checkRiderCancelSRequest");
-//                                e.printStackTrace();
-//                            }
-//                        }
-//                    });
-//                }
-//                handler.postDelayed(this, TIME_INTERVAL);
-//            }
-//        }, TIME_INTERVAL);
+        if(isRequestCancelled)
+        {
+            Toast.makeText(DriverMapActivity.this, "Request has been cancelled", Toast.LENGTH_SHORT).show();
+            isRequestAccepted = false;
+//            isRiderRequestActive[0] = false;
+            logoutButton.setVisibility(View.VISIBLE);
+            acceptRequestButton.setText("Accept Request");
+            mMap.clear();
+            finish();
+        }
     }
     
     public HashMap<String, Object> getBookingDetails()
