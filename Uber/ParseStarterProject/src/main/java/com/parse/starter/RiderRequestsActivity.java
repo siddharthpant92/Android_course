@@ -176,6 +176,7 @@ public class RiderRequestsActivity extends Activity
             bundle.putString("riderUsername", bookingDetails.get("nearbyRiderName").toString());
             bundle.putDouble("riderLatitude", Double.valueOf(bookingDetails.get("nearbyRiderLat").toString()));
             bundle.putDouble("riderLongitude", Double.valueOf(bookingDetails.get("nearbyRiderLong").toString()));
+            bundle.putString("driverUsername", bookingDetails.get("driverUsername").toString());
             bundle.putDouble("driverLatitude", Double.valueOf(bookingDetails.get("driverLat").toString()));
             bundle.putDouble("driverLongitude", Double.valueOf(bookingDetails.get("driverLong").toString()));
             intent.putExtras(bundle);
@@ -202,6 +203,7 @@ public class RiderRequestsActivity extends Activity
                     bookingDetails.put("nearbyRiderName", nearbyRiderUsername.get(i));
                     bookingDetails.put("nearbyRiderLat",nearbyRiderLatitude.get(i));
                     bookingDetails.put("nearbyRiderLong", nearbyRiderLongitude.get(i));
+                    bookingDetails.put("driverUsername", currentUser.username);
                     bookingDetails.put("driverLat", currentUser.user_latitude);
                     bookingDetails.put("driverLong", currentUser.user_longitude);
                     bookingDetails.put("isExistingBooking", false);

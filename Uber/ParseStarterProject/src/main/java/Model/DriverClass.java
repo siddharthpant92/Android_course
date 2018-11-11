@@ -57,6 +57,7 @@ public class DriverClass
                         bookingDetails.put("nearbyRiderName", objects.get(0).getString("Rider_Name"));
                         bookingDetails.put("nearbyRiderLat",objects.get(0).getParseGeoPoint("Rider_Location").getLatitude());
                         bookingDetails.put("nearbyRiderLong", objects.get(0).getParseGeoPoint("Rider_Location").getLongitude());
+                        bookingDetails.put("driverUsername", currentUser.username);
                         bookingDetails.put("driverLat", currentUser.user_latitude);
                         bookingDetails.put("driverLong",currentUser.user_longitude);
                         bookingDetails.put("isExistingBooking", false);
